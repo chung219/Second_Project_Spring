@@ -15,7 +15,7 @@ public class HomeController {
 
     @GetMapping("/main")
     public String main (){
-        return "7_17_test";
+        return "main/main_backup";
     }
 
 }
