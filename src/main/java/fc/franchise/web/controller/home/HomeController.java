@@ -15,7 +15,7 @@ public class HomeController {
 
     @GetMapping("/main")
     public String main (){
-        return "test";
+        return "7_17_test";
     }
 
 }
