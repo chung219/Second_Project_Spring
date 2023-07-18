@@ -1,7 +1,8 @@
 package fc.franchise.web.controller.home;
 
-import fc.franchise.domain.Address;
+import fc.franchise.domain.Food;
 import fc.franchise.repository.AddressInterface;
+import fc.franchise.repository.FoodInterface;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -14,6 +15,7 @@ import java.util.List;
 @Slf4j
 public class HomeController {
     private final AddressInterface addressInterface;
+    private final FoodInterface foodInterface;
 
     @GetMapping("/")
     public String home () {
@@ -22,8 +24,8 @@ public class HomeController {
 
     @GetMapping("/main")
     public String main (Model model){
-        List<Address>addressList = addressInterface.findAll();
-        model.addAttribute("address", addressList);
+        List<Food> foodList = foodInterface.findAll();
+        model.addAttribute("address", foodList);
         return "main/main_test";
     }
 
