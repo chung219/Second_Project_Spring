@@ -12,7 +12,7 @@
         <h2>메인테스트 화면</h2>
         <div id="map" style="width:700px;height:900px;"></div>
         <button onclick="setOverlayMapTypeId('traffic')">교통정보 보기</button>
-        <script>
+        <script th:inline="javascript">
             var mapContainer = document.getElementById('map'), // 지도를 표시할 div
                 mapOption = {
                     center: new kakao.maps.LatLng(36.01683146793617, 129.42603381793853), // 지도의 중심좌표
@@ -59,64 +59,35 @@
             // 주소-좌표 변환 객체를 생성합니다
             var geocoder = new kakao.maps.services.Geocoder();
 
-            $(document).ready(function() {
-                // 웹소켓 연결
-                var socket = new WebSocket("ws://localhost:8060/");
-                // 웹소켓 연결 성공 시 이벤트 핸들러
-                socket.onopen = function(event) {
-                    console.log("WebSocket connected.");
-                };
-                // 웹소켓으로부터 데이터 수신 시 이벤트 핸들러
-                socket.onmessage = function(event) {
-                    var receivedData = event.data;
-                    console.log("Received data: " + receivedData);
-                    new_marker(receivedData)
-                };
 
-                // 웹소켓 연결 종료 시 이벤트 핸들러
-                socket.onclose = function(event) {
-                    console.log("WebSocket disconnected.");
-                };
-            });
 
-            function new_marker(received_data) {
 
-                var nomal_info = JSON.parse(received_data);
-                console.log("json:" + nomal_info)
+            var add_list = [[${address}]];
+            console.log(add_list)
 
-                var infoArray = Array.isArray(nomal_info) ? nomal_info : [nomal_info];
 
-                infoArray.forEach(function (address) {
 
-                    var first_address = address['소새지주소']
-                    var second_address = address['소새지상세주소']
+            add_list.forEach(function (address) {
 
-                    // 주소로 좌표를 검색합니다
-                    geocoder.addressSearch(first_address + second_address, function (result, status) {
+                var first_address = address.firstAddress
+                var second_address = address.secondAddress
 
-                        // 정상적으로 검색이 완료됐으면
-                        if (status === kakao.maps.services.Status.OK) {
+                // 주소로 좌표를 검색합니다
+                geocoder.addressSearch(first_address + second_address, function (result, status) {
 
-                            var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+                    // 정상적으로 검색이 완료됐으면
+                    if (status === kakao.maps.services.Status.OK) {
 
-                            // 결과값으로 받은 위치를 마커로 표시합니다
-                            var marker = new kakao.maps.Marker({
-                                map: map,
-                                position: coords
-                            });
-                        }
-                    });
+                        var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+
+                        // 결과값으로 받은 위치를 마커로 표시합니다
+                        var marker = new kakao.maps.Marker({
+                            map: map,
+                            position: coords
+                        });
+                    }
                 });
-            }
-
-            // // 인포윈도우로 장소에 대한 설명을 표시합니다
-            // var infowindow = new kakao.maps.InfoWindow({
-            //     content: '<div style="width:150px;text-align:center;padding:6px 0;">우리회사</div>'
-            // });
-            // infowindow.open(map, marker);
-            //
-            // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
-            // map.setCenter(coords);
+            });
 
         </script>
 
