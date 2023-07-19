@@ -117,10 +117,13 @@
 
             <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-            <script>
+            <script th:inline="javascript">
 
-                var brand_info = [${brand}];
-                console.log(brand_info)
+                // var brand_info = [[${brand}]];
+                // console.log(brand_info)
+
+                var brandList = [[${brand}]];
+                console.log('로그: ' + brandList)
 
 
                 const ctx = document.getElementById('myChart');

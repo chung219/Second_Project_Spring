@@ -5,6 +5,8 @@ import lombok.Data;
 @Data
 public class Brand {
 
+    // 가맹정보_브랜드별_가맹점_현황_제공_서비스
+    // 오라클 BRAND_FR_PRO
     private long year;
     private String industryCategory;
     private String industryClassification;
