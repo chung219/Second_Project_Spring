@@ -1,7 +1,10 @@
 package fc.franchise.web.controller.home;
 
+import fc.franchise.domain.Brand;
 import fc.franchise.domain.Food;
 import fc.franchise.repository.AddressInterface;
+import fc.franchise.repository.BrandInterface;
+import fc.franchise.repository.BrandMapper;
 import fc.franchise.repository.FoodInterface;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -16,6 +19,7 @@ import java.util.List;
 public class HomeController {
     private final AddressInterface addressInterface;
     private final FoodInterface foodInterface;
+    private final BrandInterface brandInterface;
 
     @GetMapping("/")
     public String home () {
@@ -24,9 +28,10 @@ public class HomeController {
 
     @GetMapping("/main")
     public String main (Model model){
-        List<Food> foodList = foodInterface.findAll();
-        model.addAttribute("address", foodList);
-        return "main/main_test";
+        List<Brand> brandsList = brandInterface.findAll();
+        model.addAttribute("brand", brandsList);
+        return "main/js_chart";
     }
+
 
 }

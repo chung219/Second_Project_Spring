@@ -10,6 +10,7 @@ import org.springframework.context.annotation.Configuration;
 public class MybatisConfig {
     private final AddressMapper addressMapper;
     private final FoodMapper foodMapper;
+    private final BrandMapper brandMapper;
 
     @Bean
     public AddressInterface addressInterface(){
@@ -19,5 +20,10 @@ public class MybatisConfig {
     @Bean
     public FoodInterface foodInterface() {
         return new MybatisFoodRepository(foodMapper);
+    }
+
+    @Bean
+    public BrandInterface brandInterface() {
+        return new MybatisBrandRepository(brandMapper);
     }
 }
