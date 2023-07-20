@@ -26,11 +26,24 @@ public class HomeController {
         return "redirect:/main";
     }
 
+//    @GetMapping("/main")
+//    public String main (Model model){
+//        List<Brand> brandsList = brandInterface.findAll();
+//        model.addAttribute("brand", brandsList);
+//
+////        System.out.print(model);
+//
+//        return "main/js_chart";
+//    }
+
     @GetMapping("/main")
     public String main (Model model){
-        List<Brand> brandsList = brandInterface.findAll();
+        List<Brand> brandsList = brandInterface.departure();
         model.addAttribute("brand", brandsList);
-        return "main/js_chart";
+
+        System.out.print(model);
+
+        return "main/js_chart2";
     }
 
     @GetMapping("/category")

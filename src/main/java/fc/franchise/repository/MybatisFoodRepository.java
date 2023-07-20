@@ -14,5 +14,7 @@ public class MybatisFoodRepository implements FoodInterface {
     @Override
     public List<Food> findAll() {
         return foodMapper.findAll();
+
+
     }
 }

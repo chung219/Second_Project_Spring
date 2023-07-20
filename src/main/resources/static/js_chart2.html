@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="robots" content="ALL"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <title>외식업 프랜차이즈 현황</title>
+    <meta name="Description" content="우리동네 외식업 프랜차이즈에 대한 다양한 정보를 제공합니다."/>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=0.1,maximum-scale=5.0,user-scalable=yes" />
+    <link rel="stylesheet" type="text/css" href="css/reset.css" >
+    <link rel="stylesheet" type="text/css" href="css/layout.css" >
+    <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
+    <script src="js/jquery.js"></script>
+    <!--    <script src="js/jquery-ui-1.10.4.custom.min.js"></script>-->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> <!-- js chart 설치 -->
+</head>
+<body>
+<div class="container">
+    <!-- ####### 01. HEADER START ####### -->
+    <div class="header_wrap">
+        <header>
+            <h1><a href="/">전국 프랜차이즈 가맹현황</a></h1>
+            <nav>
+                <ul>
+                    <li><a href="category">업종별</a></li>
+                    <li><a href="brand">브랜드별</a></li>
+                    <li><a href="region">지역별</a></li>
+                    <li><a href="region" class="fa fa-search" title="검색"> </a></li>
+                </ul>
+            </nav>
+        </header>
+    </div>
+    <!-- ####### 01. HEADER END ####### -->
+    <hr class="skip"/>
+    <!-- ####### 02. LNB START ######### -->
+    <div class="lnb_wrap">
+        <!-- #### 02-1. 좌측 고정 업종별 아이콘 메뉴 시작 -->
+        <dl class="fixed_quick_menu">
+            <dt class="fa fa-pie-chart" title="외식업종"></dt>
+            <dd><a href="category/한식">한식</a></dd>
+            <dd><a href="category/한식">중식</a></dd>
+            <dd><a href="category/한식">일식</a></dd>
+            <dd><a href="category/한식">양식</a></dd>
+            <dd><a href="category/한식">치킨</a></dd>
+            <dd><a href="category/한식">주점</a></dd>
+            <dd><a href="category/한식">분식</a></dd>
+            <dd><a href="category/한식">피자</a></dd>
+            <dd><a href="category/한식">커피</a></dd>
+            <dd><a href="category/한식">제과<br/> 제빵</a></dd>
+            <dd><a href="category/한식">패스트푸드</a></dd>
+            <dd><a href="category/한식">음료<br/> 커피</a></dd>
+            <dd><a href="category/한식">아이스크림<br/> 빙수</a></dd>
+            <dd><a href="category/한식">기타<br/> 외국식</a></dd>
+            <dd><a href="category/한식">기타<br/> 외식</a></dd>
+        </dl>
+        <!-- #### 02-1. 좌측 고정 업종별 아이콘 메뉴 끝 -->
+        <hr class="skip"/>
+        <!-- #### 02-2. 좌측 on/off 페이지 서브 메뉴 노출 시작 -->
+        <div class="lnb main">
+            <!-- 02-2-1. 대시보드 집계 그래프 노출 영역 시작 -->
+            <h2>[외식] 업종별 가맹점 분포</h2>
+            <div class="dash_board_graph">
+                그래프가 들어갑니다!
+            </div>
+            <!-- 02-2-1.대시보드 집계 그래프 노출 영역 끝 -->
+            <!-- 02-2-2.페이지 컨텐츠 서브 메뉴 노출 시작 -->
+            <dl class="latest">
+                <dt>[한식] 가맹점수 TOP3</dt>
+                <dd>
+                    <ol>
+                        <li>
+                            <a href="#">
+                                <span class="thumb_img"></span>
+                                <span class="brand_name">마을회관 왕갈비 일산점</span>
+                                <b class="num fa fa-bookmark-o"> 1230</b>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="thumb_img"></span>
+                                <span class="brand_name">놀부보쌈 을왕리 해수욕장에서 제일 맛있는 집</span>
+                                <b class="num fa fa-bookmark-o"> 105</b>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="thumb_img"></span>
+                                <span class="brand_name">여름이면 비냉/물냉이 최고 인하대점</span>
+                                <b class="num fa fa-bookmark-o"> 78</b>
+                            </a>
+                        </li>
+                    </ol>
+                </dd>
+                <dd><a href="#" class="btn_more">더보기</a></dd>
+            </dl>
+            <!-- 02-2-2.페이지 컨텐츠 서브 메뉴 노출 끝 -->
+            <div class="btn_lnb_open"><a href="#" class="fa fa-chevron-left"> </a></div>
+        </div>
+
+        <!-- #### 02-2 좌측 on/off 페이지 서브 메뉴 노출 끝 -->
+    </div>
+    <!-- ####### 02. LNB END ########## -->
+    <hr class="skip"/>
+    <!-- ####### 03. CONTENTS START ####### -->
+    <section class="contents_wrap">
+        <!-- #### 03-1.우측 본문 영역 시작 -->
+        <div class="right_contents">
+            <!-- ######## 각 페이지에 해당 하는 내용 HTML을 넣어주세요.########### -->
+
+
+
+
+            <!-- js chart -->
+            <div>
+                <canvas id="myChart"></canvas>
+            </div>
+
+            <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+
+            <script th:inline="javascript">
+
+                <!--            model 값 가져오기 test-->
+                // var brandList = [[${brand}]];
+                //
+                //
+                // brandList.forEach(function (brand) {
+                //
+                //     var year = brand.year;
+                //     var industryCategory = brand.industryCategory;
+                //
+                //     console.log(year)
+                //     console.log(industryCategory)
+                // });
+
+
+                const ctx = document.getElementById('myChart');
+
+                new Chart(ctx, {
+                    type: 'scatter', // type : bar, bubble, doughnut, line, polarArea, radar, scatter, pie
+                    data: {
+                        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange', 'Apricot'],
+                        datasets: [{
+                            label: '# of Votes',
+                            data: [12, 19, 3, 5, 2, 3, 7],
+                            borderWidth: 1,
+                            backgroundColor: [
+                                'rgba(255, 99, 132, 0.2)',
+                                'rgba(255, 159, 64, 0.2)',
+                                'rgba(255, 205, 86, 0.2)',
+                                'rgba(75, 192, 192, 0.2)',
+                                'rgba(54, 162, 235, 0.2)',
+                                'rgba(153, 102, 255, 0.2)',
+                                'rgba(201, 203, 207, 0.2)'
+                            ],
+                        }]
+                    },
+                    options: {
+                        scales: {
+                            y: {
+                                beginAtZero: true
+                            }
+                        }
+                    }
+                });
+            </script>
+
+
+
+
+            <!-- ######## 각 페이지에 해당 하는 내용 HTML을 넣어주세요.########### -->
+        </div>
+        <!-- #### 03-1.우측 본문 영역 끝 -->
+    </section>
+    <!-- ####### 03. CONTENTS END ####### -->
+    <hr class="skip"/>
+    <!-- ####### 04. FOOTER START ####### -->
+    <div class="footer_wrap">
+        <footer>
+            <p class="copyright">  © TEAM 8090  <a href="#" class="fa fa-chevron-circle-up"> TOP</a></p>
+        </footer>
+    </div>
+    <!-- ####### 04. FOOTER END ####### -->
+
+
+
+
+
+
+</div>
+</body>
+</html>

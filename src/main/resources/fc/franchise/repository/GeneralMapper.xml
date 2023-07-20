@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="fc.franchise.repository.GeneralMapper">
+
+    <select id="findAll" resultType="generalinfo">
+        select 기준년도 as year,
+        법인명 as industryName,
+        사업자등록번호 as businessNumber,
+        법인등록번호 as corporationNumber,
+        대표자명 as ceoName,
+        구우편주소 as addressX,
+        소재지주소 as companyAddress,
+        소새지상세주소 as getCompanyAddressDetail
+        from FH_GENERAL_INFO
+    </select>
+
+
+</mapper>

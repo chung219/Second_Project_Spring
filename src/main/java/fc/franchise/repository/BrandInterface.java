@@ -7,4 +7,6 @@ import java.util.List;
 public interface BrandInterface {
     List<Brand> findAll();
 
+
+    List<Brand> departure();
 }

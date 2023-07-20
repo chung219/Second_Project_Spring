@@ -44,78 +44,51 @@
 
 
             <!-- js chart -->
-            <div>
+
+
+            <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/chart.js@3.5.1/dist/chart.min.js"></script>
+
+            <div style="width:850px;height:600px;">
                 <canvas id="myChart"></canvas>
             </div>
 
-            <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
-<!--            <script th:inline="javascript">-->
-
-<!--                // var brand_info = [[${brand}]];-->
-<!--                // console.log(brand_info)-->
-
-<!--                var brandList = [[${brand}]];-->
-<!--                console.log(brandList)-->
-<!--                -->
-<!--                const ctx = document.getElementById('myChart');-->
-
-<!--                new Chart(ctx, {-->
-<!--                    type: 'scatter', // type : bar, bubble, doughnut, line, polarArea, radar, scatter, pie-->
-<!--                    data: {-->
-<!--                        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange', 'Apricot'],-->
-<!--                        datasets: [{-->
-<!--                            label: '# of Votes',-->
-<!--                            data: [12, 19, 3, 5, 2, 3, 7],-->
-<!--                            borderWidth: 1,-->
-<!--                            backgroundColor: [-->
-<!--                                'rgba(255, 99, 132, 0.2)',-->
-<!--                                'rgba(255, 159, 64, 0.2)',-->
-<!--                                'rgba(255, 205, 86, 0.2)',-->
-<!--                                'rgba(75, 192, 192, 0.2)',-->
-<!--                                'rgba(54, 162, 235, 0.2)',-->
-<!--                                'rgba(153, 102, 255, 0.2)',-->
-<!--                                'rgba(201, 203, 207, 0.2)'-->
-<!--                            ],-->
-<!--                        }]-->
-<!--                    },-->
-<!--                    options: {-->
-<!--                        scales: {-->
-<!--                            y: {-->
-<!--                                beginAtZero: true-->
-<!--                            }-->
-<!--                        }-->
-<!--                    }-->
-<!--                });-->
-<!--            </script>-->
-
             <script th:inline="javascript">
 
-                // var brand_info = [[${brand}]];
-                // console.log(brand_info)
 
                 var brandList = [[${brand}]];
                 console.log(brandList)
 
-                const ctx = document.getElementById('myChart');
+                var ctx = document.getElementById('myChart').getContext('2d');  // 1
 
-                new Chart(ctx, {
-                    type: 'scatter', // type : bar, bubble, doughnut, line, polarArea, radar, scatter, pie
+                var myChart = new Chart(ctx, {
+                    type: 'bar',
                     data: {
-                        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange', 'Apricot'],
+                        labels: [brandList[0].brandName, brandList[1].brandName, brandList[2].brandName, brandList[3].brandName, brandList[4].brandName, brandList[5].brandName], // 2
                         datasets: [{
-                            label: '# of Votes',
-                            data: [12, 19, 3, 5, 2, 3, 7],
-                            borderWidth: 1,
-                            backgroundColor: [
+                            label: '이탈률 수치 (1위~5위)', // 3
+                            data: [
+                                brandList[0].departureRate, brandList[1].departureRate,
+                                brandList[2].departureRate, brandList[3].departureRate, brandList[4].departureRate, brandList[5].departureRate
+
+                            ], // 4
+                            backgroundColor: [  // 5
                                 'rgba(255, 99, 132, 0.2)',
-                                'rgba(255, 159, 64, 0.2)',
-                                'rgba(255, 205, 86, 0.2)',
-                                'rgba(75, 192, 192, 0.2)',
                                 'rgba(54, 162, 235, 0.2)',
+                                'rgba(255, 206, 86, 0.2)',
+                                'rgba(75, 192, 192, 0.2)',
                                 'rgba(153, 102, 255, 0.2)',
-                                'rgba(201, 203, 207, 0.2)'
+                                'rgba(255, 159, 64, 0.2)'
                             ],
+                            borderColor: [
+                                'rgba(255, 99, 132, 1)',
+                                'rgba(54, 162, 235, 1)',
+                                'rgba(255, 206, 86, 1)',
+                                'rgba(75, 192, 192, 1)',
+                                'rgba(153, 102, 255, 1)',
+                                'rgba(255, 159, 64, 1)'
+                            ],
+                            borderWidth: 1
                         }]
                     },
                     options: {
@@ -126,9 +99,22 @@
                         }
                     }
                 });
+
+
+
+
             </script>
 
-
+            <table>
+                <caption style="font-size: large">이탈률이 낮은 순위, 1위 ~ 5위</caption>
+                <tbody id="departureRate" class="departureRate">
+                    <th>
+                        <tr th:each= "dr:${brand}">
+                            <td th:text="${dr.brandName}">#</td>
+                        </tr>
+                    </th>
+                </tbody>
+            </table>
 
             <!-- ######## 각 페이지에 해당 하는 내용 HTML을 넣어주세요.########### -->
         </div>

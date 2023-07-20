@@ -9,4 +9,7 @@ import java.util.List;
 public interface BrandMapper {
 
     List<Brand> findAll();
+
+    List<Brand> departure();
+    
 }

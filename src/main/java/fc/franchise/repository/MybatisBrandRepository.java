@@ -18,4 +18,9 @@ public class MybatisBrandRepository implements BrandInterface{
     public List<Brand> findAll() {
         return brandMapper.findAll();
     }
+
+    @Override
+    public List<Brand> departure() {
+        return brandMapper.departure();
+    }
 }
