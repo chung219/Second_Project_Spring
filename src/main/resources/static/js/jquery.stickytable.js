@@ -83,7 +83,7 @@ jQuery(document).on('stickyTable', function() {
             $(this).find("table tr.sticky-footer td").css('bottom', maxScroll - $(this).scrollTop());
             $(this).find(".paging").css('bottom', maxScroll - $(this).scrollTop()+ 45 );
         }).scroll();
-
+        
         if(navigator.userAgent.match(/Trident\/7\./)) {
             $('.view_wrap').on("mousewheel", function (event) {
                 event.preventDefault();
@@ -95,7 +95,7 @@ jQuery(document).on('stickyTable', function() {
         $(".view_wrap").scroll(function() {
             $(this).find(".btn_area_top").css('top', $(this).scrollTop());
         }).scroll();
-
+        
         $(".sticky-ltr-cells").scroll(function() {
             $(this).find("table th.sticky-cell").css('left', $(this).scrollLeft());
             $(this).find("table td.sticky-cell").css('left', $(this).scrollLeft());
@@ -104,7 +104,7 @@ jQuery(document).on('stickyTable', function() {
             $(this).find("table td.sticky-cell-opposite").css('right', maxScroll - $(this).scrollLeft());
         }).scroll();
     }
-
+    
     if($(".sticky-rtl-cells",".view_wrap").length && !(positionStickySupport && scrollTypeRTL == 'negative')) {
         if(positionStickySupport) {
             $(".sticky-rtl-cells table th.sticky-cell").css('position', "relative");
@@ -156,3 +156,4 @@ jQuery(document).on('stickyTable', function() {
 $( document ).ready(function(){
     $( document ).trigger( "stickyTable" );
 });
+
