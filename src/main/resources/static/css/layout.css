@@ -10,12 +10,13 @@
 .header_wrap header .search_box{ position: absolute; top:1px; right:2% }
 
 .header_wrap header:after{ content:""; display: block; clear:both; }
-.header_wrap header h1{ width: 240px; text-align: center; font:600 16px/30px 'Noto Sans KR', SansSerif;position: absolute; top: 0px; left: 40px; }
+.header_wrap header h1{ width: 240px; text-align: center; font:600 18px/30px 'Noto Sans KR', SansSerif;position: absolute; top: 0px; left: 40px; }
 
-    /* 상단메뉴 */
-    nav{ margin-left: 280px }
-    nav ul{ display: flex; justify-content: flex-start; justify-content: space-evenly; flex-wrap: wrap; align-content: stretch; flex-direction: row; }
-    nav ul li{ font:500 14px/30px 'Noto Sans KR', SansSerif;  }
+/* 상단메뉴 */
+nav{ margin-left: 280px }
+nav ul{ display: flex; justify-content: flex-start; justify-content: space-evenly; flex-wrap: wrap; align-content: stretch; flex-direction: row; }
+nav ul li{ font:500 14px/30px 'Noto Sans KR', SansSerif;  }
+nav ul li a.active{ color:  #04d289; font-weight: 600 }
 
 /* 좌측메뉴  */
 .lnb_wrap{ position:fixed; top:30px; left: 0px; z-index: 20; width: 280px; height: 100%; border-right:solid 1px rgba(0,0,0,.15);
@@ -28,35 +29,70 @@
 .fixed_quick_menu dt{ font-size: 18px; padding: 8px 0; text-align: center; color: #04d289; }
 .fixed_quick_menu dd{font-size: 10px; line-height:100%; padding: 7px 0; word-break: initial }
 
-    /* 페이지 컨텐츠 관련 좌측 메뉴  */
-    .lnb{ position:absolute; top:0px; left: 0px; font-size: 12px; margin-left:40px; width: 240px; padding: 15px 0  }
-    .lnb h2{ font:500 16px/30px 'Noto Sans KR', SansSerif; text-align: center; }
-    .dash_board_graph{ height: 240px; margin:0 auto; text-align: center; border-bottom: solid 1px rgba(0,0,0,.1) }
+/* 페이지 컨텐츠 관련 좌측 메뉴  */
+.lnb{ position:absolute; top:0px; left: 0px; font-size: 12px; margin-left:40px; width: 240px; padding: 15px 0  }
+.lnb h2{ font:500 16px/30px 'Noto Sans KR', SansSerif; text-align: center; }
+.dash_board_graph{ height: 240px; margin:0 auto; text-align: center; border-bottom: solid 1px rgba(0,0,0,.1) }
 
 
-    .lnb.main dl.latest{ padding: 20px 0 }
-    dl.latest dt{ font:500 16px/30px 'Noto Sans KR', SansSerif; text-align: center; }
+.lnb.main dl.latest{ padding: 20px 0 }
+dl.latest dt{ font:500 16px/30px 'Noto Sans KR', SansSerif; text-align: center; }
 
-    dl.latest dd{ padding:10px; vertical-align: middle }
-    dl.latest dd ol li{ list-style-type: decimal !important; vertical-align: middle; position: relative; padding: 3px 0 }
-    dl.latest .thumb_img{ display: inline-block; width: 40px; height: 20px; border: solid 1px rgba(0,0,0,.1); text-align: center;
-        vertical-align:top; border-radius: 1px; background: rgba(0,0,0,.03) }
-    dl.latest .brand_name{ display: inline-block; width: 130px; overflow: hidden;  text-overflow: ellipsis; white-space: nowrap; }
-    dl.latest .num{ position: absolute; top:6px; right:0 }
+dl.latest dd{ padding:10px; vertical-align: middle }
+dl.latest dd ol li{ list-style-type: decimal !important; vertical-align: middle; position: relative; padding: 3px 0 }
+dl.latest .thumb_img{ display: inline-block; width: 40px; height: 20px; border: solid 1px rgba(0,0,0,.1); text-align: center;
+    vertical-align:top; border-radius: 1px; background: rgba(0,0,0,.03) }
+dl.latest .brand_name{ display: inline-block; width: 130px; overflow: hidden;  text-overflow: ellipsis; white-space: nowrap; }
+dl.latest .num{ position: absolute; top:6px; right:0 }
 
-    a.btn_more{ display: block; background: #04d289; color:#fff; text-align: center;font:400 14px/26px 'Noto Sans KR', SansSerif;
-    border-radius: 3px; }
+a.btn_more{ display: block; background: #04d289; color:#fff; text-align: center; font:400 14px/26px 'Noto Sans KR', SansSerif;
+border-radius: 3px; }
 
-
-
+/* 좌측 메뉴 열고 닫기 버튼  */
 .btn_lnb_open{ z-index:99; position: absolute; top: 45%; right:-20px; border:solid 1px rgba(0,0,0,.2); border-width: 1px 1px 1px 0;
     width: 20px; padding: 20px 0; text-align: center; border-radius:0 5px 5px 0; background: rgba(255,255,255,.9) }
 .btn_lnb_open a{ display: block }
 
+.sub_menu_list{ padding: 20px 0 }
+.sub_menu_list li{ padding: 0 10px }
+.sub_menu_list li a{ position:relative; display: block; padding:5px 0; box-sizing: border-box; border-bottom: solid 1px rgba(0,0,0,.05) }
+.sub_menu_list li i{ display: inline-block; width:28px; text-align: center }
+.sub_menu_list li a b.num{ position:absolute; right:5%; text-align: right; font-weight: 400 }
+.sub_menu_list li a.active{ background: #04d289; color: #fff; border-bottom: none; font-weight:bold }
+
 /* 우측 컨텐츠  */
 .contents_wrap{ position: relative; height: 100%; margin:30px 0 0 280px; box-sizing: border-box; font-size: 12px }
 .contents_wrap:after{ content:""; display: block; clear:both; }
-.right_contents{ position: relative; height: 100%; }
+.right_contents{ position: relative; height: 100%; padding: 10px 2%; box-sizing: border-box }
+.right_contents:after{ content:""; display: block; clear:both; }
+
+/* 페이지 타이틀 및 페이지 네비 경로 */
+.right_contents h1{ position: relative; font:600 30px/54px 'Noto Sans KR', SansSerif; float:left; }
+.right_contents h1 i{ color: #04d289; display: inline-block; padding: 0 10px; }
+.right_contents h1 b.num{ display: inline-block; background: #fff; font:500 14px/18px 'Noto Sans KR', SansSerif; color:  #04d289; margin: 0 0 0 10px; border:solid 1px #04d289; padding: 1px 10px; border-radius: 10px; }
+
+
+.page_path{ float:right; font-size: 10px; vertical-align:bottom; margin-top:30px; }
+.page_path:before{ content:""; font:normal 10px "fontAwesome", sans-serif; display: inline-block; padding-right:3px; color: #04d289 }
+.page_path a:after{ content:""; font:normal 8px "fontAwesome", sans-serif; display: inline-block; padding:0 3px; opacity: .5 }
+
+/* 업종별 서브 페이지 */
+.graph_wrap{ display:inline-flex; width:100%; justify-content: space-around; }
+.brand_pie_chart{ position: relative;  width:50%; height: 300px;  background: #fff; border: solid 1px rgba(0,0,0,.15); margin:0 1% 10px 0; padding:20px }
+
+.year_line_chart{ position: relative;  width:50%; height: 300px;  background: #fff; border: solid 1px rgba(0,0,0,.15); margin:0 0 10px 0; padding:20px }
+
+.table_data_wrap{ position: relative;  background: #fff; border: solid 1px rgba(0,0,0,.15); padding:20px }
+.table_data_wrap:after{ content:""; display: block; clear: both; }
+
+/* 업종별 페이지 본문 내용 반응형 처리  */
+@media(max-width:1024px){
+    .graph_wrap{ display:flex; flex-direction: column; }
+    .brand_pie_chart{ width: 100%; }
+    .year_line_chart{ width: 100%; }
+    .page_path{ margin-top:0px; }
+}
+
 
 /* 메인 지도 */
 #map{ width: 100%; height: 100%; }
@@ -66,4 +102,4 @@
 
 .footer_wrap footer{ }
 .copyright{ padding: 3px 0 3px 2%; font-size:7px }
-.copyright a{ position: absolute; bottom:3px; right:3%; display: inline-block; color: #fff; background: #04d289; padding:3px 7px; border-radius:3px  }
+.copyright a{ position: absolute; bottom:3px; font-size:10px; right:3%; display: inline-block; color: #fff; background: #04d289; padding:3px 7px; border-radius:3px  }
