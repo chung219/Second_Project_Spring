@@ -158,3 +158,8 @@ textarea+.btn.edit,
 textarea+.btn.edit+.btn,
 textarea+.btn.edit+.btn+input+label{align-self: flex-start;}
 textarea+.btn.edit+.btn+input+label{margin-top: 3px;}
+
+
+/* 지도 윈도우 */
+.rate{background: url(https://aldo814.github.io/jobcloud/html/images/user/star_bg02.png) no-repeat;width: 121px;height: 20px;position: relative;}
+.rate span{position: absolute;background: url(https://aldo814.github.io/jobcloud/html/images/user/star02.png);width: auto;height: 20px;}
