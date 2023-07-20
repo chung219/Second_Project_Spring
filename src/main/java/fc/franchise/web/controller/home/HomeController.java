@@ -33,5 +33,9 @@ public class HomeController {
         return "main/js_chart";
     }
 
+    @GetMapping("/category")
+    public String category () {
+        return "category/list";
+    }
 
 }
