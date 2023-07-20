@@ -36,7 +36,7 @@ public class HomeController {
         return "main/7_21_test";
     }
 
-    @PostMapping("yaho")
+    @PostMapping("/main")
     public String categorySend(@RequestParam("category") String category, Model model){
         log.info("categorySend] "+category);
         List<Food> list = foodInterface.findCategory(category);

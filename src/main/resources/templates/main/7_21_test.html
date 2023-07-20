@@ -46,7 +46,7 @@
 
             <div id="map"></div>
             <!-- post 보내는곳 -->
-            <form id="categoryForm" th:action="yaho" method="post">
+            <form id="categoryForm" action="/main" method="post">
                 <input type="hidden" id="category" name="category">
             </form>
                 <script th:inline="javascript">
@@ -54,8 +54,9 @@
                 function sendCategory(category) {
                     document.getElementById('category').value = category;
                     document.getElementById('categoryForm').submit();
-                    save_positions(list)
-                    setMarkers(positions)
+                    console.log('야호1')
+
+
                 }
 
                 /* 지도 관련 스크립트*/
@@ -110,7 +111,6 @@
 
 
                 var list = [[${food}]];
-                console.log(list)
 
                 var positions = []
 
@@ -124,7 +124,6 @@
                         var score = address.reviewScore
                         var longitude = address.longitude
                         var latitude = address.latitude
-                        console.log(name)
                         positions.push(
                             {
                                 content: '<div> 상호명: ' + name + '</div>' +
@@ -136,10 +135,12 @@
                             }
                         )
                     });
+
                 }
 
 
                     function setMarkers(positions) {
+                        console.log('시작하니?')
 
                         for (var i = 0; i < positions.length; i++) {
                             // 마커를 생성합니다
@@ -174,29 +175,23 @@
                             };
                         }
                     }
-
-
-                    // 상태 변수 초기화
-                    var markersVisible = false;
-                    function showMarkers() {
-                        setMarkers(positions);
-                    }
-
-                    // "마커 감추기" 버튼을 클릭하면 호출되어 배열에 추가된 마커를 지도에서 삭제하는 함수입니다
-                    function hideMarkers() {
-                        setMarkers(null);
-                    }
+                    save_positions(list);
+                    setMarkers(positions);
 
 
 
-
-
-
-
+                    //
+                    // // 상태 변수 초기화
+                    // var markersVisible = false;
+                    // function showMarkers() {
+                    //     setMarkers(positions);
+                    // }
+                    //
+                    // // "마커 감추기" 버튼을 클릭하면 호출되어 배열에 추가된 마커를 지도에서 삭제하는 함수입니다
+                    // function hideMarkers() {
+                    //     setMarkers(null);
+                    // }
                 </script>
-
-
-
             <!-- ######## 각 페이지에 해당 하는 내용 HTML을 넣어주세요.########### -->
         </div>
         <!-- #### 03-1.우측 본문 영역 끝 -->
