@@ -47,80 +47,76 @@
             <div id="map"></div>
             <!-- post 보내는곳 -->
             <form id="categoryForm" th:action="yaho" method="post">
-                <input type="hidden" id="category" name="category" value="한식">
+                <input type="hidden" id="category" name="category">
             </form>
                 <script th:inline="javascript">
-                    <!-- 스프링으로 보내기 -->
-                    function sendCategory(category) {
-                        console.log('Debug0')
-                        console.log(category)
-                        document.getElementById('category').value = category;
-                        var test= document.getElementById('category').value
-                        console.log('Debug1')
-                        console.log(test)
-                        document.getElementById('categoryForm').submit();
-                        console.log('Debug2')
-                    }
+                <!-- 스프링으로 보내기 -->
+                function sendCategory(category) {
+                    document.getElementById('category').value = category;
+                    document.getElementById('categoryForm').submit();
+                    save_positions(list)
+                    setMarkers(positions)
+                }
 
-                    /* 지도 관련 스크립트*/
+                /* 지도 관련 스크립트*/
 
-                    var mapContainer = document.getElementById('map'), // 지도를 표시할 div
-                        mapOption = {
-                            center: new kakao.maps.LatLng(37.45139514881181, 126.74155431191699), // 지도의 중심좌표
-                            level: 8 // 지도의 확대 레벨
-                        };
-                    // 지도를 생성합니다
-                    var map = new kakao.maps.Map(mapContainer, mapOption);
+                var mapContainer = document.getElementById('map'), // 지도를 표시할 div
+                    mapOption = {
+                        center: new kakao.maps.LatLng(37.45139514881181, 126.74155431191699), // 지도의 중심좌표
+                        level: 8 // 지도의 확대 레벨
+                    };
+                // 지도를 생성합니다
+                var map = new kakao.maps.Map(mapContainer, mapOption);
 
-                    // 지도에 추가된 지도타입정보를 가지고 있을 변수입니다
-                    var currentTypeId;
+                // 지도에 추가된 지도타입정보를 가지고 있을 변수입니다
+                var currentTypeId;
 
-                    // 버튼이 클릭되면 호출되는 함수입니다
-                    function setOverlayMapTypeId(maptype) {
-                        // 현재 지도 타입이 교통정보인지 확인합니다
-                        var isTrafficType = currentTypeId === kakao.maps.MapTypeId.TRAFFIC;
+                // 버튼이 클릭되면 호출되는 함수입니다
+                function setOverlayMapTypeId(maptype) {
+                    // 현재 지도 타입이 교통정보인지 확인합니다
+                    var isTrafficType = currentTypeId === kakao.maps.MapTypeId.TRAFFIC;
 
-                        if (maptype === 'traffic') {
-                            // 현재 지도 타입이 교통정보이면 껐다 켭니다
-                            if (isTrafficType) {
-                                map.removeOverlayMapTypeId(kakao.maps.MapTypeId.TRAFFIC);
-                                currentTypeId = null;
-                            } else {
-                                // 교통정보 지도타입을 추가합니다
-                                map.addOverlayMapTypeId(kakao.maps.MapTypeId.TRAFFIC);
-                                currentTypeId = kakao.maps.MapTypeId.TRAFFIC;
-                            }
+                    if (maptype === 'traffic') {
+                        // 현재 지도 타입이 교통정보이면 껐다 켭니다
+                        if (isTrafficType) {
+                            map.removeOverlayMapTypeId(kakao.maps.MapTypeId.TRAFFIC);
+                            currentTypeId = null;
+                        } else {
+                            // 교통정보 지도타입을 추가합니다
+                            map.addOverlayMapTypeId(kakao.maps.MapTypeId.TRAFFIC);
+                            currentTypeId = kakao.maps.MapTypeId.TRAFFIC;
                         }
                     }
+                }
 
-                    // // 지도에 교통정보를 표시하도록 지도타입을 추가합니다
-                    // map.addOverlayMapTypeId(kakao.maps.MapTypeId.TRAFFIC);
+                // // 지도에 교통정보를 표시하도록 지도타입을 추가합니다
+                // map.addOverlayMapTypeId(kakao.maps.MapTypeId.TRAFFIC);
 
-                    // 일반 지도와 스카이뷰로 지도 타입을 전환할 수 있는 지도타입 컨트롤을 생성합니다
-                    var mapTypeControl = new kakao.maps.MapTypeControl();
+                // 일반 지도와 스카이뷰로 지도 타입을 전환할 수 있는 지도타입 컨트롤을 생성합니다
+                var mapTypeControl = new kakao.maps.MapTypeControl();
 
-                    // 지도에 컨트롤을 추가해야 지도위에 표시됩니다
-                    // kakao.maps.ControlPosition은 컨트롤이 표시될 위치를 정의하는데 TOPRIGHT는 오른쪽 위를 의미합니다
-                    map.addControl(mapTypeControl, kakao.maps.ControlPosition.TOPRIGHT);
+                // 지도에 컨트롤을 추가해야 지도위에 표시됩니다
+                // kakao.maps.ControlPosition은 컨트롤이 표시될 위치를 정의하는데 TOPRIGHT는 오른쪽 위를 의미합니다
+                map.addControl(mapTypeControl, kakao.maps.ControlPosition.TOPRIGHT);
 
-                    // 지도 확대 축소를 제어할 수 있는  줌 컨트롤을 생성합니다
-                    var zoomControl = new kakao.maps.ZoomControl();
-                    map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
+                // 지도 확대 축소를 제어할 수 있는  줌 컨트롤을 생성합니다
+                var zoomControl = new kakao.maps.ZoomControl();
+                map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
 
-                    // // 주소-좌표 변환 객체를 생성합니다
-                    // var geocoder = new kakao.maps.services.Geocoder();
-
-
-
-
-                    var list = [[${jap}]];
-                    console.log(list)
-
-                    var positions = []
-                    var yaho = []
+                // // 주소-좌표 변환 객체를 생성합니다
+                // var geocoder = new kakao.maps.services.Geocoder();
 
 
-                    // 받아온 데이터를 posittions에 저장하는 함수
+
+
+                var list = [[${food}]];
+                console.log(list)
+
+                var positions = []
+
+
+                function save_positions(list) {
+                    // 받아온 데이터를 positions에 저장하는 함수
                     list.forEach(function (address) {
 
                         var first_address = address.add2;
@@ -130,14 +126,17 @@
                         var latitude = address.latitude
                         console.log(name)
                         positions.push(
-                            {content: '<div> 상호명: '+name+'</div>'+
-                                    '<div> 주소: '+first_address+'</div>'+
-                                    '<div> 점수: '+score+'</div>'+
-                                    '<div class="rate"><span style = "width:'+(score/5)*100+'%"></span></div>'
+                            {
+                                content: '<div> 상호명: ' + name + '</div>' +
+                                    '<div> 주소: ' + first_address + '</div>' +
+                                    '<div> 점수: ' + score + '</div>' +
+                                    '<div class="rate"><span style = "width:' + (score / 5) * 100 + '%"></span></div>'
                                 ,
-                                latlng: new kakao.maps.LatLng(latitude,longitude)}
+                                latlng: new kakao.maps.LatLng(latitude, longitude)
+                            }
                         )
                     });
+                }
 
 
                     function setMarkers(positions) {
@@ -188,20 +187,9 @@
                         setMarkers(null);
                     }
 
-                    // 토글 버튼 클릭 시 호출되는 함수
-                    function toggleMarkers() {
-                        // 현재 마커의 보이기/감추기 상태를 토글
-                        markersVisible = !markersVisible;
 
-                        // 상태에 따라 마커 보이기/감추기 함수 호출
-                        if (markersVisible) {
-                            showMarkers();
-                        } else {
-                            hideMarkers();
-                        }
-                    }
 
-                    // "마커 보이기" 버튼을 클릭하면 호출되어 배열에 추가된 마커를 지도에 표시하는 함수입니다
+
 
 
 
