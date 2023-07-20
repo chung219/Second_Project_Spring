@@ -124,6 +124,7 @@
                         var score = address.reviewScore
                         var longitude = address.longitude
                         var latitude = address.latitude
+                        var markerImage =
                         positions.push(
                             {
                                 content: '<div> 상호명: ' + name + '</div>' +
@@ -132,6 +133,7 @@
                                     '<div class="rate"><span style = "width:' + (score / 5) * 100 + '%"></span></div>'
                                 ,
                                 latlng: new kakao.maps.LatLng(latitude, longitude)
+
                             }
                         )
                     });
@@ -180,17 +182,9 @@
 
 
 
-                    //
-                    // // 상태 변수 초기화
-                    // var markersVisible = false;
-                    // function showMarkers() {
-                    //     setMarkers(positions);
-                    // }
-                    //
-                    // // "마커 감추기" 버튼을 클릭하면 호출되어 배열에 추가된 마커를 지도에서 삭제하는 함수입니다
-                    // function hideMarkers() {
-                    //     setMarkers(null);
-                    // }
+
+
+
                 </script>
             <!-- ######## 각 페이지에 해당 하는 내용 HTML을 넣어주세요.########### -->
         </div>

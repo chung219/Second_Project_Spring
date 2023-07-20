@@ -40,6 +40,7 @@ public class HomeController {
     public String categorySend(@RequestParam("category") String category, Model model){
         log.info("categorySend] "+category);
         List<Food> list = foodInterface.findCategory(category);
+        model.addAttribute("category", category);
         model.addAttribute("food", list);
         return "main/7_21_test";
 
