@@ -48,7 +48,7 @@ public class HomeController {
 
     @GetMapping("/category")
     public String category () {
-        return "category/list";
+        return "category/list_test";
     }
 
 }
