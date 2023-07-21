@@ -19,7 +19,7 @@
   <script src="/js/jquery.stickytable.js"></script><!-- 고정 테이블 -->
   <script src="//kit.fontawesome.com/56b5cc4bd2.js" crossorigin="anonymous"></script><!-- 폰트어썸(아이콘 폰트) 사용 인증된 링크 -->
   <!--    <script src="js/jquery-ui-1.10.4.custom.min.js"></script>-->
-
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body class="category">
 <div class="container">
@@ -68,7 +68,88 @@
             <h2>[한식] 프랜차이즈 TOP10</h2>
             <span>출처 : 공정거래위원회</span>
           </div>
-          2022년 기준 --> 한식 업종 브랜드 상위 10개 업체 점유율 챠트 노출해주세요!
+          <!--2022년 기준 &ndash;&gt; 한식 업종 브랜드 상위 10개 업체 점유율 챠트 노출해주세요!-->
+
+
+          <!--가맹정보_브랜드별_가맹점_현황_제공_서비스-->
+          <b>이탈률이 적은 순위 1위 ~ 5위</b>
+          <div style="width:700px;height:450px;">
+
+
+            <!-- js chart  차트 넣는 부분! -->
+            <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/chart.js@3.5.1/dist/chart.min.js"></script>
+
+            <div style="width:auto;height:auto;">
+              <canvas id="myChart"></canvas>
+            </div>
+
+
+            <script th:inline="javascript">
+
+
+              var brandList = [[${brand}]];
+              console.log(brandList)
+
+              var ctx = document.getElementById('myChart').getContext('2d');  // 1
+
+              var myChart = new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                  labels: [brandList[0].brandName, brandList[1].brandName, brandList[2].brandName, brandList[3].brandName, brandList[4].brandName, brandList[5].brandName], // 2
+                  datasets: [{
+                    label: '이탈률 수치 (1위~5위)', // 3
+                    data: [
+                      brandList[0].departureRate, brandList[1].departureRate,
+                      brandList[2].departureRate, brandList[3].departureRate, brandList[4].departureRate, brandList[5].departureRate
+
+                    ], // 4
+                    backgroundColor: [  // 5
+                      'rgba(255, 99, 132, 0.2)',
+                      'rgba(54, 162, 235, 0.2)',
+                      'rgba(255, 206, 86, 0.2)',
+                      'rgba(75, 192, 192, 0.2)',
+                      'rgba(153, 102, 255, 0.2)',
+                      'rgba(255, 159, 64, 0.2)'
+                    ],
+                    borderColor: [
+                      'rgba(255, 99, 132, 1)',
+                      'rgba(54, 162, 235, 1)',
+                      'rgba(255, 206, 86, 1)',
+                      'rgba(75, 192, 192, 1)',
+                      'rgba(153, 102, 255, 1)',
+                      'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 1
+                  }]
+                },
+                options: {
+                  responsive: true,
+                  maintainAspectRatio : false,
+                  animation: false,
+                  legend: {
+                    position: 'right',
+                    display: true
+                  },
+                  scales: {
+                    y: {
+                      beginAtZero: true
+                    }
+                  },
+                  plugins: {
+                    legend: {
+                      position: 'right',
+                    },
+                }}
+              });
+
+            </script>
+          <br>
+          <p>이탈률: ((계약종료수 + 계약해지수) / (가맹점수 + 신규가맹등록수)) * 100</p>
+
+          </div>
+
+
         </div>
         <div class="year_line_chart">
           <div class="title">

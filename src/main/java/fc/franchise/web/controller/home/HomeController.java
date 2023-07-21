@@ -47,7 +47,9 @@ public class HomeController {
     }
 
     @GetMapping("/category")
-    public String category () {
+    public String category (Model model) {
+        List<Brand> brand = brandInterface.departure();
+        model.addAttribute("brand", brand);
         return "category/list";
     }
 
