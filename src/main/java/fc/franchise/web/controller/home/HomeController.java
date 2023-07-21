@@ -30,19 +30,22 @@ public class HomeController {
 
     @GetMapping("/main")
     public String main(Model model){
-        List<Food> first = foodInterface.findCategory("일식");
-        model.addAttribute("first", first);
+        List<Food> foodFirst = foodInterface.findCategory("일식");
+        List<Brand> brandFirst = brandInterface.findTop3("일식");
+        model.addAttribute("first", foodFirst);
+        model.addAttribute("top3Brands", brandFirst);
         return "main/7_21_ck_test";
     }
 
     @PostMapping("/main")
     public String categorySend(@RequestParam("category") String category, Model model){
         log.info("categorySend] "+category);
-        List<Food> list = foodInterface.findCategory(category);
+        List<Food> listF = foodInterface.findCategory(category);
         model.addAttribute("category", category);
-        model.addAttribute("food", list);
+        List<Brand> listB = brandInterface.findTop3(category);
+        model.addAttribute("food", listF);
+        model.addAttribute("brand3", listB);
         return "main/7_21_ck_test";
-
     }
 
     @GetMapping("/category")

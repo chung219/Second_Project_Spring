@@ -36,4 +36,15 @@
     </select>
 
 
+    <select id="findTop3" resultType="brand">
+        SELECT 기준년도 as year, 업종중분류명 as industryClassification,
+         브랜드명 as brandName, 가맹점수 as franchisesNumber, 평균매출금액 as avgSales
+        FROM (SELECT *
+        FROM brand_fr_pro
+        WHERE 기준년도 = 2022 AND 업종중분류명 = #{category}
+        ORDER BY 가맹점수 DESC)
+        WHERE ROWNUM BETWEEN 1 AND 3
+    </select>
+
+
 </mapper>

@@ -13,16 +13,28 @@
 <!-- 02-2-1.대시보드 집계 그래프 노출 영역 끝 -->
 <!-- 02-2-2.페이지 컨텐츠 서브 메뉴 노출 시작 -->
 <dl class="latest">
-    <dt th:if="null" th:text="가맹점수 Top3"></dt>
-    <dt th:unless="null" th:utext="|${category} 브랜드 Top3|">[한식] 브랜드 TOP3</dt>
-
+    <dt th:if="|${category}!=null|" th:text="|[${category}] 브랜드 Top3|">[한식] 브랜드 TOP3</dt><dt th:unless="|${category}!=null|" th:text="가맹점수 Top3"></dt>
     <dd>
         <ol>
-            <li th:each="brand : ${brand3}">
+            <li>
                 <a href="#">
                     <span class="thumb_img"></span>
-                    <span class="brand_name" th:text="${brand.brandName}">마을회관 왕갈비 일산점</span>
-                    <b class="num fa fa-bookmark-o" th:text="${brand.franchisesNumber}"> 1230</b>
+                    <span class="brand_name">마을회관 왕갈비 일산점</span>
+                    <b class="num fa fa-bookmark-o"> 1230</b>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <span class="thumb_img"></span>
+                    <span class="brand_name">놀부보쌈 을왕리 해수욕장에서 제일 맛있는 집</span>
+                    <b class="num fa fa-bookmark-o"> 105</b>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <span class="thumb_img"></span>
+                    <span class="brand_name">여름이면 비냉/물냉이 최고 인하대점</span>
+                    <b class="num fa fa-bookmark-o"> 78</b>
                 </a>
             </li>
         </ol>

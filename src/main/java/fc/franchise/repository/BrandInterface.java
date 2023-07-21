@@ -9,4 +9,7 @@ public interface BrandInterface {
 
 
     List<Brand> departure();
+
+
+    List<Brand> findTop3(String category);
 }

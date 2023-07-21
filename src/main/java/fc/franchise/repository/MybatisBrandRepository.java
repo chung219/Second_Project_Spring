@@ -23,4 +23,9 @@ public class MybatisBrandRepository implements BrandInterface{
     public List<Brand> departure() {
         return brandMapper.departure();
     }
+
+    @Override
+    public List<Brand> findTop3(String category) {
+        return brandMapper.findTop3(category);
+    }
 }

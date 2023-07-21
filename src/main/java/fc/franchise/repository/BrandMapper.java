@@ -11,5 +11,7 @@ public interface BrandMapper {
     List<Brand> findAll();
 
     List<Brand> departure();
+
+    List<Brand> findTop3(String category);
     
 }
