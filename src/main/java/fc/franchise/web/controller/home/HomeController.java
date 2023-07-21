@@ -52,4 +52,13 @@ public class HomeController {
         return "category/list";
     }
 
+    @GetMapping("/brand")
+    public String brand () {
+        return "brand/list";
+    }
+    @GetMapping("/region")
+    public String region () {
+        return "region/list";
+    }
+
 }

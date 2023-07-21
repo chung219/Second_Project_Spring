@@ -2,7 +2,7 @@ html{ -webkit-text-size-adjust:none; height: 100%; }  body{ background: rgba(0,0
 div,span,object,iframe,p, blockquote,pre,abbr,cite,code,del,dfn,img,h1, h2, h3, h4, h5, h6,html,body,
 ins,kbd,q,samp,small,strong,sub,sup,var,b,i,dl,dt,dd,ol,ul,li, fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,
 article,aside,canvas,details,figcaption,figure,footer,header,hgroup, menu,nav,section,summary,time,mark,audio,video
-{ margin:0; padding:0; outline:0; font-family: Sans-serif,/*'NanumGothic',*/"Malgun Gothic" ,"맑은 고딕" , Roboto, Arial; line-height:160%; box-sizing: border-box  }
+{ margin:0; padding:0; outline:0; font-family: Sans-serif,/*'NanumGothic',*/"Malgun Gothic" ,"맑은 고딕" , Roboto, Arial; line-height:160%; word-break:break-word; box-sizing: border-box  }
 dl,dt,dd,ol,ul,li, article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section { display: block; box-sizing: border-box; }
 /* li{ list-style-type:none; } */ a{ text-decoration:none !important; color: rgba(0,0,0,.9); } label{ cursor:pointer; }
 img,fieldset,iframe{ border:0; vertical-align:top; border:none; }
