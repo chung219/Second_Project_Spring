@@ -13,4 +13,5 @@ public class FranchiseApplication {
 		SpringApplication.run(FranchiseApplication.class, args);
 	}
 
+
 }
