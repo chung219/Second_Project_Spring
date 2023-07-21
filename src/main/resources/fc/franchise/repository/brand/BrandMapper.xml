@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="fc.franchise.repository.BrandMapper">
+<mapper namespace="fc.franchise.repository.brand.BrandMapper">
 
     <select id="findAll" resultType="brand">
         select 기준년도 as year,
@@ -51,7 +51,7 @@
         FROM brand_fr_pro
         WHERE 기준년도 = 2022 AND 업종중분류명 = #{category}
         ORDER BY 가맹점수 DESC)
-        WHERE ROWNUM BETWEEN 1 AND 3
+        WHERE ROWNUM BETWEEN 1 AND 10
     </select>
 
 </mapper>

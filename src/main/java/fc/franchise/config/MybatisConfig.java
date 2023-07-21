@@ -1,6 +1,14 @@
 package fc.franchise.config;
 
-import fc.franchise.repository.*;
+import fc.franchise.repository.address.AddressInterface;
+import fc.franchise.repository.address.AddressMapper;
+import fc.franchise.repository.address.MybatisAddressRepository;
+import fc.franchise.repository.brand.BrandInterface;
+import fc.franchise.repository.brand.BrandMapper;
+import fc.franchise.repository.brand.MybatisBrandRepository;
+import fc.franchise.repository.food.FoodInterface;
+import fc.franchise.repository.food.FoodMapper;
+import fc.franchise.repository.food.MybatisFoodRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

@@ -17,7 +17,14 @@
     <dt th:unless="null" th:utext="|${category} 브랜드 Top3|">[한식] 브랜드 TOP3</dt>
 
     <dd>
-        <ol>
+        <ol class="br_li">
+            <li th:each="brand : ${Brand}">
+                <a href="#">
+                    <span class="thumb_img"></span>
+                    <span class="brand_name" th:text="${brand.brandName}">마을회관 왕갈비 일산점</span>
+                    <b class="num fa fa-bookmark-o" th:text="${brand.franchisesNumber}"> 1230</b>
+                </a>
+            </li>
             <li th:each="brand : ${brand3}">
                 <a href="#">
                     <span class="thumb_img"></span>
@@ -28,4 +35,15 @@
         </ol>
     </dd>
     <dd class="btn_more"><a href="#">더보기</a></dd>
+    <script>
+        $('.br_li > li').hide();
+        $('.br_li > li').slice(0, 3).css("display", "block");
+        $('.btn_more').click(function (e) {
+            e.preventDefault();
+            $('.br_li > li:hidden').slice(0, 3).fadeIn(200).css("display", "block");
+            if ($('.br_li > li:hidden').length == 0) {
+                $('.btn_more').fadeOut(100);
+            }
+        });
+    </script>
 </dl>

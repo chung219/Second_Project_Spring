@@ -1,17 +1,15 @@
-package fc.franchise.repository;
+package fc.franchise.repository.brand;
 
 import fc.franchise.domain.Brand;
-import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
 
-@Mapper
-public interface BrandMapper {
-
+public interface BrandInterface {
     List<Brand> findAll();
+
 
     List<Brand> departure();
 
+
     List<Brand> findTop3(String category);
-    
 }

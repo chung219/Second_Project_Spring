@@ -1,4 +1,4 @@
-package fc.franchise.repository;
+package fc.franchise.repository.food;
 
 import fc.franchise.domain.Food;
 import org.apache.ibatis.annotations.Mapper;

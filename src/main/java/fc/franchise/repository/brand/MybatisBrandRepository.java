@@ -1,4 +1,4 @@
-package fc.franchise.repository;
+package fc.franchise.repository.brand;
 
 
 import fc.franchise.domain.Brand;

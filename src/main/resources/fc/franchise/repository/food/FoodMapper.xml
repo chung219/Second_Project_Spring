@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="fc.franchise.repository.food.FoodMapper">
+
+    <select id="findCategory" resultType="food">
+        SELECT 분류 as category, 장소명 as brand_name, 유형 as food_type,
+               주소1 as add1, 주소2 as add2, 전화번호 as tel,
+               리뷰점수 as review_score, 경도 as longitude, 위도 as latitude
+        from map_info
+        where 분류 =#{category}
+    </select>
+
+
+</mapper>
