@@ -178,3 +178,17 @@ textarea+.btn.edit+.btn+input+label{margin-top: 3px;}
 /* 지도 윈도우 */
 .rate{background: url(https://aldo814.github.io/jobcloud/html/images/user/star_bg02.png) no-repeat;width: 121px;height: 20px;position: relative;}
 .rate span{position: absolute;background: url(https://aldo814.github.io/jobcloud/html/images/user/star02.png);width: auto;height: 20px;}
+
+.infowindow {
+    width: 406px;
+    height: 217px;
+    border: 1px solid black;
+    border-radius: 5px;
+    background-color: white;
+}
+
+.infowindow-title {
+    font-size: 12px;
+    font-weight: bold;
+    font-family: "fontAwesome";
+}

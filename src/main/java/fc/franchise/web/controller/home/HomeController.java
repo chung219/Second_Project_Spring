@@ -4,7 +4,6 @@ import fc.franchise.domain.Brand;
 import fc.franchise.domain.Food;
 import fc.franchise.repository.AddressInterface;
 import fc.franchise.repository.BrandInterface;
-import fc.franchise.repository.BrandMapper;
 import fc.franchise.repository.FoodInterface;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -31,9 +30,9 @@ public class HomeController {
 
     @GetMapping("/main")
     public String main(Model model){
-//        List<Food> foodList = foodInterface.findAllJap();
-//        model.addAttribute("jap", foodList);
-        return "main/7_21_test";
+        List<Food> first = foodInterface.findCategory("일식");
+        model.addAttribute("first", first);
+        return "main/ck_test";
     }
 
     @PostMapping("/main")
@@ -42,7 +41,7 @@ public class HomeController {
         List<Food> list = foodInterface.findCategory(category);
         model.addAttribute("category", category);
         model.addAttribute("food", list);
-        return "main/7_21_test";
+        return "main/ck_test";
 
     }
 
