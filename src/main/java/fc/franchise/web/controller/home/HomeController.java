@@ -11,6 +11,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
 import java.util.List;
 
 @Controller
@@ -26,24 +29,21 @@ public class HomeController {
         return "redirect:/main";
     }
 
-//    @GetMapping("/main")
-//    public String main (Model model){
-//        List<Brand> brandsList = brandInterface.findAll();
-//        model.addAttribute("brand", brandsList);
-//
-////        System.out.print(model);
-//
-//        return "main/js_chart";
-//    }
-
     @GetMapping("/main")
-    public String main (Model model){
-        List<Brand> brandsList = brandInterface.departure();
-        model.addAttribute("brand", brandsList);
+    public String main(Model model){
+//        List<Food> foodList = foodInterface.findAllJap();
+//        model.addAttribute("jap", foodList);
+        return "main/7_21_test";
+    }
 
-        System.out.print(model);
+    @PostMapping("/main")
+    public String categorySend(@RequestParam("category") String category, Model model){
+        log.info("categorySend] "+category);
+        List<Food> list = foodInterface.findCategory(category);
+        model.addAttribute("category", category);
+        model.addAttribute("food", list);
+        return "main/7_21_test";
 
-        return "main/js_chart2";
     }
 
     @GetMapping("/category")

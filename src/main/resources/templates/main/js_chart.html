@@ -17,16 +17,16 @@
 <body>
 <div class="container">
     <!-- ####### 01. HEADER START ####### -->
-    <div class="header_wrap" th:include="header.html"></div>
+    <div class="header_wrap" th:insert="~{header.html}"></div>
     <!-- ####### 01. HEADER END ####### -->
     <hr class="skip"/>
     <!-- ####### 02. LNB START ######### -->
     <div class="lnb_wrap">
         <!-- #### 02-1. 좌측 고정 업종별 아이콘 메뉴 시작 -->
-        <dl class="fixed_quick_menu" th:include="fixed_lnb.html"></dl>
+        <dl class="fixed_quick_menu" th:insert="~{fixed_lnb.html}"></dl>
         <hr class="skip"/>
         <!-- #### 02-2. 좌측 on/off 페이지 서브 메뉴 노출 시작 -->
-        <div class="lnb main" th:include="main_lnb.html">
+        <div class="lnb main" th:insert="~{main_lnb.html}">
             <div class="btn_lnb_open"><a href="#" class="fa fa-chevron-left"></a></div>
             <!-- 02-2-2.페이지 컨텐츠 서브 메뉴 노출 끝 -->
         </div>
@@ -137,7 +137,7 @@
     <!-- ####### 03. CONTENTS END ####### -->
     <hr class="skip"/>
     <!-- ####### 04. FOOTER START ####### -->
-    <div class="footer_wrap" th:include="footer.html"></div>
+    <div class="footer_wrap" th:insert="~{footer.html}"></div>
     <!-- ####### 04. FOOTER END ####### -->
 
 </div>

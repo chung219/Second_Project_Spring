@@ -12,9 +12,7 @@ public class MybatisFoodRepository implements FoodInterface {
     private final FoodMapper foodMapper;
 
     @Override
-    public List<Food> findAll() {
-        return foodMapper.findAll();
-
-
+    public List<Food> findCategory(String category) {
+        return foodMapper.findCategory(category);
     }
 }

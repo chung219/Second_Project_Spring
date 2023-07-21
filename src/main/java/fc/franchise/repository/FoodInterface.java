@@ -5,5 +5,6 @@ import fc.franchise.domain.Food;
 import java.util.List;
 
 public interface FoodInterface {
-    List<Food> findAll();
+
+    List<Food> findCategory(String category);
 }

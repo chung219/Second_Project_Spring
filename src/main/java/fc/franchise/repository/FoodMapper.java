@@ -7,5 +7,5 @@ import java.util.List;
 
 @Mapper
 public interface FoodMapper {
-    List<Food> findAll();
+    List<Food> findCategory(String category);
 }
