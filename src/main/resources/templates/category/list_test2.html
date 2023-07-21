@@ -91,8 +91,7 @@
               var brandList = [[${brand}]];
               console.log(brandList)
 
-              var ctx = document.getElementById('myChart').getContext('2d');  // 1
-
+              var ctx = document.getElementById('myChart').getContext('2d');
               var myChart = new Chart(ctx, {
                 type: 'doughnut',
                 data: {
@@ -148,8 +147,6 @@
           <p>이탈률: ((계약종료수 + 계약해지수) / (가맹점수 + 신규가맹등록수)) * 100</p>
 
           </div>
-
-
         </div>
         <div class="year_line_chart">
           <div class="title">

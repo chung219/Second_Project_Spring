@@ -52,7 +52,7 @@ public class HomeController {
     public String category (Model model) {
         List<Brand> brand = brandInterface.departure();
         model.addAttribute("brand", brand);
-        return "category/list";
+        return "list_test2";
     }
 
     @GetMapping("/brand")
