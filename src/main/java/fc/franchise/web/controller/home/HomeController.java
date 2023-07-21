@@ -33,7 +33,7 @@ public class HomeController {
     public String main(Model model){
 //        List<Food> foodList = foodInterface.findAllJap();
 //        model.addAttribute("jap", foodList);
-        return "main/7_21_test";
+        return "main/7_21_kjs_test";
     }
 
     @PostMapping("/main")
@@ -42,14 +42,12 @@ public class HomeController {
         List<Food> list = foodInterface.findCategory(category);
         model.addAttribute("category", category);
         model.addAttribute("food", list);
-        return "main/7_21_test";
+        return "main/7_21_kjs_test";
 
     }
 
     @GetMapping("/category")
-    public String category (Model model) {
-        List<Brand> brand = brandInterface.departure();
-        model.addAttribute("brand", brand);
+    public String category () {
         return "category/list";
     }
 

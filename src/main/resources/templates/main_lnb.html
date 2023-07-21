@@ -1,7 +1,11 @@
 <!-- 02-2-1. 대시보드 집계 그래프 노출 영역 시작 -->
 <!--<h2 th:if="${category}" th:text="|[${category}] 업종별 가맹점 분포|">[외식] 업종별 가맹점 분포</h2>-->
-<h2 th:if="null" th:text="업종별 가맹점 분포">업종별 가맹점 분포</h2>
-<h2 th:unless="null" th:text="|[${category}] 업종별 가맹점 분포|">양갱</h2>
+<div class="btn_lnb_open"><a href="#" class="fa fa-chevron-left"> </a></div>
+<h2 th:if="null" th:text="업종별 브랜드 분포">업종별 브랜드 분포</h2>
+<!--<h2 th:unless="null" th:utext="|[${category}] 업종별 브랜드 분포|">양갱</h2>-->
+<h2>
+    <b th:unless="null" th:utext="|${category}|"> </b> 프랜차이즈
+</h2>
 
 <div class="dash_board_graph">
     그래프가 들어갑니다!
@@ -9,7 +13,7 @@
 <!-- 02-2-1.대시보드 집계 그래프 노출 영역 끝 -->
 <!-- 02-2-2.페이지 컨텐츠 서브 메뉴 노출 시작 -->
 <dl class="latest">
-    <dt th:if="|${category}!=null|" th:text="|[${category}] 가맹점수 Top3|">[한식] 가맹점수 TOP3</dt><dt th:unless="|${category}!=null|" th:text="가맹점수 Top3"></dt>
+    <dt th:if="|${category}!=null|" th:text="|[${category}] 브랜드 Top3|">[한식] 브랜드 TOP3</dt><dt th:unless="|${category}!=null|" th:text="가맹점수 Top3"></dt>
     <dd>
         <ol>
             <li>
@@ -35,5 +39,5 @@
             </li>
         </ol>
     </dd>
-    <dd><a href="#" class="btn_more">더보기</a></dd>
+    <dd class="btn_more"><a href="#">더보기</a></dd>
 </dl>

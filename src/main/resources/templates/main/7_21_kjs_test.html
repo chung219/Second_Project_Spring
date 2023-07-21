@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="robots" content="ALL"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <title>전국 프랜차이즈 가맹현황</title>
+    <meta name="Description" content="우리동네 외식업 프랜차이즈 가맹점 통계에 대한 다양한 정보를 제공합니다."/>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=0.1,maximum-scale=5.0,user-scalable=yes" />
+    <link rel="stylesheet" type="text/css" href="css/reset.css" >
+    <link rel="stylesheet" type="text/css" href="css/layout.css" >
+    <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
+    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=3fa5806dfe291fb3622cf85fca14b017&libraries=services,clusterer,drawing"></script>
+    <script src="js/jquery.js"></script>
+    <script src="//kit.fontawesome.com/56b5cc4bd2.js" crossorigin="anonymous"></script><!-- 폰트어썸(아이콘 폰트) 사용 인증된 링크 -->
+
+    <!--    <script src="js/jquery-ui-1.10.4.custom.min.js"></script>-->
+</head>
+<body class="main">
+<div class="container">
+    <!-- ####### 01. HEADER START ####### -->
+<!--    <div class="header_wrap" th:include="header.html"></div>-->
+    <div class="header_wrap" th:insert="~{header.html}"></div>
+    <!-- ####### 01. HEADER END ####### -->
+    <hr class="skip"/>
+    <!-- ####### 02. LNB START ######### -->
+    <div class="lnb_wrap">
+        <!-- #### 02-1. 좌측 고정 업종별 아이콘 메뉴 시작 -->
+<!--        <dl class="fixed_quick_menu" th:include="fixed_lnb.html"></dl>-->
+        <dl class="fixed_quick_menu" th:insert="~{fixed_lnb.html}"></dl>
+        <hr class="skip"/>
+        <!-- #### 02-2. 좌측 on/off 페이지 서브 메뉴 노출 시작 -->
+        <div class="lnb main" th:insert="~{main_lnb.html}">
+<!--        <div class="lnb main" th:include="main_lnb.html">-->
+
+            <!-- 02-2-2.페이지 컨텐츠 서브 메뉴 노출 끝 -->
+        </div>
+        <!-- #### 02-2 좌측 on/off 페이지 서브 메뉴 노출 끝 -->
+    </div>
+    <!-- ####### 02. LNB END ########## -->
+    <hr class="skip"/>
+    <!-- ####### 03. CONTENTS START ####### -->
+    <section class="contents_wrap">
+        <!-- #### 03-1.우측 본문 영역 시작 -->
+        <div class="right_contents">
+            <!-- ######## 각 페이지에 해당 하는 내용 HTML을 넣어주세요.########### -->
+
+
+            <div id="map"></div>
+            <!-- post 보내는곳 -->
+            <form id="categoryForm" action="/main" method="post">
+                <input type="hidden" id="category" name="category">
+            </form>
+                <script th:inline="javascript">
+                <!-- 스프링으로 보내기 -->
+                function sendCategory(category) {
+                    document.getElementById('category').value = category;
+                    document.getElementById('categoryForm').submit();
+                    console.log('야호1')
+
+
+                }
+
+                /* 지도 관련 스크립트*/
+
+                var mapContainer = document.getElementById('map'), // 지도를 표시할 div
+                    mapOption = {
+                        center: new kakao.maps.LatLng(37.45139514881181, 126.74155431191699), // 지도의 중심좌표
+                        level: 8 // 지도의 확대 레벨
+                    };
+                // 지도를 생성합니다
+                var map = new kakao.maps.Map(mapContainer, mapOption);
+
+                // 지도에 추가된 지도타입정보를 가지고 있을 변수입니다
+                var currentTypeId;
+
+                // 버튼이 클릭되면 호출되는 함수입니다
+                function setOverlayMapTypeId(maptype) {
+                    // 현재 지도 타입이 교통정보인지 확인합니다
+                    var isTrafficType = currentTypeId === kakao.maps.MapTypeId.TRAFFIC;
+
+                    if (maptype === 'traffic') {
+                        // 현재 지도 타입이 교통정보이면 껐다 켭니다
+                        if (isTrafficType) {
+                            map.removeOverlayMapTypeId(kakao.maps.MapTypeId.TRAFFIC);
+                            currentTypeId = null;
+                        } else {
+                            // 교통정보 지도타입을 추가합니다
+                            map.addOverlayMapTypeId(kakao.maps.MapTypeId.TRAFFIC);
+                            currentTypeId = kakao.maps.MapTypeId.TRAFFIC;
+                        }
+                    }
+                }
+
+                // // 지도에 교통정보를 표시하도록 지도타입을 추가합니다
+                // map.addOverlayMapTypeId(kakao.maps.MapTypeId.TRAFFIC);
+
+                // 일반 지도와 스카이뷰로 지도 타입을 전환할 수 있는 지도타입 컨트롤을 생성합니다
+                var mapTypeControl = new kakao.maps.MapTypeControl();
+
+                // 지도에 컨트롤을 추가해야 지도위에 표시됩니다
+                // kakao.maps.ControlPosition은 컨트롤이 표시될 위치를 정의하는데 TOPRIGHT는 오른쪽 위를 의미합니다
+                map.addControl(mapTypeControl, kakao.maps.ControlPosition.TOPRIGHT);
+
+                // 지도 확대 축소를 제어할 수 있는  줌 컨트롤을 생성합니다
+                var zoomControl = new kakao.maps.ZoomControl();
+                map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
+
+                // // 주소-좌표 변환 객체를 생성합니다
+                // var geocoder = new kakao.maps.services.Geocoder();
+
+
+
+
+                var list = [[${food}]];
+
+                var positions = []
+
+
+                function save_positions(list) {
+                    // 받아온 데이터를 positions에 저장하는 함수
+                    list.forEach(function (address) {
+
+                        var first_address = address.add2;
+                        var name = address.brandName;
+                        var score = address.reviewScore
+                        var longitude = address.longitude
+                        var latitude = address.latitude
+                        var markerImage =
+                        positions.push(
+                            {
+                                content: '<div>' + name + '</div>' +
+                                    '<div> 주소: ' + first_address + '</div>' +
+                                    '<div> 점수: ' + score + '</div>' +
+                                    '<div class="rate"><span style = "width:' + (score / 5) * 100 + '%"></span></div>'
+                                ,
+                                latlng: new kakao.maps.LatLng(latitude, longitude)
+
+                            }
+                        )
+                    });
+
+                }
+
+
+                    function setMarkers(positions) {
+                        console.log('시작하니?')
+
+                        for (var i = 0; i < positions.length; i++) {
+                            // 마커를 생성합니다
+                            var marker = new kakao.maps.Marker({
+                                map: map, // 마커를 표시할 지도
+                                position: positions[i].latlng // 마커의 위치
+                            });
+
+                            // 마커에 표시할 인포윈도우를 생성합니다
+                            var infowindow = new kakao.maps.InfoWindow({
+                                content: positions[i].content // 인포윈도우에 표시할 내용
+                            });
+
+                            // 마커에 mouseover 이벤트와 mouseout 이벤트를 등록합니다
+                            // 이벤트 리스너로는 클로저를 만들어 등록합니다
+                            // for문에서 클로저를 만들어 주지 않으면 마지막 마커에만 이벤트가 등록됩니다
+                            kakao.maps.event.addListener(marker, 'mouseover', makeOverListener(map, marker, infowindow));
+                            kakao.maps.event.addListener(marker, 'mouseout', makeOutListener(infowindow));
+                        }
+
+                        // 인포윈도우를 표시하는 클로저를 만드는 함수입니다
+                        function makeOverListener(map, marker, infowindow) {
+                            return function () {
+                                infowindow.open(map, marker);
+                            };
+                        }
+
+                        // 인포윈도우를 닫는 클로저를 만드는 함수입니다
+                        function makeOutListener(infowindow) {
+                            return function () {
+                                infowindow.close();
+                            };
+                        }
+                    }
+                    save_positions(list);
+                    setMarkers(positions);
+
+
+
+
+
+
+                </script>
+            <!-- ######## 각 페이지에 해당 하는 내용 HTML을 넣어주세요.########### -->
+        </div>
+        <!-- #### 03-1.우측 본문 영역 끝 -->
+    </section>
+    <!-- ####### 03. CONTENTS END ####### -->
+    <hr class="skip"/>
+    <!-- ####### 04. FOOTER START ####### -->
+<!--    <div class="footer_wrap" th:include="footer.html"></div>-->
+    <div class="footer_wrap" th:insert="~{footer.html}"></div>
+    <!-- ####### 04. FOOTER END ####### -->
+
+</div>
+</body>
+</html>
