@@ -16,7 +16,7 @@
                주소1 as add1, 주소2 as add2, 전화번호 as tel,
                리뷰점수 as review_score, 경도 as longitude, 위도 as latitude
         from ( SELECT * from map_info where 분류 =#{category} )
-        where rownum between 1 and 1000
+        where rownum between 1 and 150
     </select>
 
 

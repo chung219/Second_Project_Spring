@@ -26,7 +26,7 @@ public class CategoryController {
 
     @GetMapping("/category")
     public String category (Model model) {
-        List<Food> food = foodInterface.findCategory("한식");
+        List<Food> food = foodInterface.loadTable("한식");
         List<Brand> brand = brandInterface.departure();
         model.addAttribute("food",food);
         model.addAttribute("brand", brand);
