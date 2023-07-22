@@ -8,7 +8,48 @@
 </h2>
 
 <div class="dash_board_graph">
-
+    <canvas id="myChart" width="auto" height="auto"></canvas>
+    <script>
+        var br_list = [[${pie}]];
+        console.log('리스트는 오는가')
+        console.log(br_list)
+        console.log('리스트는 오지 않았다')
+        var ctx = document.getElementById('myChart').getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'pie',
+            data: {
+                labels: br_list.map(brand => brand.brandName),
+                datasets: [{
+                    label: '# of Votes',
+                    data: br_list.map(brand => brand.franchiseNumber),
+                    backgroundColor: [
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                }
+            }
+        });
+    </script>
 </div>
 <!-- 02-2-1.대시보드 집계 그래프 노출 영역 끝 -->
 <!-- 02-2-2.페이지 컨텐츠 서브 메뉴 노출 시작 -->

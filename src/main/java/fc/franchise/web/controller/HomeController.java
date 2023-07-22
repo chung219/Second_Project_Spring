@@ -32,9 +32,11 @@ public class HomeController {
     public String main(Model model){
         List<Food> foodFirst = foodInterface.findCategory("일식");
         List<Brand> brandFirst = brandInterface.findTop3("일식");
+        List<Brand> rePie = brandInterface.getPieChart("일식");
         model.addAttribute("first", foodFirst);
         model.addAttribute("Brand", brandFirst);
         model.addAttribute("category", "일식");
+        model.addAttribute("pie", rePie);
         return "main/7_21_ck_test";
     }
 
@@ -45,9 +47,11 @@ public class HomeController {
         List<Food> listM = foodInterface.findCategory("일식");
         model.addAttribute("category", category);
         List<Brand> listB = brandInterface.findTop3(category);
+        List<Brand> r_brand = brandInterface.getPieChart(category);
         model.addAttribute("first", listM);
         model.addAttribute("food", listF);
         model.addAttribute("brand3", listB);
+        model.addAttribute("pie", r_brand);
         return "main/7_21_ck_test";
     }
 
