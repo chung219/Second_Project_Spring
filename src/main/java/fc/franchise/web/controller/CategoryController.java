@@ -29,9 +29,11 @@ public class CategoryController {
         List<Food> food = foodInterface.loadTable("한식");
         List<Brand> brand = brandInterface.departure();
         model.addAttribute("category","한식");
+        List<Brand> brand2 = brandInterface.findSalesTop5();
         model.addAttribute("food",food);
         model.addAttribute("brand", brand);
-        return "category/list_table_test2";
+        model.addAttribute("brand2", brand2);
+        return "category/list_test3";
     }
 
 

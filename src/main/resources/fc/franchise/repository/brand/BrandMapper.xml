@@ -63,4 +63,14 @@
         WHERE ROWNUM BETWEEN 1 AND 10
     </select>
 
+    <select id="findSalesTop5" resultType="brand">
+        SELECT 평균매출금액 as avgSales, 브랜드명 as brandName
+        FROM (SELECT *
+        From brand_fr_pro
+        WHERE 기준년도 BETWEEN 2018 AND 2022 AND 업종중분류명 = '한식'
+        ORDER BY 평균매출금액 DESC)
+        WHERE ROWNUM BETWEEN 1 AND 5
+    </select>
+
+
 </mapper>
