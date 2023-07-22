@@ -30,7 +30,7 @@ public class CategoryController {
         List<Brand> brand = brandInterface.departure();
         model.addAttribute("food",food);
         model.addAttribute("brand", brand);
-        return "category/list_table_test";
+        return "category/list_table_test2";
     }
 
 
