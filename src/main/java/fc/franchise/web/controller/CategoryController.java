@@ -45,7 +45,7 @@ public class CategoryController {
         model.addAttribute("food",receive_table);
         model.addAttribute("category", category);
         model.addAttribute("brand", receive_brand);
-        return "category/list_table_test2";
+        return "category/list_test3";
     }
 
 
