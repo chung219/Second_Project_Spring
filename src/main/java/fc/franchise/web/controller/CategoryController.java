@@ -2,7 +2,6 @@ package fc.franchise.web.controller;
 
 import fc.franchise.domain.Brand;
 import fc.franchise.domain.Food;
-import fc.franchise.repository.address.AddressInterface;
 import fc.franchise.repository.brand.BrandInterface;
 import fc.franchise.repository.food.FoodInterface;
 import lombok.RequiredArgsConstructor;
@@ -19,7 +18,6 @@ import java.util.List;
 @RequiredArgsConstructor
 @Slf4j
 public class CategoryController {
-    private final AddressInterface addressInterface;
     private final FoodInterface foodInterface;
     private final BrandInterface brandInterface;
 
@@ -27,13 +25,13 @@ public class CategoryController {
     @GetMapping("/category")
     public String category (Model model) {
         List<Food> food = foodInterface.loadTable("한식");
-        List<Brand> brand = brandInterface.departure();
+        List<Brand> brand = brandInterface.getPieChart("한식");
+        List<Brand> brand2 = brandInterface.findSalesTop5("한식");
         model.addAttribute("category","한식");
-        List<Brand> brand2 = brandInterface.findSalesTop5();
         model.addAttribute("food",food);
         model.addAttribute("brand", brand);
         model.addAttribute("brand2", brand2);
-        return "category/list_test3";
+        return "category/list_semi_final";
     }
 
 
@@ -42,10 +40,12 @@ public class CategoryController {
         log.info(category);
         List<Brand> receive_brand = brandInterface.getPieChart(category);
         List<Food> receive_table = foodInterface.loadTable(category);
-        model.addAttribute("food",receive_table);
+        List<Brand> brand2 = brandInterface.findSalesTop5(category);
         model.addAttribute("category", category);
+        model.addAttribute("food",receive_table);
         model.addAttribute("brand", receive_brand);
-        return "category/list_test3";
+        model.addAttribute("brand2",brand2);
+        return "category/list_semi_final";
     }
 
 

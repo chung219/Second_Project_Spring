@@ -4,8 +4,8 @@
   <meta charset="UTF-8">
   <meta name="robots" content="ALL"/>
   <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-  <title>업종별 프랜차이즈 가맹현황</title>
-  <meta name="Description" content="외식 업종별 프랜차이즈 가맹점 통계에 대한 다양한 정보를 제공합니다."/>
+  <title>브랜드별 프랜차이즈 가맹현황</title>
+  <meta name="Description" content="브랜드별 외식업 프랜차이즈 가맹점 통계에 대한 다양한 정보를 제공합니다."/>
   <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=0.1,maximum-scale=5.0,user-scalable=yes" />
   <link rel="stylesheet" type="text/css" href="css/reset.css" >
   <link rel="stylesheet" type="text/css" href="css/layout.css" >
@@ -65,19 +65,19 @@
       <div class="graph_wrap">
         <div class="brand_pie_chart">
           <div class="title">
-            <h2 th:utext="|[${category}] 프랜차이즈 TOP10|">[한식] 프랜차이즈 TOP10</h2>
+            <h2 th:text="|[${category}] TOP5 프랜차이즈 점유율|">[한식] 프랜차이즈 점유율 TOP5</h2>
             <span>출처 : 공정거래위원회</span>
           </div>
           <!--2022년 기준 &ndash;&gt; 한식 업종 브랜드 상위 10개 업체 점유율 챠트 노출해주세요!-->
 
           <!--가맹정보_브랜드별_가맹점_현황_제공_서비스-->
-          <div style="width:700px;height:150px;">
+          <div style="width:100%;height:auto;">
 
             <!-- js chart  차트 넣는 부분! -->
             <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
             <script src="https://cdn.jsdelivr.net/npm/chart.js@3.5.1/dist/chart.min.js"></script>
 
-            <div style="width:auto;height:200px;">
+            <div style="width:auto;height:auto;">
               <canvas id="myChart"></canvas>
               <!-- 커스텀범례-->
               <div id="customLegend" style="margin-top: 10px;"></div>
@@ -93,7 +93,6 @@
                 document.getElementById('categoryForm').submit();
                 console.log('야호1')
               }
-
               var brandList = [[${brand}]];
               console.log(brandList)
 
@@ -130,11 +129,6 @@
                     position: 'right',
                     display: true
                   },
-                  scales: {
-                    y: {
-                      beginAtZero: true
-                    }
-                  },
                   plugins: {
                     legend: {
                       position: 'right',
@@ -143,14 +137,74 @@
                 }
               });
             </script>
+
+            <br>
           </div>
         </div>
         <div class="year_line_chart">
           <div class="title">
-            <h2>년도별 가맹률 TOP5(2022~2018)</h2>
+            <h2 th:text="|[${category}] TOP5 평균 매출금액|">[한식] 년도별 통계분석 Top10</h2>
             <span>2022~2018 가맹 기준</span>
-        </div>
-          한식 업종 2018~2022년 상위 Top10 노출해주세요.
+          </div>
+          <div style="width:auto;height:auto;">
+            <!-- js chart  차트 넣는 부분! -->
+            <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/chart.js@3.5.1/dist/chart.min.js"></script>
+
+            <div style="width:auto;height:auto;">
+              <canvas id="lineChart"></canvas>
+            </div>
+
+            <script th:inline="javascript">
+              var brandList2 = [[${brand2}]];
+              console.log(brandList2)
+
+              var ctx = document.getElementById('lineChart').getContext('2d');
+              var myChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                  labels: brandList2.map(brand => brand.brandName),
+                  datasets: [{
+                    label: '평균매출금액 TOP 5',
+                    data: brandList2.map(brand => brand.avgSales),
+                    backgroundColor: [
+                      'rgba(255, 99, 132, 0.2)',
+                      'rgba(54, 162, 235, 0.2)',
+                      'rgba(255, 206, 86, 0.2)',
+                      'rgba(75, 192, 192, 0.2)',
+                      'rgba(153, 102, 255, 0.2)',
+                    ],
+                    borderColor: [
+                      'rgba(255, 99, 132, 1)',
+                      'rgba(54, 162, 235, 1)',
+                      'rgba(255, 206, 86, 1)',
+                      'rgba(75, 192, 192, 1)',
+                      'rgba(153, 102, 255, 1)',
+                    ],
+                    borderWidth: 1
+                  }]
+                },
+                options: {
+                  responsive: true,
+                  maintainAspectRatio: false,
+                  scales: {
+                    y: {
+                      beginAtZero: true
+                    }
+                  },
+                  plugins: {
+                    legend: {
+                      display: true,
+                      position: 'top',
+                      labels: {
+                        usePointStyle: true,
+                      }
+                    }
+                  }
+                }
+              });
+            </script>
+          </div>
         </div>
       </div>
       <!-- 테이블 데이터 영역 시작  -->
@@ -165,7 +219,7 @@
           } );
         </script>
         <div class="title">
-          <h2 th:text="|${category} 프랜차이즈 등록업체|">한식 프랜차이즈 등록업체</h2d>
+          <h2 th:text="|${category} 프랜차이즈 등록업체|">한식 프랜차이즈 등록업체</h2>
           <span>30/3,200(개)</span>
         </div>
         <div class="scroll sticky-table sticky-ltr-cells">
@@ -208,17 +262,6 @@
               </tr>
               </tbody>
             </table>
-<!--            <script>-->
-<!--              $('.food_table > td').hide();-->
-<!--              $('.food_table > td').slice(0, 30).css("display", "block");-->
-<!--              $('.btn_more').click(function (e) {-->
-<!--                e.preventDefault();-->
-<!--                $('.food_table > td:hidden').slice(0, 10).fadeIn(200).css("display", "block");-->
-<!--                if ($('.food_table > td:hidden').length == 0) {-->
-<!--                  $('.btn_more').fadeOut(100);-->
-<!--                }-->
-<!--              });-->
-<!--            </script>-->
           </div>
         </div>
 
@@ -227,6 +270,7 @@
       <!-- 테이블 데이터 영역 끝 -->
       <!-- ######## 각 페이지에 해당 하는 내용 HTML을 넣어주세요.########### -->
     </div>
+
     <!-- #### 03-1.우측 본문 영역 끝 -->
   </section>
   <!-- ####### 03. CONTENTS END ####### -->

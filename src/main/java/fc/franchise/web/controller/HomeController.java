@@ -2,7 +2,6 @@ package fc.franchise.web.controller;
 
 import fc.franchise.domain.Brand;
 import fc.franchise.domain.Food;
-import fc.franchise.repository.address.AddressInterface;
 import fc.franchise.repository.brand.BrandInterface;
 import fc.franchise.repository.food.FoodInterface;
 import lombok.RequiredArgsConstructor;
@@ -19,7 +18,6 @@ import java.util.List;
 @RequiredArgsConstructor
 @Slf4j
 public class HomeController {
-    private final AddressInterface addressInterface;
     private final FoodInterface foodInterface;
     private final BrandInterface brandInterface;
 
@@ -37,7 +35,7 @@ public class HomeController {
         model.addAttribute("Brand", brandFirst);
         model.addAttribute("category", "일식");
         model.addAttribute("pie", rePie);
-        return "main/7_21_ck_test";
+        return "main/main_semi_final";
     }
 
     @PostMapping("/main")
@@ -47,12 +45,12 @@ public class HomeController {
         List<Food> listM = foodInterface.findCategory("일식");
         model.addAttribute("category", category);
         List<Brand> listB = brandInterface.findTop3(category);
-        List<Brand> r_brand = brandInterface.getPieChart(category);
+        List<Brand> readBrand = brandInterface.getPieChart(category);
         model.addAttribute("first", listM);
         model.addAttribute("food", listF);
         model.addAttribute("brand3", listB);
-        model.addAttribute("pie", r_brand);
-        return "main/7_21_ck_test";
+        model.addAttribute("pie", readBrand);
+        return "main/main_semi_final";
     }
 
 

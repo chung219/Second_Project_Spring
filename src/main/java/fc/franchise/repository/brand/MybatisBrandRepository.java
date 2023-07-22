@@ -35,7 +35,7 @@ public class MybatisBrandRepository implements BrandInterface{
     }
 
     @Override
-    public List<Brand> findSalesTop5() {
-        return brandMapper.findSalesTop5();
+    public List<Brand> findSalesTop5(String category) {
+        return brandMapper.findSalesTop5(category);
     }
 }

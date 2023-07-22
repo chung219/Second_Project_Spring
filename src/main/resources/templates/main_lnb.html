@@ -8,46 +8,71 @@
 </h2>
 
 <div class="dash_board_graph">
-    <canvas id="myChart" width="auto" height="auto"></canvas>
-    <script>
-        var br_list = [[${pie}]];
+    <canvas id="mainChart" width="230px" height="230px"></canvas>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.5.1/dist/chart.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-datalabels/2.2.0/chartjs-plugin-datalabels.min.js" integrity="sha512-JPcRR8yFa8mmCsfrw4TNte1ZvF1e3+1SdGMslZvmrzDYxS69J7J49vkFL8u6u8PlPJK+H3voElBtUCzaXj+6ig==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script th:inline="javascript">
+        var brandList = [[${pie}]];
         console.log('리스트는 오는가')
-        console.log(br_list)
+        console.log(brandList)
         console.log('리스트는 오지 않았다')
-        var ctx = document.getElementById('myChart').getContext('2d');
+        var ctx = document.getElementById('mainChart').getContext('2d');
         var myChart = new Chart(ctx, {
             type: 'pie',
             data: {
-                labels: br_list.map(brand => brand.brandName),
+                labels: brandList.map(brand => brand.brandName),
                 datasets: [{
-                    label: '# of Votes',
-                    data: br_list.map(brand => brand.franchiseNumber),
+                    label: '가맹점수 TOP 5',
+                    data: brandList.map(brand => brand.franchisesNumber),
                     backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
                         'rgba(54, 162, 235, 0.2)',
                         'rgba(255, 206, 86, 0.2)',
                         'rgba(75, 192, 192, 0.2)',
                         'rgba(153, 102, 255, 0.2)',
-                        'rgba(255, 159, 64, 0.2)'
                     ],
                     borderColor: [
+                        'rgba(255, 99, 132, 1)',
                         'rgba(54, 162, 235, 1)',
                         'rgba(255, 206, 86, 1)',
                         'rgba(75, 192, 192, 1)',
                         'rgba(153, 102, 255, 1)',
-                        'rgba(255, 159, 64, 1)'
                     ],
                     borderWidth: 1
                 }]
             },
             options: {
-                scales: {
-                    yAxes: [{
-                        ticks: {
-                            beginAtZero: true
-                        }
-                    }]
+                responsive: true,
+                maintainAspectRatio: false,
+                animation: false,
+                legend: {
+                    position: 'bottom',
+                },
+                // scales: {
+                //     y: {
+                //         beginAtZero: false
+                //     }
+                // },
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        display: false
+                    },
+                    datalabels: {
+                        formatter: ((context, args)  => {
+                            const index = args.dataIndex;
+                            return args.chart.data.labels[index]
+                    })
+                    }
+                    // scales: {
+                    //     display: false
+                    // }
                 }
-            }
+            },
+            plugins: [ChartDataLabels]
         });
     </script>
 </div>
