@@ -4,7 +4,7 @@
 <h2 th:if="null" th:text="업종별 브랜드 분포">업종별 브랜드 분포</h2>
 <!--<h2 th:unless="null" th:utext="|[${category}] 업종별 브랜드 분포|">양갱</h2>-->
 <h2>
-    <b th:unless="null" th:utext="|${category}|"> </b> 프랜차이즈
+    <b th:unless="null" th:text="|${category}|"> </b> 프랜차이즈 점유율
 </h2>
 
 <div class="dash_board_graph">
@@ -14,22 +14,23 @@
 <!-- 02-2-2.페이지 컨텐츠 서브 메뉴 노출 시작 -->
 <dl class="latest">
     <dt th:if="null" th:text="가맹점수 Top3"></dt>
-    <dt th:unless="null" th:utext="|${category} 브랜드 Top3|">[한식] 브랜드 TOP3</dt>
-
+    <dt>
+        <b th:unless="null" th:text="|${category}|"> </b> 브랜드 TOP3
+    </dt>
     <dd>
         <ol class="br_li">
             <li th:each="brand : ${Brand}">
                 <a href="#">
                     <span class="thumb_img"></span>
                     <span class="brand_name" th:text="${brand.brandName}">마을회관 왕갈비 일산점</span>
-                    <b class="num fa fa-bookmark-o" th:text="${brand.franchisesNumber}"> 1230</b>
+                    <b class="num" th:text="${brand.franchisesNumber}"> 1230</b>
                 </a>
             </li>
             <li th:each="brand : ${brand3}">
                 <a href="#">
                     <span class="thumb_img"></span>
                     <span class="brand_name" th:text="${brand.brandName}">마을회관 왕갈비 일산점</span>
-                    <b class="num fa fa-bookmark-o" th:text="${brand.franchisesNumber}"> 1230</b>
+                    <b class="num" th:text="${brand.franchisesNumber}"> 1230</b>
                 </a>
             </li>
         </ol>

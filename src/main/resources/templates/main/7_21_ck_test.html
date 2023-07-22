@@ -216,15 +216,15 @@
                         positions.push(
                             {
                                 content:
-                                    '<div class="infowindow">'+
-                                    '<div> 분류'+ category+ '</div>'+
-                                    '<div class="infowindow-title">' + name + '</div>' +
-                                    '<div> 점수: ' + score + '</div>' +
-                                    '<div class="rate"><span style = "width:' + (score / 5) * 100 + '%"></span></div>'+
-                                    '<div> 주소: ' + first_address + '</div>' +
-                                    '<div> 지번: '+ second_address +'</div>'+
-                                    '<div> Tel: '+ tel +'</div>'+
-                                    '</div>'
+                                    '<dl class="infowindow">'+
+                                        '<dt>' + name + '<span>'+ category+ '</span>'+'</dt>' +
+                                        '<dd class="review_grade">' +
+                                            '<b>' + score + '</b>' +
+                                            '<span class="rate"><span style = "width:' + (score / 5) * 100 + '%"></span>' +
+                                        '</dd>'+
+                                        '<dd class="addr">'+ first_address + '<span> (지번: '+ second_address +')</span>'+'</dd>' +
+                                        '<dd class="tel">'+ tel +'</dd>'+
+                                    '</dl>'
                                 ,
                                 latlng: new kakao.maps.LatLng(latitude, longitude),
                                 image: imageYo
