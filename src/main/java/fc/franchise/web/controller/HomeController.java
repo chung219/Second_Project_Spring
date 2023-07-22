@@ -28,12 +28,12 @@ public class HomeController {
 
     @GetMapping("/main")
     public String main(Model model){
-        List<Food> foodFirst = foodInterface.findCategory("일식");
-        List<Brand> brandFirst = brandInterface.findTop3("일식");
-        List<Brand> rePie = brandInterface.getPieChart("일식");
+        List<Food> foodFirst = foodInterface.findCategory("커피");
+        List<Brand> brandFirst = brandInterface.findTop3("커피");
+        List<Brand> rePie = brandInterface.getPieChart("커피");
         model.addAttribute("first", foodFirst);
         model.addAttribute("Brand", brandFirst);
-        model.addAttribute("category", "일식");
+        model.addAttribute("category", "커피");
         model.addAttribute("pie", rePie);
         return "main/main_semi_final";
     }
@@ -42,7 +42,7 @@ public class HomeController {
     public String categorySend(@RequestParam("category") String category, Model model){
         log.info("categorySend] "+category);
         List<Food> listF = foodInterface.findCategory(category);
-        List<Food> listM = foodInterface.findCategory("일식");
+        List<Food> listM = foodInterface.findCategory("커피");
         model.addAttribute("category", category);
         List<Brand> listB = brandInterface.findTop3(category);
         List<Brand> readBrand = brandInterface.getPieChart(category);
