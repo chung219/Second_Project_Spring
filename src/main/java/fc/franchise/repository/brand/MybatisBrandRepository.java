@@ -25,6 +25,11 @@ public class MybatisBrandRepository implements BrandInterface{
     }
 
     @Override
+    public List<Brand> getPieChart(String category) {
+        return brandMapper.getPieChart(category);
+    }
+
+    @Override
     public List<Brand> findTop3(String category) {
         return brandMapper.findTop3(category);
     }

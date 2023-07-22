@@ -10,6 +10,8 @@ public interface BrandInterface {
 
     List<Brand> departure();
 
+    List<Brand> getPieChart(String category);
+
 
     List<Brand> findTop3(String category);
 }

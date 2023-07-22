@@ -28,11 +28,23 @@ public class CategoryController {
     public String category (Model model) {
         List<Food> food = foodInterface.loadTable("한식");
         List<Brand> brand = brandInterface.departure();
+        model.addAttribute("category","한식");
         model.addAttribute("food",food);
         model.addAttribute("brand", brand);
         return "category/list_table_test2";
     }
 
+
+    @PostMapping("/category")
+    public String categorySend(@RequestParam("category") String category, Model model){
+        log.info(category);
+        List<Brand> receive_brand = brandInterface.getPieChart(category);
+        List<Food> receive_table = foodInterface.loadTable(category);
+        model.addAttribute("food",receive_table);
+        model.addAttribute("category", category);
+        model.addAttribute("brand", receive_brand);
+        return "category/list_table_test2";
+    }
 
 
 
