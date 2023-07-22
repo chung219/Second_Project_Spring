@@ -15,4 +15,9 @@ public class MybatisFoodRepository implements FoodInterface {
     public List<Food> findCategory(String category) {
         return foodMapper.findCategory(category);
     }
+
+    @Override
+    public List<Food> loadTable(String category) {
+        return foodMapper.loadTable(category);
+    }
 }
