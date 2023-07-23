@@ -1,19 +1,29 @@
 <!-- 02-2-1. 대시보드 집계 그래프 노출 영역 시작 -->
 <h2>[외식] 업종별 가맹점 분포/통계</h2>
 <ul class="sub_menu_list">
-  <li><a onclick="sendCategory('한식')" class="active"><i class="fa-solid fa-bowl-food"></i><span>한식</span><b class="num">562</b></a></li>
-  <li><a onclick="sendCategory('중식')"><i class="fa-solid fa-bowl-rice"></i><span>중식</span><b class="num">764</b></a></li>
-  <li><a onclick="sendCategory('일식')"><i class="fa-solid fa-fish-fins"></i><span>일식</span><b class="num">547</b></a></li>
-  <li><a onclick="sendCategory('서양식')"><i class="fa-solid fa-utensils"></i><span>양식</span><b class="num">54</b></a></li>
-  <li><a onclick="sendCategory('치킨')"><i class="fa-solid fa-drumstick-bite"></i><span>치킨</span><b class="num">442</b></a></li>
-  <li><a onclick="sendCategory('커피')"><i class="fa-solid fa-mug-hot"></i><span>커피</span><b class="num">250</b></a></li>
-  <li><a onclick="sendCategory('주점')"><i class="fa-solid fa-champagne-glasses"></i><span>주점</span><b class="num">222</b></a></li>
-  <li><a onclick="sendCategory('분식')"><i class="fa-solid fa-plate-wheat"></i><span>분식</span><b class="num">456</b></a></li>
-  <li><a onclick="sendCategory('피자')"><i class="fa-solid fa-pizza-slice"></i><span>피자</span><b class="num">123</b></a></li>
-  <li><a onclick="sendCategory('제과제빵')"><i class="fa-solid fa-hotdog"></i><span>제과제빵</span><b class="num">69</b></a></li>
-  <li><a onclick="sendCategory('패스트푸드')"><i class="fa-solid fa-burger"></i><span>패스트푸드</span><b class="num">89</b></a></li>
-  <li><a onclick="sendCategory('커피외음료')"><i class="fa-solid fa-mug-saucer"></i><span>음료 (커피 외)</span><b class="num">36</b></a></li>
-  <li><a onclick="sendCategory('아이스크림')"><i class="fa-solid fa-ice-cream"></i><span>아이스크림/빙수</span><b class="num">99</b></a></li>
-  <li><a onclick="sendCategory('기타외국식')"><i class="fa-solid fa-cake-candles"></i><span>기타 외국식</span><b class="num">65</b></a></li>
-  <li><a onclick="sendCategory('기타')"><i class="fa-solid fa-martini-glass-citrus"></i><span>기타 외식</span><b class="num"></b></a></li>
+  <li class="한식"><a onclick="sendCategory('한식')" class="active"><i class="fa-solid fa-bowl-food"></i><span>한식</span><b class="num">562</b></a></li>
+  <li class="중식"><a onclick="sendCategory('중식')"><i class="fa-solid fa-bowl-rice"></i><span>중식</span><b class="num">764</b></a></li>
+  <li class="일식"><a onclick="sendCategory('일식')"><i class="fa-solid fa-fish-fins"></i><span>일식</span><b class="num">547</b></a></li>
+  <li class="서양식"><a onclick="sendCategory('서양식')"><i class="fa-solid fa-utensils"></i><span>양식</span><b class="num">54</b></a></li>
+  <li class="치킨"><a onclick="sendCategory('치킨')"><i class="fa-solid fa-drumstick-bite"></i><span>치킨</span><b class="num">442</b></a></li>
+  <li class="커피"><a onclick="sendCategory('커피')"><i class="fa-solid fa-mug-hot"></i><span>커피</span><b class="num">250</b></a></li>
+  <li class="주점"><a onclick="sendCategory('주점')"><i class="fa-solid fa-champagne-glasses"></i><span>주점</span><b class="num">222</b></a></li>
+  <li class="분식"><a onclick="sendCategory('분식')"><i class="fa-solid fa-plate-wheat"></i><span>분식</span><b class="num">456</b></a></li>
+  <li class="피자"><a onclick="sendCategory('피자')"><i class="fa-solid fa-pizza-slice"></i><span>피자</span><b class="num">123</b></a></li>
+  <li class="제과제빵"><a onclick="sendCategory('제과제빵')"><i class="fa-solid fa-hotdog"></i><span>제과제빵</span><b class="num">69</b></a></li>
+  <li class="패스트푸드"><a onclick="sendCategory('패스트푸드')"><i class="fa-solid fa-burger"></i><span>패스트푸드</span><b class="num">89</b></a></li>
+  <li class="커피외음료"><a onclick="sendCategory('커피외음료')"><i class="fa-solid fa-mug-saucer"></i><span>음료 (커피 외)</span><b class="num">36</b></a></li>
+  <li class="아이스크림"><a onclick="sendCategory('아이스크림')"><i class="fa-solid fa-ice-cream"></i><span>아이스크림/빙수</span><b class="num">99</b></a></li>
+  <li class="기타외국식"><a onclick="sendCategory('기타외국식')"><i class="fa-solid fa-cake-candles"></i><span>기타 외국식</span><b class="num">65</b></a></li>
+  <li class="기타"><a onclick="sendCategory('기타')"><i class="fa-solid fa-martini-glass-citrus"></i><span>기타 외식</span><b class="num"></b></a></li>
 </ul>
+<script th:inline="javascript">
+  var category = [[${category}]]
+  console.log(category)
+  function activeCategory(category){
+    $('.sub_menu_list > li > a').removeClass('active');
+    $('.' + category + ' > a').addClass('active')
+  }
+  activeCategory(category)
+
+</script>

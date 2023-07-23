@@ -6,15 +6,15 @@ import fc.franchise.repository.brand.BrandInterface;
 import fc.franchise.repository.food.FoodInterface;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @Controller
+//@RestController
 @RequiredArgsConstructor
 @Slf4j
 public class CategoryController {
@@ -33,6 +33,12 @@ public class CategoryController {
         model.addAttribute("brand2", brand2);
         return "category/list_semi_final";
     }
+
+//    @CrossOrigin(origins = "http://localhost:8080")
+//    @PostMapping("/category")
+//    public ResponseEntity<?> handleCategory(@RequestBody String category){
+//        return ResponseEntity.ok("Request handled ok");
+//    }
 
 
     @PostMapping("/category")

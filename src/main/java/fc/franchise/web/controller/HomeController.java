@@ -31,7 +31,7 @@ public class HomeController {
         List<Food> foodFirst = foodInterface.findCategory("커피");
         List<Brand> brandFirst = brandInterface.findTop3("커피");
         List<Brand> rePie = brandInterface.getPieChart("커피");
-        model.addAttribute("first", foodFirst);
+        model.addAttribute("food", foodFirst);
         model.addAttribute("Brand", brandFirst);
         model.addAttribute("category", "커피");
         model.addAttribute("pie", rePie);
