@@ -49,7 +49,6 @@
               where 업종중분류명 = #{category} and 기준년도='2022'
               order by 가맹점수 desc)
         where rownum between 1 and 5
-
     </select>
 
 
