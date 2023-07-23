@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="fc.franchise.repository.brand.BrandMapper">
+
+    <select id="findAll" resultType="sales">
+        select 기준년도 as year,
+        업종대분류명 as industryCategory,
+        업종중분류명 as industryClassification,
+        법인명 as industryName,
+        자산총금액 as totalOfAssets,
+        자본총금액 as totalOfCapital,
+        부채총금액 as totalOfLiabilities,
+        총매출금액 as amount,
+        영업이익금액 as totalOperating,
+        당기순이익금액 as CurrentProfit
+        from FR_TOP
+    </select>
+
+
+
+
+
+
+</mapper>

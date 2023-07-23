@@ -51,7 +51,9 @@ public class CategoryController {
 
 
     @GetMapping("/brand")
-    public String brand () {
+    public String brand (Model model) {
+        List<Brand> top10List = brandInterface.top10List();
+        model.addAttribute("top10List", top10List);
         return "brand/list";
     }
     @GetMapping("/region")

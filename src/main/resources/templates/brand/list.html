@@ -72,7 +72,6 @@
 
 
                     <!--가맹정보_브랜드별_가맹점_현황_제공_서비스-->
-                    <b>이탈률이 적은 순위 1위 ~ 5위</b>
                     <div style="width:auto;height:auto;">
 
 
@@ -82,70 +81,46 @@
 
                         <div style="width:auto;height:auto;">
                             <canvas id="myChart"></canvas>
+                            <div id="customLegend" style="margin-top: 10px;"></div>
                         </div>
 
 
+
                         <script th:inline="javascript">
+                            var top10List = [[${top10List}]];
+                            console.log(top10List)
 
-
-                            var brandList = [[${brand}]];
-                            console.log(brandList)
-
-                            var ctx = document.getElementById('myChart').getContext('2d');  // 1
+                            const ctx = document.getElementById('myChart').getContext('2d');
 
                             var myChart = new Chart(ctx, {
-                                type: 'doughnut',
+                                type: 'radar', // type : bar, bubble, doughnut, line, polarArea, radar, scatter, pie
                                 data: {
-                                    labels: [brandList[0].brandName, brandList[1].brandName, brandList[2].brandName, brandList[3].brandName, brandList[4].brandName, brandList[5].brandName], // 2
+                                    labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange', 'Apricot'],
                                     datasets: [{
-                                        label: '이탈률 수치 (1위~5위)', // 3
-                                        data: [
-                                            brandList[0].departureRate, brandList[1].departureRate,
-                                            brandList[2].departureRate, brandList[3].departureRate, brandList[4].departureRate, brandList[5].departureRate
-
-                                        ], // 4
-                                        backgroundColor: [  // 5
+                                        label: '# of Votes',
+                                        data: [12, 19, 3, 5, 2, 3, 7],
+                                        borderWidth: 1,
+                                        backgroundColor: [
                                             'rgba(255, 99, 132, 0.2)',
-                                            'rgba(54, 162, 235, 0.2)',
-                                            'rgba(255, 206, 86, 0.2)',
+                                            'rgba(255, 159, 64, 0.2)',
+                                            'rgba(255, 205, 86, 0.2)',
                                             'rgba(75, 192, 192, 0.2)',
+                                            'rgba(54, 162, 235, 0.2)',
                                             'rgba(153, 102, 255, 0.2)',
-                                            'rgba(255, 159, 64, 0.2)'
+                                            'rgba(201, 203, 207, 0.2)'
                                         ],
-                                        borderColor: [
-                                            'rgba(255, 99, 132, 1)',
-                                            'rgba(54, 162, 235, 1)',
-                                            'rgba(255, 206, 86, 1)',
-                                            'rgba(75, 192, 192, 1)',
-                                            'rgba(153, 102, 255, 1)',
-                                            'rgba(255, 159, 64, 1)'
-                                        ],
-                                        borderWidth: 1
                                     }]
                                 },
                                 options: {
-                                    responsive: true,
-                                    maintainAspectRatio : false,
-                                    animation: false,
-                                    legend: {
-                                        position: 'right',
-                                        display: true
-                                    },
                                     scales: {
                                         y: {
                                             beginAtZero: true
                                         }
-                                    },
-                                    plugins: {
-                                        legend: {
-                                            position: 'right',
-                                        },
-                                    }}
+                                    }
+                                }
                             });
-
                         </script>
                         <br>
-                        <p>이탈률: ((계약종료수 + 계약해지수) / (가맹점수 + 신규가맹등록수)) * 100</p>
 
                     </div>
 
@@ -156,9 +131,102 @@
                         <h2>지역별 매출순위 TOP10</h2>
                         <span>2022~2018 가맹 기준</span>
                     </div>
-                    2018~2022년 상위 Top10 노출해주세요.
-                </div>
+
+
+
+
+
+<!--                    --------------------------------------------------------->
+
+                        <div style="width:auto;height:auto;">
+                            <!-- js chart  차트 넣는 부분! -->
+                            <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+                            <script src="https://cdn.jsdelivr.net/npm/chart.js@3.5.1/dist/chart.min.js"></script>
+
+                            <div style="width:auto;height:auto;">
+                                <canvas id="myChart2"></canvas>
+                            </div>
+
+                            <script th:inline="javascript">
+
+
+                                const ctx2 = document.getElementById('myChart2').getContext('2d');
+
+
+                                    var chart2 = new Chart(ctx2, {
+
+                                        // The type of chart we want to create
+                                        type: 'bar',
+
+                                        // The data for our dataset
+                                        data: {
+                                            labels: ['1월','2월','3월','4월','5월','6월'],
+                                            datasets: [{
+                                                label: '바 그래프',
+                                                type : 'bar', // 'bar' type, 전체 타입과 같다면 생략가능
+                                                backgroundColor: 'rgba(255, 94, 94, 0.6)',
+                                                borderColor: 'rgba(255, 94, 94, 0.6)',
+                                                data: [10, 20, 30, 40, 50, 60]
+                                            }, {
+                                                label: '라인 그래프1',
+                                                type : 'line',         // 'line' type
+                                                fill : false,         // 채우기 없음
+                                                lineTension : 0.2,  // 0이면 꺾은선 그래프, 숫자가 높을수록 둥글해짐
+                                                pointRadius : 0,    // 각 지점에 포인트 주지 않음
+                                                backgroundColor: 'rgba(247, 243, 119, 0.6)',
+                                                borderColor: 'rgba(247, 243, 119, 0.6)',
+                                                data: [40, 50, 60, 70, 80, 90]
+                                            }, {
+                                                label: '라인 그래프2',
+                                                type : 'line',
+                                                fill : false,
+                                                lineTension : 0.2,
+                                                pointRadius : 0,
+                                                backgroundColor: 'rgba(189, 119, 247, 0.6)',
+                                                borderColor: 'rgba(189, 119, 247, 0.6)',
+                                                data: [100, 120, 150, 100, 180, 200]
+                                            }]
+                                        },
+
+                                        // Configuration options
+                                        options: {
+                                            legend: {
+                                                labels: {
+                                                    fontColor: 'white' // label color
+                                                }
+                                            },
+                                            scales: {
+                                                // y축
+                                                yAxes: [{
+                                                    stacked: true,
+                                                    ticks: {
+                                                        fontColor: 'white' // y축 폰트 color
+                                                    }
+                                                }],
+                                                // x축
+                                                xAxes: [{
+                                                    stacked: true,
+                                                    ticks: {
+                                                        fontColor: 'white' // x축 폰트 color
+                                                    }
+                                                }]
+                                            }
+                                        }
+
+                                });
+
+
+                            </script>
+                        </div>
+                    </div>
             </div>
+
+
+
+
+<!--                    --------------------------------------------------------------->
+
+
             <!-- 테이블 데이터 영역 시작  -->
             <div class="table_data_wrap">
                 <script>

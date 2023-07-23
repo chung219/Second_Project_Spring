@@ -18,22 +18,6 @@
     </select>
 
 
-<!--    <select id="departure" resultType="brand">-->
-<!--        select 기준년도 as year,-->
-<!--        업종대분류명 as industryCategory,-->
-<!--        업종중분류명 as industryClassification,-->
-<!--        법인명 as industryName,-->
-<!--        브랜드명 as brandName,-->
-<!--        가맹점수 as franchisesNumber,-->
-<!--        신규가맹점등록수 as newBrandNum,-->
-<!--        계약종료수 as endCount,-->
-<!--        계약해지수 as cancelCount,-->
-<!--        평균매출금액 as avgSales,-->
-<!--        이탈률 as departureRate-->
-<!--        from BRAND_FR_PRO where 이탈률>0 and ROWNUM BETWEEN 1 AND 10 order by 이탈률-->
-<!--&#45;&#45;     이탈률이 적은 순위 1 ~ 10위-->
-<!--&#45;&#45;     (계약종료수 + 계약해지수) / DECODE(가맹점수 + 신규가맹점등록수,0,null,가맹점수 + 신규가맹점등록수) * 100,2-->
-<!--    </select>-->
     <select id="departure" resultType="brand">
         select 브랜드명 as brandName, 가맹점수 as franchisesNumber
         from (select * from brand_fr_pro
@@ -70,6 +54,15 @@
         WHERE 기준년도 BETWEEN 2018 AND 2022 AND 업종중분류명 = #{category}
         ORDER BY 평균매출금액 DESC)
         WHERE ROWNUM BETWEEN 1 AND 5
+    </select>
+
+
+    <select id="top10List" resultType="brand">
+        SELECT 평균매출금액 as avgSales
+        FROM (SELECT *
+        From brand_fr_pro
+        ORDER BY 평균매출금액 DESC)
+        WHERE ROWNUM BETWEEN 1 AND 10
     </select>
 
 

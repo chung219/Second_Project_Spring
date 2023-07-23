@@ -16,4 +16,6 @@ public interface BrandInterface {
     List<Brand> findTop3(String category);
 
     List<Brand> findSalesTop5(String category);
+
+    List<Brand> top10List();
 }
