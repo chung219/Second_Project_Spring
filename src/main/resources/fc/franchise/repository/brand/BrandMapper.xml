@@ -36,7 +36,7 @@
             WHERE 업종중분류명 = #{category}
             ORDER BY 기준년도 DESC, 평균매출금액 DESC, 가맹점수 DESC
             )
-        WHERE rownum between 1 and 150
+--         WHERE rownum between 1 and 150
 
     </select>
 
@@ -98,12 +98,24 @@
     </select>
 
 
-<!--    <select id="loadTable1" resultType="brand">-->
-<!--        select 기준년도 as year, 법인명 as industryName, 브랜드명 as brandName, 가맹점수 as franchisesNumber, 계약종료수 as endCount, 계약해지수 as cancelCount, 평균매출금액 as avgSales-->
-<!--        from brand_fr_pro-->
-<!--        where 업종중분류명= #{category}-->
-<!--        order by 기준년도 desc, 가맹점수 desc, 평균매출금액 desc-->
-<!--    </select>-->
+    <select id="paging" resultType="brand">
+        <![CDATA[
+        SELECT 기준년도 as year, 업종대분류명 as industryCategory,
+        업종중분류명 as industryClassification, 법인명 as industryName,
+        브랜드명 as brandName, 가맹점수 as franchisesNumber,
+        신규가맹점등록수 as newBrandNum, 계약종료수 as endCount,
+        계약해지수 as cancelCount, 평균매출금액 as avgSales
+        FROM
+        (select ROWNUM RN, 기준년도, 업종대분류명, 업종중분류명, 법인명, 브랜드명, 가맹점수,
+        신규가맹점등록수, 계약종료수, 계약해지수, 평균매출금액
+        FROM
+        (SELECT * FROM BRAND_FR_PRO WHERE 업종중분류명 = #{category}
+        ORDER BY 기준년도 DESC, 평균매출금액 DESC, 가맹점수 DESC)
+        where rownum between 1 and #{page.pageNum} * #{page.amount})
+        where RN > (#{page.pageNum}-1) * #{page.amount}
+        ]]>
+    </select>
+
 
 
 

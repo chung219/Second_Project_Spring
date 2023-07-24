@@ -28,7 +28,18 @@ public class HomeController {
     }
 
     @GetMapping("/main")
-    public String main(Model model){
+    public String main(Model model, HttpSession session){
+        String category = "커피";
+        String prevCategory = (String) session.getAttribute("category");
+        // 새로운 카테고리 값이 전달되면 세션에 저장합니다.
+        if (category != null && !category.equals(prevCategory)) {
+            session.setAttribute("category", category);
+        }
+
+        // 카테고리 값이 없으면 세션에 저장된 이전 카테고리 값을 사용합니다.
+        if (category == null && prevCategory != null) {
+            category = prevCategory;
+        }
         List<Food> foodFirst = foodInterface.findCategory("커피");
         List<Brand> brandFirst = brandInterface.findTop3("커피");
         List<Brand> rePie = brandInterface.getPieChart("커피");

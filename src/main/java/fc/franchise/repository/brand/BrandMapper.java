@@ -1,7 +1,9 @@
 package fc.franchise.repository.brand;
 
 import fc.franchise.domain.Brand;
+import fc.franchise.domain.Page;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -21,4 +23,6 @@ public interface BrandMapper {
     List<Brand> top10List();
 
     List<Brand> loadTable1(String category);
+
+    List<Brand> paging(@Param("page") Page page, @Param("category") String category);
 }

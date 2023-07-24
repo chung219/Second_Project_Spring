@@ -1,6 +1,7 @@
 package fc.franchise.repository.brand;
 
 import fc.franchise.domain.Brand;
+import fc.franchise.domain.Page;
 
 import java.util.List;
 
@@ -20,4 +21,6 @@ public interface BrandInterface {
     List<Brand> top10List();
 
     List<Brand> loadTable1(String category);
+
+    List<Brand> paging(Page page, String category);
 }

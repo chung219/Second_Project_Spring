@@ -7,6 +7,7 @@ import fc.franchise.domain.PageDto;
 import fc.franchise.repository.brand.BrandInterface;
 import fc.franchise.repository.food.FoodInterface;
 
+import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
@@ -29,14 +30,18 @@ public class CategoryController {
     public String category (Page page,Model model) {
         List<Food> food = foodInterface.getList(page);
         List<Brand> brand3 = brandInterface.loadTable1("한식");
+        int total = brand3.size();
+        log.info("total] "+total);
+        List<Brand> paging = brandInterface.paging(page, "한식");
         List<Brand> brand = brandInterface.getPieChart("한식");
         List<Brand> brand2 = brandInterface.findSalesTop5("한식");
+        model.addAttribute("total", total);
         model.addAttribute("category","한식");
         model.addAttribute("food",food);
-        model.addAttribute("pageMaker", new PageDto(page,123));
+        model.addAttribute("pageMaker", new PageDto(page,total));
         model.addAttribute("brand", brand);
         model.addAttribute("brand2", brand2);
-        model.addAttribute("brand3", brand3);
+        model.addAttribute("brand3", paging);
         return "category/list_semi_final";
     }
 
@@ -48,15 +53,29 @@ public class CategoryController {
 
 
     @PostMapping("/category")
-    public String categorySend(@RequestParam("category") String category, Model model){
+    public String categorySend(@RequestParam("category") String category, Page page, Model model, HttpSession session){
+        String prevCategory = (String) session.getAttribute("category");
+        // 새로운 카테고리 값이 전달되면 세션에 저장합니다.
+        if (category != null && !category.equals(prevCategory)) {
+            session.setAttribute("category", category);
+        }
+
+        // 카테고리 값이 없으면 세션에 저장된 이전 카테고리 값을 사용합니다.
+        if (category == null && prevCategory != null) {
+            category = prevCategory;
+        }
         log.info(category);
         List<Brand> receive_brand = brandInterface.getPieChart(category);
         List<Food> receive_table = foodInterface.loadTable(category);
-        List<Brand> receive_table2 = brandInterface.loadTable1(category);
+        List<Brand> receiveTable2 = brandInterface.loadTable1(category);
+        int total = receiveTable2.size();
+        List<Brand> pagingTable = brandInterface.paging(page, category);
         List<Brand> brand2 = brandInterface.findSalesTop5(category);
+        model.addAttribute("total", total);
         model.addAttribute("category", category);
         model.addAttribute("food",receive_table);
-        model.addAttribute("brand3", receive_table2);
+        model.addAttribute("brand3", pagingTable);
+        model.addAttribute("pageMaker", new PageDto(page,total));
         model.addAttribute("brand", receive_brand);
         model.addAttribute("brand2",brand2);
         return "category/list_semi_final";

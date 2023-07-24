@@ -2,6 +2,7 @@ package fc.franchise.repository.brand;
 
 
 import fc.franchise.domain.Brand;
+import fc.franchise.domain.Page;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
@@ -47,5 +48,10 @@ public class MybatisBrandRepository implements BrandInterface{
     @Override
     public List<Brand> loadTable1(String category) {
         return brandMapper.loadTable1(category);
+    }
+
+    @Override
+    public List<Brand> paging(Page page, String category) {
+        return brandMapper.paging(page, category);
     }
 }

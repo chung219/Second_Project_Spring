@@ -249,7 +249,7 @@
         </script>
         <div class="title">
           <h2 th:text="|${category} 프랜차이즈 등록업체|">한식 프랜차이즈 등록업체</h2>
-          <span>30/3,200(개)</span>
+          <span th:text="|10/${total}개|"></span>
         </div>
         <div class="scroll sticky-table sticky-ltr-cells">
           <div class="table_wrap also">
@@ -278,12 +278,12 @@
 <tr th:each="table2 : ${brand3}" class="brand_table">
   <td th:text="${table2.year}">기준년도</td>
   <td th:text="${table2.industryName}">법인명</td>
-  <td th:text="${table2.brandName}">브랜드명</td>
-  <td th:text="${table2.avgSales}">도로명 주소</td>
-  <td th:text="${table2.franchisesNumber}">가맹점수</td>
-  <td th:text="${table2.endCount}">지번 주소</td>
-  <td th:text="${table2.cancelCount}">ㅇㅇ</td>
-  <td th:text="${table2.newBrandNum}"></td>
+  <td class="center sticky-cell" th:text="${table2.brandName}">브랜드명</td>
+  <td class="center" th:text="${table2.avgSales}">도로명 주소</td>
+  <td class="center" th:text="${table2.franchisesNumber}">가맹점수</td>
+  <td class="center" th:text="${table2.endCount}">지번 주소</td>
+  <td class="center" th:text="${table2.cancelCount}">ㅇㅇ</td>
+  <td class="center" th:text="${table2.newBrandNum}"></td>
               </tr>
               </tbody>
             </table>
@@ -291,7 +291,15 @@
         </div>
       <!-- 테이블 데이터 영역 끝 -->
       <!-- ######## 각 페이지에 해당 하는 내용 HTML을 넣어주세요.########### -->
+        <h2 th:text="${pageMaker.getPage().getPageNum()}"></h2>
+        <h2 th:text="${pageMaker.getTotal()}"></h2>
+        <th:block th:each="pageNum: ${#numbers.sequence(pageMaker.getStartPage(),pageMaker.getEndPage())}">
+          <a th:if="${pageNum != pageMaker.getPage().getPageNum()}" th:href="@{/category(pageNum = ${pageNum})}" th:text="${pageNum}"></a>
+          <strong th:if="${pageNum == pageMaker.getPage().getPageNum()}" th:text="${pageNum}" style="color: red"></strong>
+        </th:block>
+
     </div>
+
 
 
 
