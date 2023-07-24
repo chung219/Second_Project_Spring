@@ -18,6 +18,22 @@
     </select>
 
 
+<!--    <select id="departure" resultType="brand">-->
+<!--        select 기준년도 as year,-->
+<!--        업종대분류명 as industryCategory,-->
+<!--        업종중분류명 as industryClassification,-->
+<!--        법인명 as industryName,-->
+<!--        브랜드명 as brandName,-->
+<!--        가맹점수 as franchisesNumber,-->
+<!--        신규가맹점등록수 as newBrandNum,-->
+<!--        계약종료수 as endCount,-->
+<!--        계약해지수 as cancelCount,-->
+<!--        평균매출금액 as avgSales,-->
+<!--        이탈률 as departureRate-->
+<!--        from BRAND_FR_PRO where 이탈률>0 and ROWNUM BETWEEN 1 AND 10 order by 이탈률-->
+<!--&#45;&#45;     이탈률이 적은 순위 1 ~ 10위-->
+<!--&#45;&#45;     (계약종료수 + 계약해지수) / DECODE(가맹점수 + 신규가맹점등록수,0,null,가맹점수 + 신규가맹점등록수) * 100,2-->
+<!--    </select>-->
     <select id="departure" resultType="brand">
         select 브랜드명 as brandName, 가맹점수 as franchisesNumber
         from (select * from brand_fr_pro
@@ -35,6 +51,16 @@
         where rownum between 1 and 5
     </select>
 
+<!--    <select id="getPieChart" resultType="brand">-->
+<!--        select 브랜드명 as brandName, 가맹점수 as franchisesNumber-->
+<!--        from (select 브랜드명, AVG(가맹점수) as 가맹점수 from brand_fr_pro-->
+<!--              where 업종중분류명 = #{category} and 기준년도 BETWEEN 2018 and 2022-->
+<!--              group by 브랜드명-->
+<!--              order by 가맹점수 desc)-->
+<!--        where rownum between 1 and 5-->
+<!--        order by 가맹점수 desc-->
+<!--    </select>-->
+
 
     <select id="findTop3" resultType="brand">
         SELECT 기준년도 as year, 업종중분류명 as industryClassification,
@@ -46,23 +72,39 @@
         WHERE ROWNUM BETWEEN 1 AND 10
     </select>
 
+<!--    <select id="findSalesTop5" resultType="brand">-->
+<!--        SELECT DISTINCT 평균매출금액 as avgSales, 브랜드명 as brandName-->
+<!--        FROM (SELECT *-->
+<!--        From brand_fr_pro-->
+<!--        WHERE 기준년도 = 2022 AND 업종중분류명 = #{category}-->
+<!--        ORDER BY 평균매출금액 DESC)-->
+<!--        WHERE ROWNUM BETWEEN 1 AND 5-->
+<!--        ORDER BY 평균매출금액 DESC-->
+<!--    </select>-->
+<!--<select id="findSalesTop5" resultType="brand">-->
+<!--    SELECT DISTINCT 브랜드명 as brandName, AVG(평균매출금액) as avgSales-->
+<!--    FROM (-->
+<!--    SELECT 브랜드명, 평균매출금액-->
+<!--    FROM brand_fr_pro-->
+<!--    WHERE 기준년도 BETWEEN 2018 AND 2022 AND 업종중분류명 = #{category}-->
+<!--    )-->
+<!--    WHERE ROWNUM BETWEEN 1 AND 5-->
+<!--    GROUP BY 브랜드명-->
+<!--    ORDER BY avgSales DESC-->
+<!--</select>-->
     <select id="findSalesTop5" resultType="brand">
-        SELECT 평균매출금액 as avgSales, 브랜드명 as brandName
-        FROM (SELECT *
-        From brand_fr_pro
-        WHERE 기준년도 BETWEEN 2018 AND 2022 AND 업종중분류명 = #{category}
-        ORDER BY 평균매출금액 DESC)
-        WHERE ROWNUM BETWEEN 1 AND 5
+    SELECT 평균매출금액 as avgSales, 브랜드명 as brandName
+    FROM (
+    SELECT 브랜드명, AVG(평균매출금액) as 평균매출금액
+    FROM brand_fr_pro
+    WHERE 기준년도 BETWEEN 2018 AND 2022 AND 업종중분류명 IN #{category}
+    GROUP BY 브랜드명
+    ORDER BY 평균매출금액 DESC
+    )
+    WHERE ROWNUM BETWEEN 1 AND 5
+    ORDER BY 평균매출금액 DESC
     </select>
 
-
-    <select id="top10List" resultType="brand">
-        SELECT 평균매출금액 as avgSales
-        FROM (SELECT *
-        From brand_fr_pro
-        ORDER BY 평균매출금액 DESC)
-        WHERE ROWNUM BETWEEN 1 AND 10
-    </select>
 
 
 </mapper>

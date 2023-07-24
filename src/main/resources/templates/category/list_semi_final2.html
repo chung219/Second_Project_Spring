@@ -170,7 +170,7 @@
         <div class="year_line_chart">
           <div class="title">
             <h2 th:text="|[${category}] TOP5 평균 매출금액|">[한식] 년도별 통계분석 Top10</h2>
-            <span>2018~2022 평균 매출 금액 기준</span>
+            <span>2022~2018 가맹 기준</span>
           </div>
           <div style="width:auto;height:auto;">
             <!-- js chart  차트 넣는 부분! -->
@@ -178,7 +178,7 @@
             <script src="https://cdn.jsdelivr.net/npm/chart.js@3.5.1/dist/chart.min.js"></script>
 
             <div style="width:auto;height:auto;">
-              <canvas id="lineChart" style="height: 300px;"></canvas>
+              <canvas id="lineChart"></canvas>
             </div>
 
             <script th:inline="javascript">
@@ -187,28 +187,18 @@
 
               var ctx = document.getElementById('lineChart').getContext('2d');
               var myChart = new Chart(ctx, {
-                type: 'bar',
+                type: 'line',
                 data: {
-                  labels: brandList2.map(brand => brand.brandName),
-                  datasets: [{
-                    label: '2018~2022 평균매출금액 TOP 5',
-                    data: brandList2.map(brand => brand.avgSales),
-                    backgroundColor: [
-                      'rgba(255, 99, 132, 0.2)',
-                      'rgba(54, 162, 235, 0.2)',
-                      'rgba(255, 206, 86, 0.2)',
-                      'rgba(75, 192, 192, 0.2)',
-                      'rgba(153, 102, 255, 0.2)',
-                    ],
-                    borderColor: [
-                      'rgba(255, 99, 132, 1)',
-                      'rgba(54, 162, 235, 1)',
-                      'rgba(255, 206, 86, 1)',
-                      'rgba(75, 192, 192, 1)',
-                      'rgba(153, 102, 255, 1)',
-                    ],
-                    borderWidth: 1
-                  }]
+                  labels: ['2022년', '2021년', '2020년', '2019년', '2018년'], // X-axis labels changed to the year values
+                  datasets: brandList2.map((brand, index) => {
+                    return {
+                      label: brand.brandName, // Each top 5 brand as a separate line
+                      data: [brand.avgSales2022, brand.avgSales2021, brand.avgSales2020, brand.avgSales2019, brand.avgSales2018], // Each top 5 brand's values for corresponding years
+                      borderColor: 'rgba(' + (index * 50) + ', ' + (255 - index * 50) + ', 132, 1)', // Different line color for each brand
+                      borderWidth: 1,
+                      fill: false
+                    }
+                  })
                 },
                 options: {
                   responsive: true,
@@ -216,7 +206,6 @@
                   scales: {
                     y: {
                       beginAtZero: true
-
                     }
                   },
                   plugins: {
