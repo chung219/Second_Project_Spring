@@ -291,12 +291,14 @@
         </div>
       <!-- 테이블 데이터 영역 끝 -->
       <!-- ######## 각 페이지에 해당 하는 내용 HTML을 넣어주세요.########### -->
-        <h2 th:text="${pageMaker.getPage().getPageNum()}"></h2>
-        <h2 th:text="${pageMaker.getTotal()}"></h2>
+        <div style="text-align: center; font-size: larger;">
+        <a th:if="${pageMaker.isPrev()}" th:href="@{/category(pageNum = ${pageMaker.getStartPage-1})}" th:text="이전"></a>
         <th:block th:each="pageNum: ${#numbers.sequence(pageMaker.getStartPage(),pageMaker.getEndPage())}">
           <a th:if="${pageNum != pageMaker.getPage().getPageNum()}" th:href="@{/category(pageNum = ${pageNum})}" th:text="${pageNum}"></a>
           <strong th:if="${pageNum == pageMaker.getPage().getPageNum()}" th:text="${pageNum}" style="color: red"></strong>
         </th:block>
+        <a th:if="${pageMaker.isNext()}" th:href="@{/category(pageNum = ${pageMaker.getEndPage()+1})}" th:text="다음"></a>
+        </div>
 
     </div>
 
