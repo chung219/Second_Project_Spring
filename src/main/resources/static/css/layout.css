@@ -53,7 +53,7 @@ header .search_box input[type=submit]{ background: none; position:absolute; top:
 .lnb.main dl.latest{ padding: 20px 0 }
 dl.latest dt{ font:500 16px/30px 'Noto Sans KR', SansSerif; text-align: center; }
 dl.latest dt i { color: #04d289; display: inline-block; padding-right:3px; }
-
+.standard_cond{ font:400 13px Sans-Serif; color: cornflowerblue }
 dl.latest dd{ padding:10px 10px 10px 25px; vertical-align: middle }
 dl.latest dd ol li{ position: relative; font:600 13px SansSerif; /*list-style-type: decimal; display:list-item;*/ vertical-align: top; padding: 8px 0 }
 dl.latest dd ol li:before{ content:""; opacity: .8; position:absolute; top:8px; left:-17px;  display: inline-block; font-size: 15px }
