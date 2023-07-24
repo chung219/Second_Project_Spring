@@ -13,6 +13,7 @@
 .header_wrap header:after{ content:""; display: block; clear:both; }
 .header_wrap header h1{ width: 240px; text-align: center; letter-spacing: -1px; font:500 20px/40px 'Noto Sans KR', SansSerif; position: absolute; top: 0px; left: 40px; }
 .header_wrap header h1:hover{ color: #04d289 }
+
 /* 상단메뉴 */
 nav{ margin:0 200px 0 280px }
 nav ul{ display: flex; justify-content: flex-start; justify-content: space-evenly; flex-wrap: wrap; align-content: stretch; flex-direction: row; }
