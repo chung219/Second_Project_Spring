@@ -76,6 +76,7 @@
             <!-- js chart  차트 넣는 부분! -->
             <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
             <script src="https://cdn.jsdelivr.net/npm/chart.js@3.5.1/dist/chart.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-datalabels/2.2.0/chartjs-plugin-datalabels.min.js" integrity="sha512-JPcRR8yFa8mmCsfrw4TNte1ZvF1e3+1SdGMslZvmrzDYxS69J7J49vkFL8u6u8PlPJK+H3voElBtUCzaXj+6ig==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
             <div style="width:auto;height:auto;">
               <canvas id="myChart"></canvas>
@@ -152,7 +153,9 @@
                 options: {
                   responsive: true,
                   maintainAspectRatio: false,
-                  animation: false,
+                  animation: {
+                    duration: 2000
+                  },
                   legend: {
                     position: 'right',
                     display: true
@@ -161,8 +164,15 @@
                     legend: {
                       position: 'right',
                     },
+                    datalabels: {
+                      formatter: ((context, args) => {
+                        const index = args.dataIndex;
+                        return args.chart.data[index]
+                      })
+                    }
                   }
-                }
+                },
+                plugins: [ChartDataLabels]
               });
             </script>
 
@@ -178,6 +188,7 @@
             <!-- js chart  차트 넣는 부분! -->
             <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
             <script src="https://cdn.jsdelivr.net/npm/chart.js@3.5.1/dist/chart.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-datalabels/2.2.0/chartjs-plugin-datalabels.min.js" integrity="sha512-JPcRR8yFa8mmCsfrw4TNte1ZvF1e3+1SdGMslZvmrzDYxS69J7J49vkFL8u6u8PlPJK+H3voElBtUCzaXj+6ig==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
             <div style="width:auto;height:auto;">
               <canvas id="lineChart" style="height: 300px;"></canvas>
@@ -214,6 +225,9 @@
                 },
                 options: {
                   responsive: true,
+                  animation: {
+                    duration:2000
+                  },
                   maintainAspectRatio: false,
                   scales: {
                     y: {
@@ -228,9 +242,16 @@
                       labels: {
                         usePointStyle: true,
                       }
+                    },
+                    datalabels: {
+                      formatter: ((context, args) => {
+                        const index= args.dataIndex;
+                        return args.chart.data[index]
+                      })
                     }
                   }
-                }
+                },
+                plugins: [ChartDataLabels]
               });
             </script>
           </div>
