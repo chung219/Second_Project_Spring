@@ -9,4 +9,6 @@ public interface FoodInterface {
     List<Food> findCategory(String category);
 
     List<Food> loadTable(String category);
+
+    List<Food>findBrandName(String brandName);
 }

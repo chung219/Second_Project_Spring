@@ -10,4 +10,6 @@ public interface FoodMapper {
     List<Food> findCategory(String category);
 
     List<Food> loadTable(String category);
+
+    List<Food> findBrandName(String brandName);
 }

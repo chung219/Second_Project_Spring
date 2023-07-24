@@ -11,6 +11,14 @@
         where 분류 =#{category}
     </select>
 
+    <select id="findBrandName" resultType="food">
+        SELECT 분류 as category, 장소명 as brand_name, 유형 as food_type,
+               주소1 as add1, 주소2 as add2, 전화번호 as tel,
+               리뷰점수 as review_score, 경도 as longitude, 위도 as latitude
+        from map_info
+        where 장소명 like '%'||#{brandName}||'%'
+    </select>
+
     <select id="loadTable" resultType="food">
         select 분류 as category, 장소명 as brand_name, 유형 as food_type,
                주소1 as add1, 주소2 as add2, 전화번호 as tel,
@@ -18,6 +26,7 @@
         from ( SELECT * from map_info where 분류 =#{category} )
         where rownum between 1 and 150
     </select>
+
 
 
 </mapper>

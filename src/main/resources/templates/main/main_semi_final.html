@@ -52,6 +52,11 @@
             <form id="categoryForm" action="/main" method="post">
                 <input type="hidden" id="category" name="category">
             </form>
+
+            <form id="bNameForm" action="/main" method="post">
+                <input type="hidden" id="brandName" name="brandName">
+            </form>
+
                 <script th:inline="javascript">
                 <!-- 스프링으로 보내기 -->
                 function sendCategory(category) {
@@ -59,8 +64,11 @@
                     document.getElementById('category').value = category;
                     document.getElementById('categoryForm').submit();
                     console.log('야호1')
-
-
+                }
+                function sendBrandName(brandName) {
+                    document.getElementById('brandName').value = brandName;
+                    document.getElementById('bNameForm').submit();
+                    console.log('브랜드이름 submit')
                 }
 
                 /* 지도 관련 스크립트*/

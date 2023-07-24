@@ -87,12 +87,14 @@
               <input type="hidden" id="category" name="category">
             </form>
 
+
             <script th:inline="javascript">
                 function sendCategory(category) {
                 document.getElementById('category').value = category;
                 document.getElementById('categoryForm').submit();
-                console.log('야호1')
-              }
+                console.log('카테고리 submit')
+                }
+
 
               // function sendCategory(category) {
               //   var formData = new FormData();

@@ -85,15 +85,9 @@
     </dt>
     <dd>
         <ol class="br_li">
-            <li th:each="brand : ${Brand}">
-                <a href="#">
-                    <span class="thumb_img"></span>
-                    <span class="brand_name" th:text="${brand.brandName}">마을회관 왕갈비 일산점</span>
-                    <b class="num" th:text="${brand.franchisesNumber}"> 1230</b>
-                </a>
-            </li>
-            <li th:each="brand : ${brand3}">
-                <a href="#">
+            <li th:each="brand : ${brands}">
+                <a th:onclick="sendBrandName([[${brand.brandName}]])">
+<!--                <a th:onclick="|sendBrandName('${brand.brandName}')|">-->
                     <span class="thumb_img"></span>
                     <span class="brand_name" th:text="${brand.brandName}">마을회관 왕갈비 일산점</span>
                     <b class="num" th:text="${brand.franchisesNumber}"> 1230</b>
@@ -102,7 +96,8 @@
         </ol>
     </dd>
     <dd class="btn_more"><a href="#">더보기</a></dd>
-    <script>
+
+    <script th:inline="javascript">
         $('.br_li > li').hide();
         $('.br_li > li').slice(0, 3).css("display", "block");
         $('.btn_more').click(function (e) {
