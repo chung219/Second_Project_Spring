@@ -65,7 +65,7 @@
             <div class="graph_wrap">
                 <div class="brand_pie_chart">
                     <div class="title">
-                        <h2>외식업 매출상위 브랜드</h2>
+                        <h2>외식업 매출상위 브랜드<span style="font-size: small"> &nbsp;(2022년 기준)</span></h2><br>
                         <span>출처 : 공정거래위원회</span>
                     </div>
                     <!--2022년 기준 &ndash;&gt; 한식 업종 브랜드 상위 10개 업체 점유율 챠트 노출해주세요!-->
@@ -79,7 +79,7 @@
                         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
                         <script src="https://cdn.jsdelivr.net/npm/chart.js@3.5.1/dist/chart.min.js"></script>
 
-                        <div style="width:auto;height:auto;">
+                        <div style="width:500px;height:500px;">
                             <canvas id="myChart"></canvas>
                             <div id="customLegend" style="margin-top: 10px;"></div>
                         </div>
@@ -95,36 +95,45 @@
                             var myChart = new Chart(ctx, {
                                 type: 'radar', // type : bar, bubble, doughnut, line, polarArea, radar, scatter, pie
                                 data: {
-                                    labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange', 'Apricot'],
+                                    labels: [top10List[0].brandName, top10List[1].brandName, top10List[2].brandName, top10List[6].brandName, top10List[9].brandName, top10List[5].brandName, top10List[3].brandName,top10List[7].brandName,top10List[8].brandName,top10List[4].brandName],
+
+                                    <!-- 코드 수정-->
+                                    // labels: top10List.map(brand => brand.brandName),
+
+
+
                                     datasets: [{
-                                        label: '# of Votes',
-                                        data: [12, 19, 3, 5, 2, 3, 7],
+                                        label: '평균매출금액',
+                                        data: [top10List[0].avgSales, top10List[1].avgSales,top10List[2].avgSales,top10List[6].avgSales,top10List[9].avgSales,top10List[5].avgSales,top10List[3].avgSales,top10List[7].avgSales,top10List[8].avgSales,top10List[4].avgSales],
                                         borderWidth: 1,
                                         backgroundColor: [
-                                            'rgba(255, 99, 132, 0.2)',
-                                            'rgba(255, 159, 64, 0.2)',
-                                            'rgba(255, 205, 86, 0.2)',
-                                            'rgba(75, 192, 192, 0.2)',
-                                            'rgba(54, 162, 235, 0.2)',
-                                            'rgba(153, 102, 255, 0.2)',
-                                            'rgba(201, 203, 207, 0.2)'
+                                            'rgba(255, 33, 63, 0.4)',
+                                            'rgba(255, 159, 64, 0.7)',
+                                            'rgba(255, 205, 86, 0.7)',
+                                            'rgba(75, 192, 192, 0.7)',
+                                            'rgba(54, 162, 235, 0.7)',
+                                            'rgba(153, 102, 255, 0.7)',
+                                            'rgba(201, 203, 207, 0.7)',
+                                            'rgba(160, 242, 207, 0.7)',
+                                            'rgba(201, 173, 54, 0.7)',
+                                            'rgba(147, 170, 207, 0.7)'
                                         ],
                                     }]
                                 },
-                                options: {
-                                    scales: {
-                                        y: {
-                                            beginAtZero: true
-                                        }
-                                    }
-                                }
+                                // options: {
+                                //     scales: {
+                                //         y: {
+                                //             beginAtZero: true
+                                //         }
+                                //     }
+                                // }
                             });
                         </script>
                         <br>
-
                     </div>
 
 
+<!--------------------------------------------------------------->
                 </div>
                 <div class="year_line_chart">
                     <div class="title">
@@ -133,10 +142,6 @@
                     </div>
 
 
-
-
-
-<!--                    --------------------------------------------------------->
 
                         <div style="width:auto;height:auto;">
                             <!-- js chart  차트 넣는 부분! -->
@@ -160,32 +165,33 @@
 
                                         // The data for our dataset
                                         data: {
-                                            labels: ['1월','2월','3월','4월','5월','6월'],
+                                            labels: top10List.map(brand => brand.brandName),
                                             datasets: [{
-                                                label: '바 그래프',
+                                                label: '신규가맹점수',
                                                 type : 'bar', // 'bar' type, 전체 타입과 같다면 생략가능
                                                 backgroundColor: 'rgba(255, 94, 94, 0.6)',
                                                 borderColor: 'rgba(255, 94, 94, 0.6)',
-                                                data: [10, 20, 30, 40, 50, 60]
+                                                data: top10List.map(brand => brand.newBrandNum),
                                             }, {
-                                                label: '라인 그래프1',
-                                                type : 'line',         // 'line' type
-                                                fill : false,         // 채우기 없음
-                                                lineTension : 0.2,  // 0이면 꺾은선 그래프, 숫자가 높을수록 둥글해짐
-                                                pointRadius : 0,    // 각 지점에 포인트 주지 않음
-                                                backgroundColor: 'rgba(247, 243, 119, 0.6)',
-                                                borderColor: 'rgba(247, 243, 119, 0.6)',
-                                                data: [40, 50, 60, 70, 80, 90]
-                                            }, {
-                                                label: '라인 그래프2',
-                                                type : 'line',
-                                                fill : false,
-                                                lineTension : 0.2,
-                                                pointRadius : 0,
-                                                backgroundColor: 'rgba(189, 119, 247, 0.6)',
-                                                borderColor: 'rgba(189, 119, 247, 0.6)',
-                                                data: [100, 120, 150, 100, 180, 200]
+                                                label: '계약종료수',
+                                                type: 'line',         // 'line' type
+                                                fill: false,         // 채우기 없음
+                                                lineTension: 0.1,  // 0이면 꺾은선 그래프, 숫자가 높을수록 둥글해짐
+                                                pointRadius: 0,    // 각 지점에 포인트 주지 않음
+                                                backgroundColor: 'rgba(235, 143, 52, 0.6)',
+                                                borderColor: 'rgba(235, 143, 52, 0.6)',
+                                                data: top10List.map(brand => brand.endCount)
                                             }]
+                                            // }, {
+                                            //     label: '계약해지수',
+                                            //     type : 'line',
+                                            //     fill : false,
+                                            //     lineTension : 0.2,
+                                            //     pointRadius : 0,
+                                            //     backgroundColor: 'rgba(205, 171, 35, 0.6)',
+                                            //     borderColor: 'rgba(205, 171, 35, 0.6)',
+                                            //     data: top10List.map(brand => brand.cancelCount)
+                                            // }]
                                         },
 
                                         // Configuration options
@@ -195,19 +201,20 @@
                                                     fontColor: 'white' // label color
                                                 }
                                             },
+
                                             scales: {
                                                 // y축
                                                 yAxes: [{
                                                     stacked: true,
                                                     ticks: {
-                                                        fontColor: 'white' // y축 폰트 color
+                                                        fontColor: 'white', // y축 폰트 color
                                                     }
                                                 }],
                                                 // x축
                                                 xAxes: [{
                                                     stacked: true,
                                                     ticks: {
-                                                        fontColor: 'white' // x축 폰트 color
+                                                        fontColor: 'white', // x축 폰트 color
                                                     }
                                                 }]
                                             }
