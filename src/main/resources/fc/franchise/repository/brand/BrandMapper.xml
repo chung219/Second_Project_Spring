@@ -46,13 +46,43 @@
         WHERE ROWNUM BETWEEN 1 AND 10
     </select>
 
+<!--    <select id="findSalesTop5" resultType="brand">-->
+<!--        SELECT 평균매출금액 as avgSales, 브랜드명 as brandName-->
+<!--        FROM (SELECT *-->
+<!--        From brand_fr_pro-->
+<!--        WHERE 기준년도 BETWEEN 2018 AND 2022 AND 업종중분류명 = #{category}-->
+<!--        ORDER BY 평균매출금액 DESC)-->
+<!--        WHERE ROWNUM BETWEEN 1 AND 5-->
+<!--    </select>-->
+
+<!--    <select id="findSalesTop5" resultType="brand">-->
+<!--        SELECT DISTINCT 평균매출금액 as avgSales, 브랜드명 as brandName-->
+<!--        FROM (SELECT *-->
+<!--              From brand_fr_pro-->
+<!--              WHERE 기준년도 BETWEEN 2018 AND 2022 AND 업종중분류명 = #{category}-->
+<!--              ORDER BY 평균매출금액 DESC)-->
+<!--        WHERE ROWNUM BETWEEN 1 AND 5-->
+<!--    </select>-->
+
+<!--    <select id="findSalesTop5" resultType="brand">-->
+<!--        SELECT DISTINCT 평균매출금액 as avgSales, 브랜드명 as brandName-->
+<!--        FROM (SELECT *-->
+<!--              From brand_fr_pro-->
+<!--              WHERE 기준년도 BETWEEN 2018 AND 2022 AND 업종중분류명 = #{category}-->
+<!--              ORDER BY 평균매출금액 DESC)-->
+<!--        WHERE ROWNUM BETWEEN 1 AND 5-->
+<!--    </select>-->
     <select id="findSalesTop5" resultType="brand">
-        SELECT 평균매출금액 as avgSales, 브랜드명 as brandName
-        FROM (SELECT *
-        From brand_fr_pro
-        WHERE 기준년도 BETWEEN 2018 AND 2022 AND 업종중분류명 = #{category}
-        ORDER BY 평균매출금액 DESC)
+       SELECT DISTINCT 평균매출금액 as avgSales, 브랜드명 as brandName
+        FROM (
+        SELECT 브랜드명, AVG(평균매출금액) as 평균매출금액
+        FROM brand_fr_pro
+        WHERE 기준년도 BETWEEN 2018 AND 2022 AND 업종중분류명 IN #{category}
+        GROUP BY 브랜드명
+        ORDER BY 평균매출금액 DESC
+        )
         WHERE ROWNUM BETWEEN 1 AND 5
+        ORDER BY 평균매출금액 DESC
     </select>
 
 
@@ -73,6 +103,13 @@
         WHERE 기준년도 = 2022 and ROWNUM BETWEEN 1 AND 10
     </select>
 
+    <select id="loadTable1" resultType="brand">
+        select 기준년도 as year, 법인명 as industryName, 브랜드명 as brandName, 가맹점수 as franchisesNumber, 신규가맹점수 as newBrandNum, 계약종료수 as endCount, 계약해지수 as cancelCount,
+        평균매출금액 as avgSales
+        from brand_fr_pro
+        where 업종중분류명 = #{category}
+        ORDER BY 기준년도 DESC, 가맹점수 DESC, 평균매출금액 DESC;
+    </select>
 <!--    SELECT 평균매출금액 as avgSales, 브랜드명 as brandName-->
 <!--    FROM (-->
 <!--    SELECT 브랜드명, AVG(평균매출금액) as 평균매출금액-->
