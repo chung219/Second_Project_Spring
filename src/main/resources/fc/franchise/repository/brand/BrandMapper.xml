@@ -57,13 +57,7 @@
 
 
     <select id="top10List" resultType="brand">
---         SELECT 평균매출금액 as avgSales
---         FROM (SELECT *
---         From brand_fr_pro
---         ORDER BY 평균매출금액 DESC)
---         WHERE ROWNUM BETWEEN 1 AND 10
-
-select 기준년도 as year,
+        select 기준년도 as year,
         업종대분류명 as industryCategory,
         업종중분류명 as industryClassification,
         법인명 as industryName,
@@ -73,21 +67,23 @@ select 기준년도 as year,
         계약종료수 as endCount,
         계약해지수 as cancelCount,
         평균매출금액 as avgSales
-FROM (SELECT DISTINCT *
+        FROM (SELECT DISTINCT *
         From brand_fr_pro
         ORDER BY 평균매출금액 DESC)
         WHERE 기준년도 = 2022 and ROWNUM BETWEEN 1 AND 10
-    SELECT 평균매출금액 as avgSales, 브랜드명 as brandName
-    FROM (
-    SELECT 브랜드명, AVG(평균매출금액) as 평균매출금액
-    FROM brand_fr_pro
-    WHERE 기준년도 BETWEEN 2018 AND 2022 AND 업종중분류명 IN #{category}
-    GROUP BY 브랜드명
-    ORDER BY 평균매출금액 DESC
-    )
-    WHERE ROWNUM BETWEEN 1 AND 5
-    ORDER BY 평균매출금액 DESC
     </select>
+
+<!--    SELECT 평균매출금액 as avgSales, 브랜드명 as brandName-->
+<!--    FROM (-->
+<!--    SELECT 브랜드명, AVG(평균매출금액) as 평균매출금액-->
+<!--    FROM brand_fr_pro-->
+<!--    WHERE 기준년도 BETWEEN 2018 AND 2022 AND 업종중분류명 IN #{category}-->
+<!--    GROUP BY 브랜드명-->
+<!--    ORDER BY 평균매출금액 DESC-->
+<!--    )-->
+<!--    WHERE ROWNUM BETWEEN 1 AND 5-->
+<!--    ORDER BY 평균매출금액 DESC-->
+
 
 
 </mapper>
