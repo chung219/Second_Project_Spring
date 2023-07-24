@@ -257,51 +257,51 @@
               <caption th:text="|$[{category}] 업종별 프랜차이즈 브랜드 가맹점 업체 정보 내역|">[한식] 업종별 프랜차이즈 브랜드 가맹점 업체 정보 내역</caption>
               <thead>
               <tr class="sticky-header">
-                <th class="sticky-cell td_resizable" style="width:30px;">NO</th>
-                <th class="sticky-cell td_resizable" style="width:70px;">가맹정보공개서등록번호</th>
-                <th class="td_resizable" style="width:160px;">프랜차이즈(브랜드명)</th>
-                <th class="td_resizable" style="width:60px;">리뷰점수(카카오)</th>
-                <th class="td_resizable" style="width:70px;">지도보기</th>
-                <th class="td_resizable" style="width:80px;">전화번호</th>
-                <th class="td_resizable" style="width:50px;">2022년</th>
-                <th class="td_resizable" style="width:50px;">2021년</th>
-                <th class="td_resizable" style="width:50px;">2020년</th>
-                <th class="td_resizable" style="width:50px;">2019년</th>
-                <th class="td_resizable" style="width:50px;">2018년</th>
-                <th class="td_resizable" style="width:200px;">주소(도로명)</th>
-                <th class="td_resizable" style="width:150px;">주소(지번)</th>
+                <th class="sticky-cell td_resizable" style="width:50px;">기준년도</th>
+                <th class="sticky-cell td_resizable" style="width:90px;">법인명</th>
+                <th class="td_resizable" style="width:100px;">프랜차이즈(브랜드명)</th>
+                <th class="td_resizable" style="width:50px;">평균매출금액</th>
+                <th class="sticky-cell td_resizable" style="width:50px;">가맹점수</th>
+                <th class="td_resizable" style="width:50px;">계약종료수</th>
+                <th class="td_resizable" style="width:50px;">계약해지수</th>
+                <th class="td_resizable" style="width:50px;">신규가맹점수</th>
 
               </tr>
               </thead>
               <tbody>
-              <tr th:each="table, userStat : ${food}" class="food_table">
-                <td class="sticky-cell" th:text="${userStat.count}">30</td>
-                <td class="sticky-cell">200801000006</td>
-                <td><b th:text="${table.brandName}">자연나라 한식별곡 청라점</b></td>
-                <td class="center" th:text="|${table.reviewScore}/5.0|">4.5/5.0</td>
-                <td class="center"><button onclick="">지도보기</button></td>
-                <td th:text="${table.tel}">031-000-0000</td>
-                <td class="center">영업</td>
-                <td class="center">영업</td>
-                <td class="center">영업</td>
-                <td class="center">영업</td>
-                <td class="center">영업</td>
-                <td th:text="${table.add1}">인천 광역시 남동구 구월로 100번길 80 100-34</td>
-                <td th:text="${table.add2}">인천 광역시 남동구 구월동 123-34번지 2층 </td>
+<!--              <tr th:each="table, userStat : ${food}" class="food_table">-->
+<!--                <td class="sticky-cell" th:text="${userStat.count}">30</td>-->
+<!--                <td class="sticky-cell">200801000006</td>-->
+<!--                <td><b th:text="${table.brandName}">자연나라 한식별곡 청라점</b></td>-->
+<!--                <td th:text="${table.add1}">인천 광역시 남동구 구월로 100번길 80 100-34</td>-->
+<!--                <td th:text="${table.add2}">인천 광역시 남동구 구월동 123-34번지 2층 </td>-->
+<tr th:each="table2 : ${brand3}" class="brand_table">
+  <td th:text="${table2.year}">기준년도</td>
+  <td th:text="${table2.industryName}">법인명</td>
+  <td th:text="${table2.brandName}">브랜드명</td>
+  <td th:text="${table2.avgSales}">도로명 주소</td>
+  <td th:text="${table2.franchisesNumber}">가맹점수</td>
+  <td th:text="${table2.endCount}">지번 주소</td>
+  <td th:text="${table2.cancelCount}">ㅇㅇ</td>
+  <td th:text="${table2.newBrandNum}"></td>
               </tr>
+
               </tbody>
             </table>
           </div>
         </div>
-
-
-      </div>
       <!-- 테이블 데이터 영역 끝 -->
       <!-- ######## 각 페이지에 해당 하는 내용 HTML을 넣어주세요.########### -->
     </div>
 
+
+
+</div>
+
     <!-- #### 03-1.우측 본문 영역 끝 -->
   </section>
+
+
   <!-- ####### 03. CONTENTS END ####### -->
   <hr class="skip"/>
   <!-- ####### 04. FOOTER START ####### -->

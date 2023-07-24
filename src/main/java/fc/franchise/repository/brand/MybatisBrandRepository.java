@@ -43,4 +43,9 @@ public class MybatisBrandRepository implements BrandInterface{
     public List<Brand> top10List() {
         return brandMapper.top10List();
     }
+
+    @Override
+    public List<Brand> loadTable1(String category) {
+        return brandMapper.loadTable1(category);
+    }
 }

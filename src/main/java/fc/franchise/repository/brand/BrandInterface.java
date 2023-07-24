@@ -18,4 +18,6 @@ public interface BrandInterface {
     List<Brand> findSalesTop5(String category);
 
     List<Brand> top10List();
+
+    List<Brand> loadTable1(String category);
 }

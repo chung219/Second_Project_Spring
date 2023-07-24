@@ -25,12 +25,14 @@ public class CategoryController {
     @GetMapping("/category")
     public String category (Model model) {
         List<Food> food = foodInterface.loadTable("한식");
+        List<Brand> brand3 = brandInterface.loadTable1("한식");
         List<Brand> brand = brandInterface.getPieChart("한식");
         List<Brand> brand2 = brandInterface.findSalesTop5("한식");
         model.addAttribute("category","한식");
         model.addAttribute("food",food);
         model.addAttribute("brand", brand);
         model.addAttribute("brand2", brand2);
+        model.addAttribute("brand3", brand3);
         return "category/list_semi_final";
     }
 
@@ -46,9 +48,11 @@ public class CategoryController {
         log.info(category);
         List<Brand> receive_brand = brandInterface.getPieChart(category);
         List<Food> receive_table = foodInterface.loadTable(category);
+        List<Brand> receive_table2 = brandInterface.loadTable1(category);
         List<Brand> brand2 = brandInterface.findSalesTop5(category);
         model.addAttribute("category", category);
         model.addAttribute("food",receive_table);
+        model.addAttribute("brand3", receive_table2);
         model.addAttribute("brand", receive_brand);
         model.addAttribute("brand2",brand2);
         return "category/list_semi_final";
