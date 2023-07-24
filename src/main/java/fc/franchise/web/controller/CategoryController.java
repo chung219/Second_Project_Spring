@@ -2,8 +2,11 @@ package fc.franchise.web.controller;
 
 import fc.franchise.domain.Brand;
 import fc.franchise.domain.Food;
+import fc.franchise.domain.Page;
+import fc.franchise.domain.PageDto;
 import fc.franchise.repository.brand.BrandInterface;
 import fc.franchise.repository.food.FoodInterface;
+
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
@@ -23,13 +26,14 @@ public class CategoryController {
 
 
     @GetMapping("/category")
-    public String category (Model model) {
-        List<Food> food = foodInterface.loadTable("한식");
+    public String category (Page page,Model model) {
+        List<Food> food = foodInterface.getList(page);
         List<Brand> brand3 = brandInterface.loadTable1("한식");
         List<Brand> brand = brandInterface.getPieChart("한식");
         List<Brand> brand2 = brandInterface.findSalesTop5("한식");
         model.addAttribute("category","한식");
         model.addAttribute("food",food);
+        model.addAttribute("pageMaker", new PageDto(page,123));
         model.addAttribute("brand", brand);
         model.addAttribute("brand2", brand2);
         model.addAttribute("brand3", brand3);

@@ -6,6 +6,7 @@ import fc.franchise.repository.brand.MybatisBrandRepository;
 import fc.franchise.repository.food.FoodInterface;
 import fc.franchise.repository.food.FoodMapper;
 import fc.franchise.repository.food.MybatisFoodRepository;
+
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -25,4 +26,6 @@ public class MybatisConfig {
     public BrandInterface brandInterface() {
         return new MybatisBrandRepository(brandMapper);
     }
+
+
 }

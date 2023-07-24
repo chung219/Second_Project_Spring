@@ -1,6 +1,7 @@
 package fc.franchise.repository.food;
 
 import fc.franchise.domain.Food;
+import fc.franchise.domain.Page;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
@@ -24,5 +25,10 @@ public class MybatisFoodRepository implements FoodInterface {
     @Override
     public List<Food> findBrandName(String brandName) {
         return foodMapper.findBrandName(brandName);
+    }
+
+    @Override
+    public List<Food> getList(Page page) {
+        return foodMapper.getList(page);
     }
 }
