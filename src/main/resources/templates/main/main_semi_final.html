@@ -229,13 +229,13 @@
                             {
                                 content:
                                     '<dl class="infowindow">'+
-                                        '<dt>' + name + '<span>'+ category+ '</span>'+'</dt>' +
+                                        '<dt><span>'+ category+ '</span><b>' + name + '</b>'+
+                                        '<span class="tel">'+ tel +'</span></dt>' +
                                         '<dd class="review_grade">' +
                                             '<b>' + score + '</b>' +
                                             '<span class="rate"><span style = "width:' + (score / 5) * 100 + '%"></span>' +
                                         '</dd>'+
-                                        '<dd class="addr">'+ first_address + '<span> (지번: '+ second_address +')</span>'+'</dd>' +
-                                        '<dd class="tel">'+ tel +'</dd>'+
+                                        '<dd class="addr"><b>'+ first_address + '</b><div> (지번: '+ second_address +')</div>'+'</dd>' +
                                     '</dl>'
                                 ,
                                 latlng: new kakao.maps.LatLng(latitude, longitude),

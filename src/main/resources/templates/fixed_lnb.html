@@ -19,14 +19,29 @@
 <script th:inline="javascript">
     var category = [[${category}]]
     console.log('나는 찾는다 카테고리를')
-    console.log(category)
+   // console.log(category)
     console.log('나는 찾았다 너를')
     function activeCategory(category){
+       // $('body').hide();
         var targetClass = $('a[title='+category+']');
-
         $('dd').removeClass('active');
         $('dd.'+category).addClass('active');
     }
     activeCategory(category)
+
+    $(function (){
+        // 브랜드명 섬네일 이미지 가져오기
+        var lnb_cate = $(".main dl.fixed_quick_menu dd.active").index()-1;
+        for(var i = 0; i < 4; i++) {
+            $(".thumb_img").eq(i-1).prepend("<img src='/images/" + lnb_cate + "_" + i + ".jpg'>");
+        }
+        // 브랜드 섬네일 없는 인덱스는 브랜드명 노출하기
+        for(var i = 4; i < 10; i++) {
+            var name_cate = $(".brand_name").eq(i-1).text().slice(0,3);
+            $(".thumb_img").eq(i-1).prepend(name_cate);
+        }
+        // 좌측 외식업종 카테고리 active 아이콘 버튼(fontAwesome) 모양 복붙
+        $(".fixed_quick_menu dd.active i").clone().insertBefore(".latest dt b");
+    });
 
 </script>

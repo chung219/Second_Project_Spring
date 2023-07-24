@@ -4,7 +4,7 @@
 <h2 th:if="null" th:text="업종별 브랜드 분포">업종별 브랜드 분포</h2>
 <!--<h2 th:unless="null" th:utext="|[${category}] 업종별 브랜드 분포|">양갱</h2>-->
 <h2>
-    <b th:unless="null" th:text="|${category}|"> </b> 프랜차이즈 점유율
+    <b th:unless="null" th:text="|${category}|"> </b> 프랜차이즈 TOP5
 </h2>
 
 <div class="dash_board_graph">
@@ -81,7 +81,7 @@
 <dl class="latest">
     <dt th:if="null" th:text="가맹점수 Top3"></dt>
     <dt>
-        <b th:unless="null" th:text="|${category}|"> </b> 브랜드 TOP3
+        <b th:unless="null" th:text="|${category}|"> </b> 브랜드 가맹점수 Top5
     </dt>
     <dd>
         <ol class="br_li">

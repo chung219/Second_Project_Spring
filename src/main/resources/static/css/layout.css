@@ -47,12 +47,13 @@ header .search_box input[type=submit]{ background: none; position:absolute; top:
 .lnb{ position:absolute; top:0px; left: 0px; font-size: 13px; margin-left:40px; width: 240px; padding: 15px 0  }
 .lnb h2{ font:500 16px/30px 'Noto Sans KR', SansSerif; text-align: center; }
 .lnb h2 b{ color: #04d289 }
-.dash_board_graph{ height: 240px; margin:0 auto; text-align: center; border-bottom: solid 1px rgba(0,0,0,.1) }
+.dash_board_graph{ height: 240px; margin:0 auto; text-align: center; border-bottom: solid 1px rgba(0,0,0,.1); padding: 15px }
 
 
 .lnb.main dl.latest{ padding: 20px 0 }
 dl.latest dt{ font:500 16px/30px 'Noto Sans KR', SansSerif; text-align: center; }
-dl.latest dt b{ color: #04d289 }
+dl.latest dt i { color: #04d289; display: inline-block; padding-right:3px; }
+
 dl.latest dd{ padding:10px 10px 10px 25px; vertical-align: middle }
 dl.latest dd ol li{ position: relative; font:600 13px SansSerif; /*list-style-type: decimal; display:list-item;*/ vertical-align: top; padding: 8px 0 }
 dl.latest dd ol li:before{ content:""; opacity: .8; position:absolute; top:8px; left:-17px;  display: inline-block; font-size: 15px }
@@ -69,8 +70,10 @@ dl.latest dd ol li:nth-child(10):before{ content:"10."; font-size:11px }
 dl.latest dd ol li:hover{  color: #04d289;  }
 
 dl.latest dd ol li a{ position: relative; display: block; }
-dl.latest .thumb_img{ position:absolute; top:0; right:0; display: inline-block; width: 60px; height: 35px; border: solid 1px rgba(0,0,0,.1); text-align: center;
-    vertical-align:top; border-radius: 1px; background: rgba(0,0,0,.03) }
+dl.latest .thumb_img{ position:absolute; top:0; right:0; display: inline-block; width: 60px; height: 35px; border: solid 1px rgba(0,0,0,.1); text-align: center; font:600 15px/35px 'Noto Sans KR','궁서체'; text-align: center;
+    vertical-align:top; border-radius: 1px; background: rgba(0,0,0,.03); vertical-align: middle; color:rgba(0,0,0,.5); overflow: hidden;  white-space: nowrap;  }
+dl.latest .thumb_img img{ height: 100%; max-width: 100%; margin:0 auto; display: block; }
+
 dl.latest .brand_name{ font:600 14px SansSerif; display: inline-block; width: 140px; overflow: hidden;  text-overflow: ellipsis; white-space: nowrap; }
 dl.latest .num{ display:block; /*position: absolute; top:6px; right:0*/ font:400 11px sans-serif; color:rgba(0,0,0,.7);
     font-family: SansSerif, 'fontAwesome';   }
@@ -187,7 +190,7 @@ basics => 흰배경 / 그레이 보더
 .btn:disabled:after{background: rgba(0,0,0,.1)}
 .btn{margin-right: 4px;}
 .btn:last-child{margin-right: 0}
-.btn{vertical-align: middle; /* box-shadow: -1px -1px 1px rgba(255,255,255,.2) inset;  */display: inline-block; min-height: 20px; line-height: 16px; white-space: nowrap; border-radius: 3px; padding:3px 15px; background:rgba(0,0,0,0); border:1px solid rgba(0,0,0,.2); color:rgba(255,255,255,1); position: relative; font-weight: bold; text-align: center;}
+.btn{vertical-align: middle; /* box-shadow: -1px -1px 1px rgba(255,255,255,.2) inset;  */display: inline-block; min-height: 20px; line-height: 16px; white-space: nowrap; border-radius: 3px; padding:3px 10px; background:rgba(0,0,0,0); border:1px solid rgba(0,0,0,.2); color:rgba(255,255,255,1); position: relative; font-weight: bold; text-align: center;}
 .btn:hover{background: rgba(0,0,0,.15);}
 .btn:before,
 .btn i:before{margin-right: 5px; font-size:11px;color:#fff; vertical-align: 1px; opacity: 70%;}/*아이콘*/
@@ -225,12 +228,19 @@ textarea+.btn.edit+.btn+input+label{margin-top: 3px;}
 
 
 /* 지도 > 마커 > 팝업 윈도우 */
-.infowindow { max-width: 400px; max-height: 200px; padding: 10px 20px; box-sizing: border-box; border:none; border-radius: 5px; overflow-y: auto   }
-.infowindow dt{ font:600 20px 'Noto Sans KR', sans-serif; }
-.infowindow dt span{ display: inline-block; border:solid 1px rgba(0,0,0,.2); color: #007fff; padding: 2px 5px; margin-left:5px; font-size:14px }
+.infowindow { position:relative; max-width: 350px; height: 180px; padding: 10px 20px; box-sizing: border-box; border:none; border-radius: 5px; overflow-y: auto; margin:0 !important;  }
+.infowindow dt{ }
+.infowindow dt b{ display: inline-block; margin-right:5px; font:600 20px 'Noto Sans KR', sans-serif; }
+.infowindow dt span{ display: inline-block; border:solid 1px rgba(0,0,0,.2); color: #007fff; padding: 2px 5px 1px 5px;  font-size:12px; font-weight: 500; border-radius:2px; margin-right: 3px; vertical-align: middle;  }
+.infowindow dt span.tel{ border:none; padding: 0 }
+.infowindow dt span.tel:before{ content:""; font:400 14px 'fontAwesome'; display: inline-block; width: 15px  }
 
 .review_grade{ }
 .review_grade b{ font:600 22px 'Noto Sans KR', sans-serif; color:#ed3135; display: inline-block; padding: 0 5px 0 0 }
+
+.infowindow dd.addr{ font:400 13px/20px Sans-serif, '맑은고딕'; }
+.infowindow dd.tel{ font:600 13px/20px Sans-serif, '맑은고딕'; color: #007fff }
+
 
 /* 리뷰 별점 이미지  */
 .rate{background: url(https://aldo814.github.io/jobcloud/html/images/user/star_bg02.png) no-repeat;width: 121px;height: 20px;position: relative; display: inline-block }
