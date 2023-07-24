@@ -125,6 +125,8 @@ border-radius: 3px; }
 .graph_wrap{ display:inline-flex; width:100%; justify-content: space-around; }
 .brand_pie_chart{ position: relative;  width:50%; min-height: 300px;  background: #fff; border: solid 1px rgba(0,0,0,.15); margin:0 1% 10px 0; padding:15px 18px }
 
+.brand_pie_chart2{ position: relative;  width:100%; min-height: 800px;  background: #fff; border: solid 1px rgba(0,0,0,.15); margin:0 1% 10px 0; padding:15px 18px }
+
 .year_line_chart{ position: relative;  width:50%; min-height: 300px;  background: #fff; border: solid 1px rgba(0,0,0,.15); margin:0 0 10px 0; padding:15px 18px }
 
 .table_data_wrap{ position: relative;  background: #fff; border: solid 1px rgba(0,0,0,.15);  padding:15px 18px }

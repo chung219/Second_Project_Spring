@@ -1,10 +1,12 @@
 package fc.franchise.web.controller;
 
 import fc.franchise.domain.Brand;
+import fc.franchise.domain.Cost;
 import fc.franchise.domain.Food;
 import fc.franchise.domain.Page;
 import fc.franchise.domain.PageDto;
 import fc.franchise.repository.brand.BrandInterface;
+import fc.franchise.repository.cost.CostInterface;
 import fc.franchise.repository.food.FoodInterface;
 
 import jakarta.servlet.http.HttpSession;
@@ -24,6 +26,7 @@ import java.util.List;
 public class CategoryController {
     private final FoodInterface foodInterface;
     private final BrandInterface brandInterface;
+    private final CostInterface costInterface;
 
 
     @GetMapping("/category")
@@ -86,10 +89,19 @@ public class CategoryController {
     @GetMapping("/brand")
     public String brand (Model model) {
         List<Brand> top10List = brandInterface.top10List();
-
+        List<Brand> top10List2 = brandInterface.top10List2();
         model.addAttribute("top10List", top10List);
+        model.addAttribute("top10List2", top10List2);
         return "brand/list";
     }
+
+    @GetMapping("/cost")
+    public String cost (Model model) {
+        List<Cost> findAll = costInterface.findAll();
+        model.addAttribute("findAll", findAll);
+        return "brand/cost";
+    }
+
     @GetMapping("/region")
     public String region () {
         return "region/list";

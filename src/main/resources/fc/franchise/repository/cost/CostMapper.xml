@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="fc.franchise.repository.cost.CostMapper">
+
+    <select id="findAll" resultType="cost">
+        select year,
+            브랜드명 as brandName,
+            업종대분류명 as industryCategory,
+            업종중분류명 as industryClassification,
+            가맹사업자가맹금액 as memberAmount,
+            가맹사업자교육금액 as trainingAmount,
+            가맹사업자보증금액 as guaranteedAmount,
+            합계금액 as totalAmount,
+            인테리어금액 as interiorAmount,
+            최초계약년수 as initialContractYears,
+            연장계약년수 as extendedContract
+        from (select * from comparison
+            where year='2022' and
+        인테리어금액 > 0 and 가맹사업자보증금액 > 0 and 가맹사업자교육금액 > 0 and 가맹사업자가맹금액>0 and 브랜드명 != '광부부대찌개'
+            order by 합계금액 desc)
+        where rownum between 1 and 20
+    </select>
+</mapper>

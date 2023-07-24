@@ -3,10 +3,12 @@ package fc.franchise.config;
 import fc.franchise.repository.brand.BrandInterface;
 import fc.franchise.repository.brand.BrandMapper;
 import fc.franchise.repository.brand.MybatisBrandRepository;
+import fc.franchise.repository.cost.CostInterface;
+import fc.franchise.repository.cost.CostMapper;
+import fc.franchise.repository.cost.MybatisCostRepository;
 import fc.franchise.repository.food.FoodInterface;
 import fc.franchise.repository.food.FoodMapper;
 import fc.franchise.repository.food.MybatisFoodRepository;
-
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -16,6 +18,7 @@ import org.springframework.context.annotation.Configuration;
 public class MybatisConfig {
     private final FoodMapper foodMapper;
     private final BrandMapper brandMapper;
+    private final CostMapper costMapper;
 
     @Bean
     public FoodInterface foodInterface() {
@@ -27,5 +30,8 @@ public class MybatisConfig {
         return new MybatisBrandRepository(brandMapper);
     }
 
-
+    @Bean
+    public CostInterface costInterface() {
+        return new MybatisCostRepository(costMapper);
+    }
 }
