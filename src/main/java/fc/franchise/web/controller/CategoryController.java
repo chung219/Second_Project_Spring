@@ -113,7 +113,7 @@ public class CategoryController {
     }
 
     @GetMapping("massed")
-    public String region (Model model) {
+    public String massed (Model model) {
         List<FranchiseBrandInfo> findFranchise = franchiseBrandInfoInterface.findFranchise();
         List<FranchiseBrandInfo> findFranchise_inc = franchiseBrandInfoInterface.findFranchise_inc();
         List<FranchiseBrandInfo> findFranchise_bu = franchiseBrandInfoInterface.findFranchise_bu();
@@ -138,5 +138,16 @@ public class CategoryController {
         model.addAttribute("bounceRate", bounceRate);
         return "brand/closing";
     }
+
+    @GetMapping("region")
+    public String region (Model model) {
+        List<Brand> top10List = brandInterface.top10List();
+        List<Brand> top10List2 = brandInterface.top10List2();
+        model.addAttribute("top10List", top10List);
+        model.addAttribute("top10List2", top10List2);
+        return "region/list";
+    }
+
+
 
 }
