@@ -121,7 +121,6 @@
     </select>
 
     <select id="paging" resultType="brand">
-        <![CDATA[
         SELECT 기준년도 as year, 업종대분류명 as industryCategory,
         업종중분류명 as industryClassification, 법인명 as industryName,
         브랜드명 as brandName, 가맹점수 as franchisesNumber,
@@ -135,11 +134,38 @@
         ORDER BY 기준년도 DESC, 평균매출금액 DESC, 가맹점수 DESC)
         where rownum between 1 and #{page.pageNum} * #{page.amount})
         where RN > (#{page.pageNum}-1) * #{page.amount}
-        ]]>
     </select>
 
 
 
+    <select id="storeNumbers" resultType="brand">
+        select 기준년도 as year,
+        업종대분류명 as industryCategory,
+        업종중분류명 as industryClassification,
+        법인명 as industryName,
+        브랜드명 as brandName,
+        가맹점수 as franchisesNumber,
+        신규가맹점등록수 as newBrandNum,
+        계약종료수 as endCount,
+        계약해지수 as cancelCount,
+        평균매출금액 as avgSales
+        FROM (SELECT DISTINCT *
+            From brand_fr_pro
+            WHERE (가맹점수 > 0 OR 신규가맹점등록수 > 0) AND 기준년도 = 2022
+            ORDER BY 가맹점수 DESC)
+        WHERE ROWNUM BETWEEN 1 AND 50
+    </select>
 
+    <select id="bounceRate" resultType="brand">
+        select 기준년도 as year,
+        브랜드명 as brandName,
+        계약종료수 as endCount,
+        계약해지수 as cancelCount
+        FROM (SELECT DISTINCT *
+            From brand_fr_pro
+            WHERE (계약해지수 + 계약종료수 > 0) AND 기준년도 = 2022
+            ORDER BY (계약해지수 + 계약종료수) DESC)
+        WHERE ROWNUM BETWEEN 1 AND 50
+    </select>
 
 </mapper>

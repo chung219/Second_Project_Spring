@@ -24,7 +24,11 @@ public interface BrandMapper {
 
     List<Brand> top10List2();
 
+    List<Brand> storeNumbers();
+
     List<Brand> loadTable1(String category);
+
+    List<Brand> bounceRate();
 
     List<Brand> paging(@Param("page") Page page, @Param("category") String category);
 }

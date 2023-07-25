@@ -19,6 +19,7 @@
             where year='2022' and
         인테리어금액 > 0 and 가맹사업자보증금액 > 0 and 가맹사업자교육금액 > 0 and 가맹사업자가맹금액>0 and 브랜드명 != '광부부대찌개'
             order by 합계금액 desc)
-        where rownum between 1 and 20
+        where rownum between 1 and 50
+
     </select>
 </mapper>

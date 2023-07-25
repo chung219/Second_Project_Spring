@@ -50,6 +50,10 @@ public class MybatisBrandRepository implements BrandInterface{
         return brandMapper.top10List2();
     }
 
+    @Override
+    public List<Brand> storeNumbers() {
+        return brandMapper.storeNumbers();
+    }
 
 
     @Override
@@ -60,5 +64,10 @@ public class MybatisBrandRepository implements BrandInterface{
     @Override
     public List<Brand> paging(Page page, String category) {
         return brandMapper.paging(page, category);
+    }
+
+    @Override
+    public List<Brand> bounceRate() {
+        return brandMapper.bounceRate();
     }
 }

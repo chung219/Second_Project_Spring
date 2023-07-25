@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="fc.franchise.repository.franchiseBrandInfo.FranchiseBrandInfoMapper">
+
+    <select id="findFranchise" resultType="FranchiseBrandInfo">
+        select 가맹정보등록번호 as registrationNumber,
+               브랜드명 as brandName,
+               업종대분류명 as industryCategory,
+               업종중분류명 as industryClassification,
+               기준년도 as year,
+               지역명 as areaName,
+               가맹점수 as franchisesNumber,
+               직영점포수 as directStoreNumber,
+               전체점포수 as totalNumberStores
+                FROM (
+                SELECT DISTINCT *
+                FROM FR_INFO_MERGE
+                WHERE 지역명 = '서울' AND 전체점포수 > 0 AND 기준년도 = 2022
+                ORDER BY 전체점포수 desc)
+        WHERE ROWNUM BETWEEN 1 AND 50
+    </select>
+
+    <select id="findFranchise_inc" resultType="FranchiseBrandInfo">
+        select 가맹정보등록번호 as registrationNumber,
+               브랜드명 as brandName,
+               업종대분류명 as industryCategory,
+               업종중분류명 as industryClassification,
+               기준년도 as year,
+               지역명 as areaName,
+               가맹점수 as franchisesNumber,
+               직영점포수 as directStoreNumber,
+               전체점포수 as totalNumberStores
+        FROM (
+            SELECT DISTINCT *
+            FROM FR_INFO_MERGE
+            WHERE 지역명 = '인천' AND 전체점포수 > 0 AND 기준년도 = 2022
+            ORDER BY 전체점포수 desc)
+        WHERE ROWNUM BETWEEN 1 AND 50
+    </select>
+
+    <select id="findFranchise_bu" resultType="FranchiseBrandInfo">
+        select 가맹정보등록번호 as registrationNumber,
+               브랜드명 as brandName,
+               업종대분류명 as industryCategory,
+               업종중분류명 as industryClassification,
+               기준년도 as year,
+               지역명 as areaName,
+               가맹점수 as franchisesNumber,
+               직영점포수 as directStoreNumber,
+               전체점포수 as totalNumberStores
+        FROM (
+            SELECT DISTINCT *
+            FROM FR_INFO_MERGE
+            WHERE 지역명 = '부산' AND 전체점포수 > 0 AND 기준년도 = 2022
+            ORDER BY 가맹점수 desc)
+        WHERE ROWNUM BETWEEN 1 AND 60
+    </select>
+</mapper>

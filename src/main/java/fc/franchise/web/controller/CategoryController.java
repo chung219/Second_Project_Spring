@@ -1,18 +1,14 @@
 package fc.franchise.web.controller;
 
-import fc.franchise.domain.Brand;
-import fc.franchise.domain.Cost;
-import fc.franchise.domain.Food;
-import fc.franchise.domain.Page;
-import fc.franchise.domain.PageDto;
+import fc.franchise.domain.*;
 import fc.franchise.repository.brand.BrandInterface;
 import fc.franchise.repository.cost.CostInterface;
 import fc.franchise.repository.food.FoodInterface;
 
+import fc.franchise.repository.franchiseBrandInfo.FranchiseBrandInfoInterface;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -27,6 +23,7 @@ public class CategoryController {
     private final FoodInterface foodInterface;
     private final BrandInterface brandInterface;
     private final CostInterface costInterface;
+    private final FranchiseBrandInfoInterface franchiseBrandInfoInterface;
 
 
     @GetMapping("/category")
@@ -99,7 +96,7 @@ public class CategoryController {
 
 
 
-    @GetMapping("/brand")
+    @GetMapping("brand")
     public String brand (Model model) {
         List<Brand> top10List = brandInterface.top10List();
         List<Brand> top10List2 = brandInterface.top10List2();
@@ -108,16 +105,36 @@ public class CategoryController {
         return "brand/list";
     }
 
-    @GetMapping("/cost")
+    @GetMapping("cost")
     public String cost (Model model) {
         List<Cost> findAll = costInterface.findAll();
         model.addAttribute("findAll", findAll);
         return "brand/cost";
     }
 
-    @GetMapping("/region")
-    public String region () {
-        return "region/list";
+    @GetMapping("region")
+    public String region (Model model) {
+        List<FranchiseBrandInfo> findFranchise = franchiseBrandInfoInterface.findFranchise();
+        List<FranchiseBrandInfo> findFranchise_inc = franchiseBrandInfoInterface.findFranchise_inc();
+        List<FranchiseBrandInfo> findFranchise_bu = franchiseBrandInfoInterface.findFranchise_bu();
+        model.addAttribute("findFranchise_bu",findFranchise_bu);
+        model.addAttribute("findFranchise",findFranchise);
+        model.addAttribute("findFranchise_inc",findFranchise_inc);
+        return "brand/region";
+    }
+
+    @GetMapping("store")
+    public String store (Model model) {
+        List<Brand> storeNumbers = brandInterface.storeNumbers();
+        model.addAttribute("storeNumbers", storeNumbers);
+        return "brand/store";
+    }
+
+    @GetMapping("closing")
+    public String closing (Model model) {
+        List<Brand> bounceRate = brandInterface.bounceRate();
+        model.addAttribute("bounceRate", bounceRate);
+        return "brand/closing";
     }
 
 }

@@ -6,5 +6,7 @@ import java.util.List;
 
 public interface FranchiseBrandInfoInterface {
 
-    List<FranchiseBrandInfo> regionTop10();
+    List<FranchiseBrandInfo> findFranchise();
+    List<FranchiseBrandInfo> findFranchise_inc();
+    List<FranchiseBrandInfo> findFranchise_bu();
 }

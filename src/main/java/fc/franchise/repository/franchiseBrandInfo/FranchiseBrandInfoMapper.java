@@ -8,5 +8,8 @@ import java.util.List;
 @Mapper
 public interface FranchiseBrandInfoMapper {
 
-    List<FranchiseBrandInfo> regionTop10();
+    List<FranchiseBrandInfo> findFranchise();
+    List<FranchiseBrandInfo> findFranchise_inc();
+    List<FranchiseBrandInfo> findFranchise_bu();
+
 }

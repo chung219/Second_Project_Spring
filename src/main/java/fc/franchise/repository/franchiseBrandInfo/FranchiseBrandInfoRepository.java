@@ -13,7 +13,17 @@ public class FranchiseBrandInfoRepository implements FranchiseBrandInfoInterface
     private final FranchiseBrandInfoMapper franchiseBrandInfoMapper;
 
     @Override
-    public List<FranchiseBrandInfo> regionTop10() {
-        return franchiseBrandInfoMapper.regionTop10();
+    public List<FranchiseBrandInfo> findFranchise() {
+        return franchiseBrandInfoMapper.findFranchise();
+    }
+
+    @Override
+    public List<FranchiseBrandInfo> findFranchise_inc() {
+        return franchiseBrandInfoMapper.findFranchise_inc();
+    }
+
+    @Override
+    public List<FranchiseBrandInfo> findFranchise_bu() {
+        return franchiseBrandInfoMapper.findFranchise_bu();
     }
 }
