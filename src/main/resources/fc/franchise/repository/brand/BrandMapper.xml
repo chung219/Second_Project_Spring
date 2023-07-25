@@ -160,10 +160,12 @@
         select 기준년도 as year,
         브랜드명 as brandName,
         계약종료수 as endCount,
+        가맹점수 as franchisesNumber,
+        신규가맹점등록수 as newBrandNum,
         계약해지수 as cancelCount
         FROM (SELECT DISTINCT *
             From brand_fr_pro
-            WHERE (계약해지수 + 계약종료수 > 0) AND 기준년도 = 2022
+            WHERE 계약해지수 > 0 OR 계약종료수 > 0 AND 기준년도 = 2022
             ORDER BY (계약해지수 + 계약종료수) DESC)
         WHERE ROWNUM BETWEEN 1 AND 50
     </select>

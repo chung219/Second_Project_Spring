@@ -112,7 +112,7 @@ public class CategoryController {
         return "brand/cost";
     }
 
-    @GetMapping("region")
+    @GetMapping("massed")
     public String region (Model model) {
         List<FranchiseBrandInfo> findFranchise = franchiseBrandInfoInterface.findFranchise();
         List<FranchiseBrandInfo> findFranchise_inc = franchiseBrandInfoInterface.findFranchise_inc();
@@ -120,7 +120,7 @@ public class CategoryController {
         model.addAttribute("findFranchise_bu",findFranchise_bu);
         model.addAttribute("findFranchise",findFranchise);
         model.addAttribute("findFranchise_inc",findFranchise_inc);
-        return "brand/region";
+        return "brand/massed";
     }
 
     @GetMapping("store")

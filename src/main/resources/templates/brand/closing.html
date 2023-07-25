@@ -19,8 +19,7 @@
     <script src="/js/jquery.stickytable.js"></script><!-- 고정 테이블 -->
     <script src="//kit.fontawesome.com/56b5cc4bd2.js" crossorigin="anonymous"></script><!-- 폰트어썸(아이콘 폰트) 사용 인증된 링크 -->
     <!--    <script src="js/jquery-ui-1.10.4.custom.min.js"></script>-->
-
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.3.1/chart.min.js"></script>
 </head>
 <body class="brand">
 <div class="container">
@@ -72,59 +71,55 @@
                     </div>
 
 
-                    <div class="phppot-container">
-                        <canvas id="mychart"></canvas>
+                    <div class="row">
+                        <div class="card l6 m6 s12 center">
+                            <canvas id="myChart" width="100" height="100"></canvas>
+                        </div>
                     </div>
 
 
                     <script th:inline="javascript">
 
-                        var findAll = [[${findAll}]];
-                        console.log(findAll)
+                        var bounceRate = [[${bounceRate}]];
+                        console.log(bounceRate)
 
-                        var ctx = document.getElementById("mychart").getContext('2d');
+                        var ctx = document.getElementById("myChart");
                         var myChart = new Chart(ctx, {
-                            type: 'bar',
+                            type: 'line',
                             data: {
-                                labels: findAll.map(cost => cost.brandName),
-
-
+                                labels: bounceRate.map(brand => brand.brandName),
                                 datasets: [{
-                                    label: '가맹사업자가맹금액',
-                                    backgroundColor: 'rgba(255, 61, 61, 0.8)',
-                                    data:  findAll.map(cost => cost.memberAmount),
-                                }, {
-                                    label: '가맹사업자교육금액',
-                                    backgroundColor: "rgba(61, 255, 200, 0.8)",
-                                    data: findAll.map(cost => cost.trainingAmount),
-                                }, {
-                                    label: '인테리어금액',
-                                    backgroundColor: "rgba(255, 165, 61, 0.8)",
-                                    data: findAll.map(cost => cost.interiorAmount),
-                                },{
-                                        label: '총합계금액',
-                                        backgroundColor: "rgba(250, 125, 61, 0.8)",
-                                        data: // findAll.map(cost => cost.guaranteedAmount),
-                                            findAll.map(cost => cost.interiorAmount + cost.trainingAmount + cost.memberAmount),
-                                }
-                                ],
+                                    label: '계약종료수',
+                                    data: bounceRate.map(brand => brand.endCount),
+                                    backgroundColor: [
+                                        'rgba(255, 99, 132, 0.5)',
+                                    ],
+                                    borderColor: [
+                                        'rgba(255,99,132,0.5)',
+                                    ],
+                                    borderWidth: 1
+                                },
+                                    {
+                                        label: "계약해지수",
+                                        data: bounceRate.map(brand => brand.cancelCount),
+                                        backgroundColor: [
+                                            'rgba(125,250, 60, 0.5)',
+                                        ],
+                                        borderColor: [
+                                            'rgba(125,250, 60, 0.5)',
+                                        ],
+                                        borderWidth: 1
+                                    }
+                                ]
                             },
                             options: {
-                                tooltips: {
-                                    displayColors: true,
-                                    callbacks: {
-                                        mode: 'x',
-                                    },
-                                },
                                 scales: {
-                                    x: {
-                                        stacked: true,
-                                    },
-                                    y: {
-                                        stacked: true
-                                    }
-                                },
-                                responsive: true
+                                    yAxes: [{
+                                        ticks: {
+                                            beginAtZero:true
+                                        }
+                                    }]
+                                }
                             }
                         });
                     </script>
@@ -144,6 +139,7 @@
     <!-- ####### 04. FOOTER END ####### -->
 
 </div>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.0.1/dist/chart.umd.min.js"></script>
 </body>
