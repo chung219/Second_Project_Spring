@@ -68,20 +68,20 @@ dl.latest dd ol li:nth-child(8):before{ content:"8."; }
 dl.latest dd ol li:nth-child(9):before{ content:"9."; }
 dl.latest dd ol li:nth-child(10):before{ content:"10."; font-size:11px }
 dl.latest dd ol li:hover{  color: #04d289; background: rgba(0,0,0,.01) }
-dl.latest dd ol li.active{ background: #04d289 }
-dl.latest dd ol li.active:before{ color: #fff }
+dl.latest dd ol li.active{ background: rgba(0,0,0,.05); box-shadow: inset 1px 1px 1px rgba(0,0,0,.08) }
 dl.latest dd ol li a{ position: relative; display: block; cursor: pointer; padding: 5px 10px }
-dl.latest dd ol li.active a{ color: #fff; text-shadow: 0 0 3px rgba(0,0,0,.4) }
+dl.latest dd ol li.active a{ color: #000 }
+dl.latest dd ol li.active:before{ color: #007fff  }
 
-dl.latest .thumb_img{ position:absolute; top:0; right:10px; display: inline-block; width: 60px; height: 35px; border: solid 1px rgba(0,0,0,.1); text-align: center; font:600 15px/35px 'Noto Sans KR','궁서체'; text-align: center;
+dl.latest .thumb_img{ position:absolute; top:4px; right:10px; display: inline-block; width: 60px; height: 35px; border: solid 1px rgba(0,0,0,.1); text-align: center; font:600 15px/35px 'Noto Sans KR','궁서체'; text-align: center;
     vertical-align:top; border-radius: 1px; background: rgba(0,0,0,.03); vertical-align: middle; color:rgba(0,0,0,.5); overflow: hidden;  white-space: nowrap;  }
 dl.latest .thumb_img img{ height: 100%; width: 100%; margin:0 auto; display: block; }
 
 dl.latest .brand_name{ font:600 14px SansSerif; display: inline-block; width: 140px; overflow: hidden;  text-overflow: ellipsis; white-space: nowrap; position: relative }
 dl.latest .num{ display:block; /*position: absolute; top:6px; right:0*/ font:400 11px sans-serif; color:rgba(0,0,0,.7); font-family: SansSerif, 'fontAwesome';  }
-dl.latest .active .num{  text-shadow: 0 0 3px rgba(255,255,255,.4) }
+dl.latest .active .num{ color: #007fff }
 dl.latest .num:before{ content:"가맹점 : "; }
-dl.latest dd ol li.active .brand_name:after { content:" "; font:400 14px 'fontAwesome'; color: #fff; }
+dl.latest dd ol li.active .brand_name:after { opacity:.7; content:" "; font:400 13px 'fontAwesome'; color: #000; }
 
 dl.latest dd.btn_more{ padding:10px; }
 dl.latest dd.btn_more a{ display: block; background: #04d289; color:#fff; text-align: center; font:500 14px/30px 'Noto Sans KR', SansSerif;
