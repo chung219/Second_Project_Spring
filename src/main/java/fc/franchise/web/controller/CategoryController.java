@@ -102,7 +102,7 @@ public class CategoryController {
         List<Brand> top10List2 = brandInterface.top10List2();
         model.addAttribute("top10List", top10List);
         model.addAttribute("top10List2", top10List2);
-        return "brand/list";
+        return "brand/list_socket";
     }
 
     @GetMapping("cost")
