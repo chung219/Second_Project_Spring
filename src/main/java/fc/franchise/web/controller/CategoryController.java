@@ -30,22 +30,34 @@ public class CategoryController {
 
 
     @GetMapping("/category")
-    public String category (Page page,Model model) {
+    public String category (Page page, @RequestParam(name = "category", required = false) String category, Model model, HttpSession session) {
+        String prevCategory = (String) session.getAttribute("category");
+        // 새로운 카테고리 값이 전달되면 세션에 저장합니다.
+        if (category != null && !category.equals(prevCategory)) {
+            session.setAttribute("category", category);
+        }
+
+        // 카테고리 값이 없으면 세션에 저장된 이전 카테고리 값을 사용합니다.
+        if (category == null && prevCategory != null) {
+            category = prevCategory;
+        }
+        log.info("겟 매핑의 category] "+category);
+
         List<Food> food = foodInterface.getList(page);
-        List<Brand> brand3 = brandInterface.loadTable1("한식");
+        List<Brand> brand3 = brandInterface.loadTable1(category);
         int total = brand3.size();
         log.info("total] "+total);
-        List<Brand> paging = brandInterface.paging(page, "한식");
-        List<Brand> brand = brandInterface.getPieChart("한식");
-        List<Brand> brand2 = brandInterface.findSalesTop5("한식");
+        List<Brand> paging = brandInterface.paging(page, category);
+        List<Brand> brand = brandInterface.getPieChart(category);
+        List<Brand> brand2 = brandInterface.findSalesTop5(category);
         model.addAttribute("total", total);
-        model.addAttribute("category","한식");
+        model.addAttribute("category",category);
         model.addAttribute("food",food);
         model.addAttribute("pageMaker", new PageDto(page,total));
         model.addAttribute("brand", brand);
         model.addAttribute("brand2", brand2);
         model.addAttribute("brand3", paging);
-        return "category/list_semi_final";
+        return "category/paging_test";
     }
 
 //    @CrossOrigin(origins = "http://localhost:8080")
@@ -67,11 +79,12 @@ public class CategoryController {
         if (category == null && prevCategory != null) {
             category = prevCategory;
         }
-        log.info(category);
+        log.info("포스트매핑의 카테고리"+category);
         List<Brand> receive_brand = brandInterface.getPieChart(category);
         List<Food> receive_table = foodInterface.loadTable(category);
         List<Brand> receiveTable2 = brandInterface.loadTable1(category);
         int total = receiveTable2.size();
+        log.info("포스트매핑 토탈"+total);
         List<Brand> pagingTable = brandInterface.paging(page, category);
         List<Brand> brand2 = brandInterface.findSalesTop5(category);
         model.addAttribute("total", total);
@@ -81,7 +94,7 @@ public class CategoryController {
         model.addAttribute("pageMaker", new PageDto(page,total));
         model.addAttribute("brand", receive_brand);
         model.addAttribute("brand2",brand2);
-        return "category/list_semi_final";
+        return "category/paging_test";
     }
 
 
