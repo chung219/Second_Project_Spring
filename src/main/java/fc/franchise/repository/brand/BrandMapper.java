@@ -30,5 +30,7 @@ public interface BrandMapper {
 
     List<Brand> bounceRate();
 
+    List<Brand> figure();
     List<Brand> paging(@Param("page") Page page, @Param("category") String category);
+
 }

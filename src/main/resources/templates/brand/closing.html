@@ -63,18 +63,19 @@
             <!-- ## 페이지 네비 경로 ## -->
             <span class="page_path"><!-- 페이지 네비게이션 제이쿼리 액티브 메뉴 복사 --></span>
             <div class="graph_wrap">
-                <div class="brand_pie_chart2">
+                <div class="brand_pie_chart">
                     <div class="title">
-
-                        <h2>창업 초기 비용</h2>
+                        <h2>계약종료(해지) 수치</h2>
                         <span>출처 : 공정거래위원회</span>
                     </div>
 
 
                     <div class="row">
                         <div class="card l6 m6 s12 center">
-                            <canvas id="myChart" width="100" height="100"></canvas>
+                            <canvas id="myChart" width="1000px" height="1000px"></canvas>
                         </div>
+
+
                     </div>
 
 
@@ -92,10 +93,10 @@
                                     label: '계약종료수',
                                     data: bounceRate.map(brand => brand.endCount),
                                     backgroundColor: [
-                                        'rgba(255, 99, 132, 0.5)',
+                                        'rgba(247, 168, 57, 0.7)',
                                     ],
                                     borderColor: [
-                                        'rgba(64, 174, 247,0.5)',
+                                        'rgba(247, 168, 57, 0.9)',
                                     ],
                                     borderWidth: 1
                                 },
@@ -103,10 +104,10 @@
                                         label: "계약해지수",
                                         data: bounceRate.map(brand => brand.cancelCount),
                                         backgroundColor: [
-                                            'rgba(125,250, 60, 0.9)',
+                                            'rgba(255, 99, 132, 0.7)',
                                         ],
                                         borderColor: [
-                                            'rgba(247, 64, 247, 0.9)',
+                                            'rgba(255, 99, 132, 0.9)',
                                         ],
                                         borderWidth: 1
                                     }
@@ -123,13 +124,109 @@
                             }
                         });
                     </script>
+                </div>
 
 
+
+                <div class="brand_pie_chart5">
+                    <div class="title">
+
+                        <h2>이탈률</h2>
+                        <br><br>
+                        <p><b>이탈률: ((계약해지수+계약종료수)/(가맹점수+신규가맹점등록수))*100</b></p>
+                        <span>출처 : 공정거래위원회</span>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="card l6 m6 s12 center">
+                            <canvas id="myChart2" width="1200px" height="1200px"></canvas>
+                        </div>
+
+
+                    </div>
                 </div>
             </div>
+
+                <script th:inline="javascript">
+
+                    var figure = [[${figure}]];
+                    console.log(figure)
+
+                    var ctx = document.getElementById("myChart2");
+                    var myChart2 = new Chart(ctx, {
+                        type: 'pie', // type : bar, bubble, doughnut, line, polarArea, radar, scatter, pie
+                        data: {
+                            labels: figure.map(brand => brand.brandName),
+                            datasets: [{
+                                label: '이탈률',
+                                data: figure.map(brand => brand.figure),
+                                backgroundColor: [
+                                    'rgba(247, 168, 57, 1.0)',
+                                    'rgba(247, 168, 57, 0.95)',
+                                    'rgba(247, 168, 57, 0.9)',
+                                    'rgba(247, 168, 57, 0.85)',
+                                    'rgba(247, 168, 57, 0.8)',
+                                    'rgba(247, 168, 57, 0.75)',
+                                    'rgba(247, 168, 57, 0.7)',
+                                    'rgba(247, 168, 57, 0.65)',
+                                    'rgba(247, 168, 57, 0.6)',
+                                    'rgba(247, 168, 57, 0.55)',
+                                    'rgba(247, 168, 57, 0.5)',
+                                    'rgba(247, 168, 57, 0.45)',
+                                    'rgba(247, 168, 57, 0.4)',
+                                    'rgba(247, 168, 57, 0.35)',
+                                    'rgba(247, 168, 57, 0.3)',
+                                    'rgba(247, 168, 57, 0.25)',
+                                    'rgba(247, 168, 57, 0.2)',
+                                    'rgba(247, 168, 57, 0.15)',
+                                    'rgba(247, 168, 57, 0.1)',
+                                    'rgba(247, 168, 57, 0.05)',
+
+
+                                ],
+                                borderColor: [
+                                    'rgba(247, 168, 57, 1.0)',
+                                    'rgba(247, 168, 57, 0.95)',
+                                    'rgba(247, 168, 57, 0.9)',
+                                    'rgba(247, 168, 57, 0.85)',
+                                    'rgba(247, 168, 57, 0.8)',
+                                    'rgba(247, 168, 57, 0.75)',
+                                    'rgba(247, 168, 57, 0.7)',
+                                    'rgba(247, 168, 57, 0.65)',
+                                    'rgba(247, 168, 57, 0.6)',
+                                    'rgba(247, 168, 57, 0.55)',
+                                    'rgba(247, 168, 57, 0.5)',
+                                    'rgba(247, 168, 57, 0.45)',
+                                    'rgba(247, 168, 57, 0.4)',
+                                    'rgba(247, 168, 57, 0.35)',
+                                    'rgba(247, 168, 57, 0.3)',
+                                    'rgba(247, 168, 57, 0.25)',
+                                    'rgba(247, 168, 57, 0.2)',
+                                    'rgba(247, 168, 57, 0.15)',
+                                    'rgba(247, 168, 57, 0.1)',
+                                    'rgba(247, 168, 57, 0.05)',
+
+                                ],
+                                borderWidth: 0
+                            },
+                            ]
+                        },
+                        options: {
+                            scales: {
+                                yAxes: [{
+                                    ticks: {
+                                        beginAtZero:true
+                                    }
+                                }]
+                            }
+                        }
+                    });
+                </script>
+                </div>
+
             <!-- 테이블 데이터 영역 끝 -->
             <!-- ######## 각 페이지에 해당 하는 내용 HTML을 넣어주세요.########### -->
-        </div>
         <!-- #### 03-1.우측 본문 영역 끝 -->
     </section>
     <!-- ####### 03. CONTENTS END ####### -->

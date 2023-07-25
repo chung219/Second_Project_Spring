@@ -70,4 +70,11 @@ public class MybatisBrandRepository implements BrandInterface{
     public List<Brand> bounceRate() {
         return brandMapper.bounceRate();
     }
+
+    @Override
+    public List<Brand> figure() {
+        return brandMapper.figure();
+    }
+
+
 }

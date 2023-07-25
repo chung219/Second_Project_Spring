@@ -18,11 +18,12 @@ public class Brand {
     private long cancelCount;
     private long avgSales;
     private double departureRate;
+    private double figure;
 
     public Brand() {
     }
 
-    public Brand(long year, String industryCategory, String industryClassification, String industryName, String brandName, long franchisesNumber, long newBrandNum, long endCount, long cancelCount, long avgSales, double departureRate) {
+    public Brand(long year, String industryCategory, String industryClassification, String industryName, String brandName, long franchisesNumber, long newBrandNum, long endCount, long cancelCount, long avgSales, double departureRate, double figure) {
         this.year = year;
         this.industryCategory = industryCategory;
         this.industryClassification = industryClassification;
@@ -34,5 +35,6 @@ public class Brand {
         this.cancelCount = cancelCount;
         this.avgSales = avgSales;
         this.departureRate = departureRate;
+        this.figure = figure;
     }
 }

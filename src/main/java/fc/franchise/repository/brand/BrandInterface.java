@@ -30,4 +30,5 @@ public interface BrandInterface {
 
     List<Brand> bounceRate();
 
+    List<Brand> figure();
 }

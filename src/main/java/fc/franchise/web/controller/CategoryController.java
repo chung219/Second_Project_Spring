@@ -133,6 +133,8 @@ public class CategoryController {
     @GetMapping("closing")
     public String closing (Model model) {
         List<Brand> bounceRate = brandInterface.bounceRate();
+        List<Brand> figure = brandInterface.figure();
+        model.addAttribute("figure",figure);
         model.addAttribute("bounceRate", bounceRate);
         return "brand/closing";
     }
