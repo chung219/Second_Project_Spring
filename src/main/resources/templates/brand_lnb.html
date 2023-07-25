@@ -1,9 +1,31 @@
 <!-- 02-2-1. 대시보드 집계 그래프 노출 영역 시작 -->
 <h2>외식업 브랜드 통계/분석</h2>
 <ul class="sub_menu_list">
-  <li><a href="brand" class="active"><i class="fa-solid fa-money-bill-trend-up"></i><span>매출순위</span></a></li>
-  <li><a href="cost"><i class="fa-solid fa-coins"></i><span>개업(창업)비용</span></a></li>
+  <li><a href="/brand" class="active"><i class="fa-solid fa-money-bill-trend-up"></i><span>매출순위</span></a></li>
+  <li><a href="/cost"><i class="fa-solid fa-coins"></i><span>개업(창업)비용</span></a></li>
   <li><a href="brand/?area"><i class="fa-solid fa-chart-area"></i><span>지역별 밀집</span></a></li>
   <li><a href="brand/?store"><i class="fa-solid fa-store"></i><span>가맹점 수</span></a></li>
   <li><a href="brand/?closing"><i class="fa-solid fa-store-slash"></i><span>계약종료(폐점)</span></a></li>
 </ul>
+
+<script th:inline="javascript">
+  // $('.sub_menu_list > li> a').click(function (e) {
+  //   $('.sub_menu_list > li > a').removeClass('active');
+  //   $(this).addClass('active')
+  // });
+  $(document).ready(function () {
+    // 초기에 active 클래스가 설정된 링크를 표시하기 위한 함수를 호출합니다.
+    updateActiveLink();
+  });
+  function updateActiveLink() {
+    var currentHref = window.location.pathname; // 현재 페이지의 href 값을 가져옵니다.
+    console.log(currentHref);
+
+    // 현재 href 값을 기준으로 active 클래스를 설정합니다.
+    $('.sub_menu_list > li > a').removeClass('active');
+    $('.sub_menu_list > li > a[href="' + currentHref + '"]').addClass('active');
+  }
+
+
+
+</script>

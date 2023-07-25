@@ -57,7 +57,7 @@ public class CategoryController {
         model.addAttribute("brand", brand);
         model.addAttribute("brand2", brand2);
         model.addAttribute("brand3", paging);
-        return "category/paging_test";
+        return "category/list_semi_final";
     }
 
 //    @CrossOrigin(origins = "http://localhost:8080")
@@ -94,7 +94,7 @@ public class CategoryController {
         model.addAttribute("pageMaker", new PageDto(page,total));
         model.addAttribute("brand", receive_brand);
         model.addAttribute("brand2",brand2);
-        return "category/paging_test";
+        return "category/list_semi_final";
     }
 
 

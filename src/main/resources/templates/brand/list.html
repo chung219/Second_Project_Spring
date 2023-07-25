@@ -79,8 +79,8 @@
                         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
                         <script src="https://cdn.jsdelivr.net/npm/chart.js@3.5.1/dist/chart.min.js"></script>
 
-                        <div style="width:500px;height:500px;">
-                            <canvas id="myChart"></canvas>
+                        <div style="width:500px;height:500px; margin: 0 auto">
+                            <canvas id="myChart" width="500" height="300" style="margin-top: 8em"></canvas>
                             <div id="customLegend" style="margin-top: 10px;"></div>
                         </div>
 
@@ -93,7 +93,7 @@
                             const ctx = document.getElementById('myChart').getContext('2d');
 
                             var myChart = new Chart(ctx, {
-                                type: 'radar', // type : bar, bubble, doughnut, line, polarArea, radar, scatter, pie
+                                type: 'line', // type : bar, bubble, doughnut, line, polarArea, radar, scatter, pie
                                 data: {
                                     labels: [top10List[0].brandName, top10List[1].brandName, top10List[2].brandName, top10List[6].brandName, top10List[9].brandName, top10List[5].brandName, top10List[3].brandName,top10List[7].brandName,top10List[8].brandName,top10List[4].brandName],
 
