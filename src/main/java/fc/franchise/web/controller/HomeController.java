@@ -79,6 +79,7 @@ public class HomeController {
             log.info("categorySend] "+category);
             log.info("brandNameSend] "+brandName);
             List<Food> listN = foodInterface.findBrandName(brandName);
+            model.addAttribute("brandName", brandName);
             model.addAttribute("food", listN);
         }
         return "main/main_semi_final";

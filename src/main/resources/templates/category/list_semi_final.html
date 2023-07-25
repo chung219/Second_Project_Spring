@@ -182,7 +182,7 @@
         <div class="year_line_chart">
           <div class="title">
             <h2 th:text="|[${category}] TOP5 평균 매출금액|">[한식] 년도별 통계분석 Top10</h2>
-            <span>2018~2022 평균 매출 금액 기준(단위 : 천원)</span>
+            <span>2018~2022년 평균매출 기준(단위: 천원)</span>
           </div>
           <div style="width:auto;height:auto;">
             <!-- js chart  차트 넣는 부분! -->
@@ -269,8 +269,8 @@
           } );
         </script>
         <div class="title">
-          <h2 th:text="|${category} 프랜차이즈 등록업체|">한식 프랜차이즈 등록업체</h2>
-          <span th:text="|10/${total}개|"></span>
+          <h2 th:text="|[${category}] 프랜차이즈(브랜드) 가맹현황|">한식 프랜차이즈 등록업체</h2>
+          <span th:text="|30/${total}개|"></span>
         </div>
         <div class="scroll sticky-table sticky-ltr-cells">
           <div class="table_wrap also">
@@ -299,7 +299,7 @@
 <tr th:each="table2 : ${brand3}" class="brand_table">
   <td th:text="${table2.year}">기준년도</td>
   <td th:text="${table2.industryName}">법인명</td>
-  <td class="center sticky-cell" th:text="${table2.brandName}">브랜드명</td>
+  <td class="center" th:text="${table2.brandName}">브랜드명</td>
   <td class="center" th:text="${table2.avgSales}">도로명 주소</td>
   <td class="center" th:text="${table2.franchisesNumber}">가맹점수</td>
   <td class="center" th:text="${table2.endCount}">지번 주소</td>

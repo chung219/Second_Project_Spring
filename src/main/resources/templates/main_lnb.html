@@ -88,7 +88,7 @@
     </dt>
     <dd>
         <ol class="br_li">
-            <li th:each="brand : ${brands}">
+            <li th:each="brand : ${brands}" th:class="${brand.brandName}">
                 <a th:onclick="sendBrandName([[${brand.brandName}]])">
 <!--                <a th:onclick="|sendBrandName('${brand.brandName}')|">-->
                     <span class="thumb_img"></span>
@@ -101,6 +101,7 @@
     <dd class="btn_more"><a href="#">더보기</a></dd>
 
     <script th:inline="javascript">
+
         $('.br_li > li').hide();
         $('.br_li > li').slice(0, 3).css("display", "block");
         $('.btn_more').click(function (e) {
@@ -110,5 +111,25 @@
                 $('.btn_more').fadeOut(100);
             }
         });
+
+        var brandName = [[${brandName}]]
+        console.log(brandName)
+        $(function(){
+
+            updateActiveLnb(brandName);
+
+        });
+
+        function updateActiveLnb(brandName) {
+            $('.br_li li').removeClass('active');
+            $('.br_li li.'+brandName).addClass('active');
+            // 현재 href 값을 기준으로 active 클래스를 설정합니다.
+            $('.br_li li').click(function(){
+
+                $('.br_li li').removeClass('active');
+                $(this+brandName).addClass('active');
+            });
+        }
+        updateActiveLnb(brandName)
     </script>
 </dl>

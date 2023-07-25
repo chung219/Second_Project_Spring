@@ -51,12 +51,12 @@ header .search_box input[type=submit]{ background: none; position:absolute; top:
 
 
 .lnb.main dl.latest{ padding: 20px 0 }
-dl.latest dt{ font:500 16px/30px 'Noto Sans KR', SansSerif; text-align: center; }
+dl.latest dt{ font:500 16px/30px 'Noto Sans KR', SansSerif; text-align: center; padding-bottom:10px }
 dl.latest dt i { color: #04d289; display: inline-block; padding-right:3px; }
 .standard_cond{ font:400 13px Sans-Serif; color: cornflowerblue }
-dl.latest dd{ padding:10px 10px 10px 25px; vertical-align: middle }
-dl.latest dd ol li{ position: relative; font:600 13px SansSerif; /*list-style-type: decimal; display:list-item;*/ vertical-align: top; padding: 8px 0 }
-dl.latest dd ol li:before{ content:""; opacity: .8; position:absolute; top:8px; left:-17px;  display: inline-block; font-size: 15px }
+dl.latest dd{ /* padding:10px 10px 10px 25px; */ vertical-align: middle }
+dl.latest dd ol li{ position: relative; font:600 13px SansSerif; transition: .2s ease; /*list-style-type: decimal; display:list-item;*/ vertical-align: top; padding: 8px 0 8px 15px }
+dl.latest dd ol li:before{ content:""; opacity: .8; position:absolute; top:12px; left:8px;  display: inline-block; font-size: 15px }
 dl.latest dd ol li:nth-child(1):before{ content:"1."; color: #04d289 }
 dl.latest dd ol li:nth-child(2):before{ content:"2."; color: #04d289 }
 dl.latest dd ol li:nth-child(3):before{ content:"3."; color: #04d289 }
@@ -67,19 +67,23 @@ dl.latest dd ol li:nth-child(7):before{ content:"7."; }
 dl.latest dd ol li:nth-child(8):before{ content:"8."; }
 dl.latest dd ol li:nth-child(9):before{ content:"9."; }
 dl.latest dd ol li:nth-child(10):before{ content:"10."; font-size:11px }
-dl.latest dd ol li:hover{  color: #04d289;  }
+dl.latest dd ol li:hover{  color: #04d289; background: rgba(0,0,0,.01) }
+dl.latest dd ol li.active{ background: #04d289 }
+dl.latest dd ol li.active:before{ color: #fff }
+dl.latest dd ol li a{ position: relative; display: block; cursor: pointer; padding: 5px 10px }
+dl.latest dd ol li.active a{ color: #fff; text-shadow: 0 0 3px rgba(0,0,0,.4) }
 
-dl.latest dd ol li a{ position: relative; display: block; }
-dl.latest .thumb_img{ position:absolute; top:0; right:0; display: inline-block; width: 60px; height: 35px; border: solid 1px rgba(0,0,0,.1); text-align: center; font:600 15px/35px 'Noto Sans KR','궁서체'; text-align: center;
+dl.latest .thumb_img{ position:absolute; top:0; right:10px; display: inline-block; width: 60px; height: 35px; border: solid 1px rgba(0,0,0,.1); text-align: center; font:600 15px/35px 'Noto Sans KR','궁서체'; text-align: center;
     vertical-align:top; border-radius: 1px; background: rgba(0,0,0,.03); vertical-align: middle; color:rgba(0,0,0,.5); overflow: hidden;  white-space: nowrap;  }
-dl.latest .thumb_img img{ height: 100%; max-width: 100%; margin:0 auto; display: block; }
+dl.latest .thumb_img img{ height: 100%; width: 100%; margin:0 auto; display: block; }
 
-dl.latest .brand_name{ font:600 14px SansSerif; display: inline-block; width: 140px; overflow: hidden;  text-overflow: ellipsis; white-space: nowrap; }
-dl.latest .num{ display:block; /*position: absolute; top:6px; right:0*/ font:400 11px sans-serif; color:rgba(0,0,0,.7);
-    font-family: SansSerif, 'fontAwesome';   }
-dl.latest .num:before{ content:"가맹점: "; }
+dl.latest .brand_name{ font:600 14px SansSerif; display: inline-block; width: 140px; overflow: hidden;  text-overflow: ellipsis; white-space: nowrap; position: relative }
+dl.latest .num{ display:block; /*position: absolute; top:6px; right:0*/ font:400 11px sans-serif; color:rgba(0,0,0,.7); font-family: SansSerif, 'fontAwesome';  }
+dl.latest .active .num{  text-shadow: 0 0 3px rgba(255,255,255,.4) }
+dl.latest .num:before{ content:"가맹점 : "; }
+dl.latest dd ol li.active .brand_name:after { content:" "; font:400 14px 'fontAwesome'; color: #fff; }
 
-dl.latest dd.btn_more{ padding-left:10px; }
+dl.latest dd.btn_more{ padding:10px; }
 dl.latest dd.btn_more a{ display: block; background: #04d289; color:#fff; text-align: center; font:500 14px/30px 'Noto Sans KR', SansSerif;
 border-radius: 3px; }
 
@@ -92,7 +96,7 @@ border-radius: 3px; }
 
 .sub_menu_list{ padding: 20px 0 }
 .sub_menu_list li{ padding: 0 10px }
-.sub_menu_list li a{ position:relative; display: block; padding:5px; box-sizing: border-box;
+.sub_menu_list li a{ position:relative; display: block; padding:5px; box-sizing: border-box; cursor: pointer;
     border-bottom: solid 1px rgba(0,0,0,.05) }
 .sub_menu_list li a:hover{ background: rgba(0,0,0,.05) }
 .sub_menu_list li a:hover i{ color: #04d289; opacity: 1; }
@@ -104,7 +108,7 @@ border-radius: 3px; }
 /* 우측 컨텐츠  */
 .contents_wrap{ position: relative; height: 100%; margin:40px 0 0 280px; box-sizing: border-box; font-size: 12px; word-break: break-all }
 .contents_wrap:after{ content:""; display: block; clear:both; }
-.right_contents{ position: relative; height: 100%; padding: 10px 2%; box-sizing: border-box }
+.right_contents{ position: relative; height: 100%; padding: 10px 2% 50px 2%; box-sizing: border-box }
 .right_contents:after{ content:""; display: block; clear:both; }
 .main .right_contents{ padding:0; }
 
@@ -123,12 +127,13 @@ border-radius: 3px; }
 
 /* 업종별 서브 페이지 */
 .graph_wrap{ display:inline-flex; width:100%; justify-content: space-around; }
-.brand_pie_chart{ position: relative;  width:50%; min-height: 300px;  background: #fff; border: solid 1px rgba(0,0,0,.15); margin:0 1% 10px 0; padding:15px 18px }
+.brand_pie_chart{ position: relative;  width:50%; min-height: 280px;  background: #fff; border: solid 1px rgba(0,0,0,.15); margin:0 1% 10px 0; padding:15px 18px 10px 18px }
 
-.brand_pie_chart2{ position: relative;  width:100%; min-height: 800px;  background: #fff; border: solid 1px rgba(0,0,0,.15); margin:0 1% 10px 0; padding:15px 18px }
+.brand_pie_chart2{ position: relative;  width:100%; min-height: 800px;  background: #fff; border: solid 1px rgba(0,0,0,.15); margin:0 1% 10px 0; padding:15px 18px 10px 18px }
 
-.year_line_chart{ position: relative;  width:50%; min-height: 300px;  background: #fff; border: solid 1px rgba(0,0,0,.15); margin:0 0 10px 0; padding:15px 18px }
+.year_line_chart{ position: relative;  width:50%; min-height: 280px;  background: #fff; border: solid 1px rgba(0,0,0,.15); margin:0 0 10px 0; padding:15px 18px 10px 18px }
 
+.table_data_wrap{ position: relative;  background: #fff; border: solid 1px rgba(0,0,0,.15);  padding:15px 18px; margin-bottom:20px }
 .brand_pie_chart4{ position: relative;  width:1200px; min-height: 400px;  background: #fff; border: solid 1px rgba(0,0,0,.15); margin:0 1% 10px 0; padding:15px 18px }
 
 .brand_pie_chart5{ position: relative;  width:40%; min-height: 100px;  background: #fff; border: solid 1px rgba(0,0,0,.15); margin:0 0 10px 0; padding:15px 18px }
@@ -181,7 +186,7 @@ border-radius: 3px; }
 .footer_wrap footer{ }
 .copyright{ padding: 0 0 0 1.5%; font:400 11px/20px SansSerif, Arial; color:rgba(0,0,0,.7); }
 .copyright a{ position: absolute; right:40px; bottom:0px; font:600 12px/20px SansSerif, Arial; width: 60px; text-align: center;
-    display: inline-block; color: #fff; background:rgba(0,0,0,.6); }
+    display: inline-block; color: #fff; background: #04d289; }
 .copyright a:hover{ background:rgba(0,0,0,.9); }
 /******************************************
 btn(button의 약어) => 기본 컬러 (주컬러)
