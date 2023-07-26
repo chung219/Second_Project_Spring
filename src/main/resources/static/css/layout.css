@@ -46,7 +46,8 @@ header .search_box input[type=submit]{ background: none; position:absolute; top:
 /* 페이지 컨텐츠 관련 좌측 메뉴  */
 .lnb{ position:absolute; top:0px; left: 0px; font-size: 13px; margin-left:40px; width: 240px; padding: 15px 0  }
 .lnb h2{ font:500 16px/30px 'Noto Sans KR', SansSerif; text-align: center; }
-.lnb h2 b{ color: #04d289 }
+.lnb h2 b{ color: #000 }
+.lnb h2 i{ color: #04d289; display: inline-block; padding-right:3px; }
 .dash_board_graph{ height: 240px; margin:0 auto; text-align: center; border-bottom: solid 1px rgba(0,0,0,.1); padding: 15px }
 
 
