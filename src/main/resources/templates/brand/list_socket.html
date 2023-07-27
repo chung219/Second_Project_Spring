@@ -67,7 +67,7 @@
                 <div class="brand_pie_chart">
                     <div class="title">
                         <h2>2022년 외식업 매출상위 브랜드</h2>
-                        <span>출처 : 공정거래위원회</span>
+                        <span></span>
                     </div>
                     <!--2022년 기준 &ndash;&gt; 한식 업종 브랜드 상위 10개 업체 점유율 챠트 노출해주세요!-->
 
@@ -91,7 +91,7 @@
 
 
                             $(document).ready(function (){
-                                var socket = new WebSocket("ws://localhost:8060");
+                                var socket = new WebSocket("ws://192.168.30.206:8060");
                                 var labels = [];  // X축 레이블
                                 var datasets = [];  // 데이터셋
                                 const ctx = document.getElementById('myChart').getContext('2d');
